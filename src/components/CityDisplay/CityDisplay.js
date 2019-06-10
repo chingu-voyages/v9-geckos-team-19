@@ -1,10 +1,13 @@
+import './CityDisplay.css';
 import React from 'react';
 
-const CityDisplay = props => {
+
+const CityDisplay = ({ images }) => {
+
     return (
         <div className="landingPicDisplay">
-            <img src="/"/>
-            <button>City Select</button>
+            <img src={images} alt="city selected"/>
+            <button>City Name</button>
         </div>
     );
 }

@@ -1,3 +1,4 @@
+import './SearchBar.css';
 import React from 'react';
 
 class SearchBar extends React.Component {
@@ -12,9 +13,7 @@ class SearchBar extends React.Component {
 
         this.props.onCitySubmit(this.state.term);
     }
-
     
-
     render() {
 
         return (
@@ -26,6 +25,7 @@ class SearchBar extends React.Component {
                         value={this.state.term}
                         onChange={this.onInputChange}
                     />
+                    <button onClick={this.onCitySubmit}>Search</button>
                 </form>               
             </div>
         );

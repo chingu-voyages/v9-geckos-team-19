@@ -1,14 +1,12 @@
 import './Education.css';
 import React from 'react';
 
-const Education = ({ urbanscores }) => {
-    if(!urbanscores) {
+const Education = ({ city }) => {
+    if (!city) {
         return <div></div>
     }
 
-    let urbanId = urbanscores.ua_id;
-    console.log(urbanId);
-
+    // let urbanId = city.ua_id;
     return (
         <div className="education">
             Education

@@ -2,16 +2,15 @@ import React from 'react';
 import './App.css';
 import SearchBar from './components/SearchBar/SearchBar';
 import CityDisplay from './components/CityDisplay/CityDisplay';
-import LocalReviews from './components/LocalReviews/LocalReviews';
-import Safety from './components/Safety/Safety';
-import Education from './components/Education/Education';
+import LocalReviewsContainer from './components/LocalReviews/LocalReviewsContainer';
+import SafetyContainer from './components/Safety/SafetyContainer';
+import EducationContainer from './components/Education/EducationContainer';
 import teleport from './api/teleport';
 
 class App extends React.Component {
   state = { geoname_id: 0, urbanscores: '', images: [] }
 
   onCitySubmit = async (city) => {
-    debugger;
     city = city.toLowerCase().replace(/ /g, '%20');
     let citySearch = await teleport.get('cities/?search=' + city);
 
@@ -23,20 +22,14 @@ class App extends React.Component {
     let city_id = cityResponseURL.match(idSearch);
     city_id = city_id.toString().replace(/,/g, '');
 
-    let urbanArea = await teleport.get('cities/geonameid:' + city_id);
-
-    
+    let urbanArea = await teleport.get('cities/geonameid:' + city_id);    
     urbanArea = urbanArea.data["_links"]["city:urban_area"]["href"];
-    
-    let imageURL = await teleport.get(urbanArea);
-    
+
+    let imageURL = await teleport.get(urbanArea);   
     imageURL = imageURL.data["_links"]["ua:images"]["href"];
 
     let image = await teleport.get(imageURL);
-
     image = image.data.photos[0].image.web;
-
-    console.log(city_id, urbanArea, image);
 
     this.setState({
       geoname_id: city_id,
@@ -49,10 +42,10 @@ class App extends React.Component {
     return (
       <div>
         <SearchBar onCitySubmit = {this.onCitySubmit}/>
-        <CityDisplay images = {this.state.images}/>
-        <Education city={this.state.urbanscores}/>
-        <Safety city={this.state.urbanscores}/>
-        <LocalReviews city={this.state.urbanscores}/>
+        <CityDisplay images = {this.state.images} city= {this.state.urbanscores}/>
+        <EducationContainer city={this.state.urbanscores}/>
+        <SafetyContainer city={this.state.urbanscores}/>
+        <LocalReviewsContainer city={this.state.urbanscores}/>
       </div>
     );
   }

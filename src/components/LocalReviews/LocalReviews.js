@@ -2,8 +2,8 @@ import './LocalReviews.css';
 import React from 'react';
 
 
-const LocalReviews = ({ urbanscore }) => {
-    if (!urbanscore) {
+const LocalReviews = ({ city }) => {
+    if (!city) {
         return <div></div>
     }
 

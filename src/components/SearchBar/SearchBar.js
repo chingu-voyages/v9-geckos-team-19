@@ -13,6 +13,8 @@ class SearchBar extends React.Component {
         this.props.onCitySubmit(this.state.term);
     }
 
+    
+
     render() {
 
         return (

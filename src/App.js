@@ -5,21 +5,26 @@ import CityDisplay from './components/CityDisplay/CityDisplay';
 import teleport from './api/teleport';
 
 class App extends React.Component {
-  state = { cityName: '', images: [], urbanscores: '', geohash: '', population: 0, lat: 0, long: 0 }
+  state = { geoname_id: 0, urbanscores: '', images: [] }
 
   onCitySubmit = async (city) => {
-    debugger;
     city = city.toLowerCase();
     let citySearch = await teleport.get('cities/?search=' + city);
 
     let cityResponseURL = citySearch.data["_embedded"]["city:search-results"][0]["_links"
     ]["city:item"]["href"];
 
+    let idSearch = /[0-9]/g;
+    
+    let city_id = cityResponseURL.match(idSearch);
+     city_id = city_id.toString().replace(/,/g, '');
+
     let urbanResponse = await teleport.get('urban_areas/slug:' + city + '/scores/')
     let image = await teleport.get('urban_areas/slug:' + city + '/images/')
 
+    console.log(city_id, urbanResponse, image);
     this.setState({
-      cityName: cityResponseURL,
+      geoname_id: city_id,
       urbanscores: urbanResponse,
       images: image
     })
@@ -28,8 +33,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <SearchBar onCitySubmit={this.onCitySubmit} />
-        <CityDisplay />
+        <SearchBar onCitySubmit = {this.onCitySubmit}/>
+        <CityDisplay image = {this.state.images}/>
       </div>
     );
   }

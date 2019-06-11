@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import SearchBar from './components/SearchBar/SearchBar';
 import CityDisplay from './components/CityDisplay/CityDisplay';
-import LocalReviewsContainer from './components/LocalReviews/LocalReviewsContainer';
 import SafetyContainer from './components/Safety/SafetyContainer';
 import EducationContainer from './components/Education/EducationContainer';
 import teleport from './api/teleport';
@@ -45,7 +44,6 @@ class App extends React.Component {
         <CityDisplay images = {this.state.images} city= {this.state.urbanscores}/>
         <EducationContainer city={this.state.urbanscores}/>
         <SafetyContainer city={this.state.urbanscores}/>
-        <LocalReviewsContainer city={this.state.urbanscores}/>
       </div>
     );
   }

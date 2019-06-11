@@ -12,6 +12,7 @@ class SafetyContainer extends React.Component {
         cityDetails = cityDetails.data["_links"]["ua:details"]["href"];
 
         let citySafety = await teleport.get(cityDetails);
+        console.log(citySafety);
 
         let gunsOwned = citySafety.data["categories"][16].data[3].int_value;
         console.log(gunsOwned);

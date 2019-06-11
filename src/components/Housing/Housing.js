@@ -19,7 +19,7 @@ class Housing extends React.Component {
     let valueData = cityData[0].data;
     let result = {};
     valueData.forEach(i => {
-      let valuekey = Object.keys(i)[0];
+      let valuekey = Object.keys(i).filter(j => j.match(/value$/));
       let value = i[valuekey];
       if (typeof value === ("number" || "float")) {
         value = Math.round(value * 100) / 100;

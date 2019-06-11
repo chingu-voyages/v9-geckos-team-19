@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import SearchBar from './components/SearchBar/SearchBar';
-import CityDisplay from './components/CityDisplay/CityDisplay';
+import CityDisplayContainer from './components/CityDisplay/CityDisplayContainer';
 import SafetyContainer from './components/Safety/SafetyContainer';
 import EducationContainer from './components/Education/EducationContainer';
 import teleport from './api/teleport';
@@ -41,7 +41,7 @@ class App extends React.Component {
     return (
       <div>
         <SearchBar onCitySubmit = {this.onCitySubmit}/>
-        <CityDisplay images = {this.state.images} city= {this.state.urbanscores}/>
+        <CityDisplayContainer images = {this.state.images} city= {this.state.urbanscores}/>
         <EducationContainer city={this.state.urbanscores}/>
         <SafetyContainer city={this.state.urbanscores}/>
       </div>

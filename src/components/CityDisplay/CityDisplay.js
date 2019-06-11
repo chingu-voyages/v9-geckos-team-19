@@ -1,23 +1,41 @@
 import './CityDisplay.css';
 import React from 'react';
-// import teleport from '../../api/teleport';
 
-const CityDisplay = ({ images, city }) => {
-    if(!city) {
-        return <div></div>
+class CityDisplay extends React.Component {
+    state = {currentCity: '', loadedCityURL: ''}
+
+    displayName = (city) => {
+        debugger;
+        let beforeCity = 'slug:';
+        let afterCity = city.replace(new RegExp('.*' + beforeCity), '');
+        const cityName = afterCity.toLowerCase()
+            .split('-')
+            .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+            .join(' ')
+            .replace('/', '');
+
+        this.setState({
+            currentCity: cityName, 
+            loadedCityURL: this.props.city
+        })
     }
 
-    let beforeCity = 'slug:';
-    let afterCity = city.replace(new RegExp('.*' + beforeCity), '');
-    let cityName = afterCity.charAt(0).toUpperCase() + afterCity.slice(1);
-    cityName = cityName.replace('/', '');
+    render() {
+            if(!this.props.city) {
+                return <div></div>
+            }
+            if (this.props.city && this.state.loadedCityURL !== this.props.city) {
+                this.displayName(this.props.city);
+            }
 
     return (
         <div className="landingPicDisplay">
-            <img src={images} alt="city selected"/>
-            <button>{cityName}</button>
+            <img src={this.props.images} alt="city selected"/>
+            <div>{this.state.currentCity}</div>
         </div>
     );
+    }
+
 }
 
 export default CityDisplay;

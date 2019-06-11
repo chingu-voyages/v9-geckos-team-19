@@ -30,7 +30,6 @@ class CityDisplay extends React.Component {
     }
 
     onCitySelect = (index) => {
-        debugger;
         const cityIndex = index;
 
         const selectedCityName = this.props.cityList[cityIndex];

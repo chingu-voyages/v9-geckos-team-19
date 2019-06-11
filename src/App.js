@@ -7,40 +7,50 @@ import EducationContainer from './components/Education/EducationContainer';
 import teleport from './api/teleport';
 
 class App extends React.Component {
-  state = { geoname_id: 0, urbanscores: '', images: [] }
+  state = { geoname_id: 0, urbanscores: '', images: [], displayError: false }
 
   onCitySubmit = async (city) => {
-    city = city.toLowerCase().replace(/ /g, '%20');
-    let citySearch = await teleport.get('cities/?search=' + city);
+    try {
+      city = city.toLowerCase().replace(/ /g, '%20');
+      let citySearch = await teleport.get('cities/?search=' + city);
 
-    let cityResponseURL = citySearch.data["_embedded"]["city:search-results"][0]["_links"
-    ]["city:item"]["href"];
+      let cityResponseURL = citySearch.data["_embedded"]["city:search-results"][0]["_links"
+      ]["city:item"]["href"];
 
-    let idSearch = /[0-9]/g;
-    
-    let city_id = cityResponseURL.match(idSearch);
-    city_id = city_id.toString().replace(/,/g, '');
+      let idSearch = /[0-9]/g;
+      
+      let city_id = cityResponseURL.match(idSearch);
+      city_id = city_id.toString().replace(/,/g, '');
 
-    let urbanArea = await teleport.get('cities/geonameid:' + city_id);    
-    urbanArea = urbanArea.data["_links"]["city:urban_area"]["href"];
+      let urbanArea = await teleport.get('cities/geonameid:' + city_id);    
+      urbanArea = urbanArea.data["_links"]["city:urban_area"]["href"];
 
-    let imageURL = await teleport.get(urbanArea);   
-    imageURL = imageURL.data["_links"]["ua:images"]["href"];
+      let imageURL = await teleport.get(urbanArea);   
+      imageURL = imageURL.data["_links"]["ua:images"]["href"];
 
-    let image = await teleport.get(imageURL);
-    image = image.data.photos[0].image.web;
+      let image = await teleport.get(imageURL);
+      image = image.data.photos[0].image.web;
 
-    this.setState({
-      geoname_id: city_id,
-      urbanscores: urbanArea,
-      images: image
-    })
+      this.setState({
+        geoname_id: city_id,
+        urbanscores: urbanArea,
+        images: image,
+        displayError: false
+      })
+    }
+    catch(error) {
+      this.setState({
+        displayError: true
+      })
+    } 
+
   }
 
   render() {
     return (
       <div>
-        <SearchBar onCitySubmit = {this.onCitySubmit}/>
+        <SearchBar onCitySubmit = {this.onCitySubmit}
+                   searchError = {this.state.displayError}/>
         <CityDisplayContainer images = {this.state.images} 
                               city= {this.state.urbanscores}
                               onCitySubmit = {this.onCitySubmit}/>

@@ -16,17 +16,24 @@ class SearchBar extends React.Component {
     
     render() {
 
+        let errorText = ''; 
+
+        if(this.props.searchError) {
+            errorText = "Try another search term"
+        }
+
         return (
             <div>
                 <form onSubmit={this.onCitySubmit}>
                     <input 
                         type="text" 
-                        placeholder="Search for a city" 
+                        placeholder={"Search for a city"}
                         value={this.state.term}
                         onChange={this.onInputChange}
                     />
                     <button onClick={this.onCitySubmit}>Search</button>
-                </form>               
+                </form>  
+                <h1>{errorText}</h1>             
             </div>
         );
     }

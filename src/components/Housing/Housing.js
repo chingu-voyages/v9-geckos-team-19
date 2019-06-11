@@ -7,11 +7,11 @@ class Housing extends React.Component {
   state = { label: "" };
   getData = async (city, datatype) => {
     const chosenCity = city;
-    let cityDetails = await teleport.get(chosenCity);
-    cityDetailUrl = cityDetails.data["_links"]["ua:details"]["href"];
-    let cityDetails = await teleport.get(cityDetailsUrl);
+    let urbanAreaData = await teleport.get(chosenCity);
+    let urbanDetailUrl = urbanAreaData.data["_links"]["ua:details"]["href"];
+    let UrbanInfo = await teleport.get(urbanDetailUrl);
 
-    var cityData = cityDetails.data["categories"].filter(
+    var cityData = UrbanInfo.data["categories"].filter(
       item => item.id === datatype
     );
     const label = cityData[0].label;
@@ -31,26 +31,21 @@ class Housing extends React.Component {
     this.setState({ label: label });
   };
 
-  componentDidCatch(error, info) {
-    // You can also log the error to an error reporting service
-    logErrorToMyService(error, info);
+  componentDidMount() {
+    if (!this.state.result) {
+      this.getData(this.props.city, this.props.datatype);
+    }
   }
-
   render() {
     if (this.state.result) {
       return (
         <div>
-          <button onClick={() => this.getData(city, datatype)} /> //change city
           <h4> {this.state.label} </h4>
           <VisualizeData cityData={this.state.result} />
         </div>
       );
     } else {
-      return (
-        <div>
-          <button onClick={() => this.getData(city, datatype)} /> //change city
-        </div>
-      );
+      return <div />;
     }
   }
 }

@@ -25,7 +25,8 @@ class CityDisplayContainer extends React.Component {
         return <CityDisplay 
                 images={this.props.images}
                 city={this.props.city}
-                cityList={this.state.cityList}/>;
+                cityList={this.state.cityList}
+                onCitySubmit={this.props.onCitySubmit}/>;
     }
 }
 

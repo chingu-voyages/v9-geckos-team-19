@@ -1,11 +1,11 @@
 import './CityDisplay.css';
 import React from 'react';
+import CityChoice from './CityChoice';
 
 class CityDisplay extends React.Component {
-    state = {currentCity: '', loadedCityURL: ''}
+    state = {currentCity: '', selectedCity: '', cityDisplay: false, loadedCityURL: ''}
 
     displayName = (city) => {
-        debugger;
         let beforeCity = 'slug:';
         let afterCity = city.replace(new RegExp('.*' + beforeCity), '');
         const cityName = afterCity.toLowerCase()
@@ -20,6 +20,27 @@ class CityDisplay extends React.Component {
         })
     }
 
+    displayList = () => {
+        let cityShow = this.state.cityDisplay;
+        cityShow = !cityShow;
+
+        this.setState ({
+            cityDisplay: cityShow
+        })
+    }
+
+    onCitySelect = (index) => {
+        debugger;
+        const cityIndex = index;
+
+        const selectedCityName = this.props.cityList[cityIndex];
+
+        this.setState({
+            selectedCity: selectedCityName
+        })
+        this.props.onCitySubmit(selectedCityName)
+    }
+
     render() {
             if(!this.props.city) {
                 return <div></div>
@@ -28,10 +49,26 @@ class CityDisplay extends React.Component {
                 this.displayName(this.props.city);
             }
 
+            let menuDisplay = this.state.currentCity;
+
+            if(this.state.cityDisplay) {
+                menuDisplay = 
+                <div>
+                    {this.props.cityList.map((city, index) => {
+                        return <CityChoice 
+                            city = {city}
+                            key={index}
+                            select={() => this.onCitySelect(index)}
+                        />
+                    })}
+                </div>
+                
+            }
+
     return (
         <div className="landingPicDisplay">
             <img src={this.props.images} alt="city selected"/>
-            <div>{this.state.currentCity}</div>
+            <div onClick={this.displayList}>{menuDisplay}</div>
         </div>
     );
     }

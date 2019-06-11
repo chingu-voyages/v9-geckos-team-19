@@ -41,7 +41,9 @@ class App extends React.Component {
     return (
       <div>
         <SearchBar onCitySubmit = {this.onCitySubmit}/>
-        <CityDisplayContainer images = {this.state.images} city= {this.state.urbanscores}/>
+        <CityDisplayContainer images = {this.state.images} 
+                              city= {this.state.urbanscores}
+                              onCitySubmit = {this.onCitySubmit}/>
         <EducationContainer city={this.state.urbanscores}/>
         <SafetyContainer city={this.state.urbanscores}/>
       </div>

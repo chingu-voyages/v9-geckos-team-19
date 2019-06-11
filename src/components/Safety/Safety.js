@@ -10,9 +10,9 @@ const Safety = ({ gunCount, gunDeaths }) => {
     return (
         <div>
             <h1>Safety</h1>
-            {gunCount}
+            <h2>{gunCount}</h2>     
             <p>Guns owned per 100 residents</p>
-            {gunDeaths}
+            <h2>{gunDeaths}</h2>
             <p>Gun deaths per 100,000 residents per year</p>
         </div>
     );

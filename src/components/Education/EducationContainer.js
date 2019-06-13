@@ -18,6 +18,7 @@ class EducationContainer extends React.Component {
             };
 
     educationDetails = async (city) => {
+        debugger;
         let chosenCity = city;
 
         let cityDetails = await teleport.get(chosenCity);

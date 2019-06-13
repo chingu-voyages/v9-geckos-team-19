@@ -1,3 +1,24 @@
-/* .landingPicDisplay {
-    
-} */
+.cityPicDisplay {
+    position: relative;
+    width: 100%;
+}
+
+.dropDownMenu {
+    height: 10rem;
+    overflow: auto;
+}
+
+.btn-cityName {
+    position: absolute;
+    display: block;
+    margin-top: auto;
+    margin-right: auto;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    margin-top: -13rem;
+    left: 35%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: lighter;
+    font-size: 3rem;
+}

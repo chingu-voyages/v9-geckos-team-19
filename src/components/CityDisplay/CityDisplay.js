@@ -2,6 +2,8 @@ import './CityDisplay.css';
 import React from 'react';
 import CityChoice from './CityChoice';
 import Image from 'react-bootstrap/Image';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 class CityDisplay extends React.Component {
     state = {currentCity: '', selectedCity: '', cityDisplay: false, loadedCityURL: ''}
@@ -22,6 +24,7 @@ class CityDisplay extends React.Component {
     }
 
     displayList = () => {
+        debugger;
         let cityShow = this.state.cityDisplay;
         cityShow = !cityShow;
 
@@ -49,7 +52,8 @@ class CityDisplay extends React.Component {
                 this.displayName(this.props.city);
             }
 
-            let menuDisplay = this.state.currentCity;
+            const displayCurrent = this.state.currentCity;
+            let menuDisplay = null;
 
             if(this.state.cityDisplay) {
                 menuDisplay = 
@@ -66,9 +70,20 @@ class CityDisplay extends React.Component {
             }
 
     return (
-        <div className="landingPicDisplay">
+        <div className="cityPicDisplay">
             <Image src={this.props.images} fluid alt="city selected"/>
-            <div onClick={this.displayList}>{menuDisplay}</div>
+            <Dropdown>
+                <DropdownButton 
+                    onClick={this.displayList} 
+                    variant="cityName" 
+                    title={displayCurrent}
+                    drop="right"
+                >
+                    <Dropdown.Item className= "dropDownMenu">
+                        {menuDisplay}
+                    </Dropdown.Item>
+                </DropdownButton>
+            </Dropdown>
         </div>
     );
     }

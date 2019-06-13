@@ -33,13 +33,13 @@ class SearchBar extends React.Component {
                 <Container>
                     <Row>
                         <Col md={3}>
-                            <InputGroup size="sm" className="mb-3">
+                            <InputGroup size="sm" className="mb-3" >
                                 <Form.Control 
-                                        onSubmit={this.onCitySubmit}
                                         type="text"
                                         placeholder={"Search for a city"}
                                         value={this.state.term}
                                         onChange={this.onInputChange}
+                                        onSubmit={this.onCitySubmit}
                                         />
                                 <InputGroup.Append>
                                     <Button variant="info" onClick={this.onCitySubmit}>Go</Button>
@@ -55,7 +55,6 @@ class SearchBar extends React.Component {
             </div>
         );
     }
-
 }
 
 export default SearchBar;

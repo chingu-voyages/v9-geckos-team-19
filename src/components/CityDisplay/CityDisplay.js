@@ -70,20 +70,21 @@ class CityDisplay extends React.Component {
             }
 
     return (
-        <div className="cityPicDisplay">
-            <Image src={this.props.images} fluid alt="city selected"/>
-            <Dropdown>
-                <DropdownButton 
-                    onClick={this.displayList} 
-                    variant="cityName" 
-                    title={displayCurrent}
-                    drop="right"
-                >
-                    <Dropdown.Item className= "dropDownMenu">
-                        {menuDisplay}
-                    </Dropdown.Item>
-                </DropdownButton>
-            </Dropdown>
+        <div >
+            <div className="cityPicDisplay">
+                <Image src={this.props.images} fluid alt="city selected"/>
+                <Dropdown>
+                    <DropdownButton 
+                        onClick={this.displayList} 
+                        variant="cityName" 
+                        title={displayCurrent}
+                    >
+                        <Dropdown.Item className= "dropDownMenu">
+                            {menuDisplay}
+                        </Dropdown.Item>
+                    </DropdownButton>
+                </Dropdown>
+            </div>
         </div>
     );
     }

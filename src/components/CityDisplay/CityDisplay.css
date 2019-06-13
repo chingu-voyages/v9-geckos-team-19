@@ -1,6 +1,18 @@
 .cityPicDisplay {
     position: relative;
     width: 100%;
+    
+}
+
+.dropup,
+.dropright,
+.dropdown,
+.dropleft {
+  position: static;
+}
+
+img {
+    width: 100%;
 }
 
 .dropDownMenu {
@@ -10,14 +22,11 @@
 
 .btn-cityName {
     position: absolute;
-    display: block;
-    margin-top: auto;
-    margin-right: auto;
-    z-index: 2;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    margin-top: -13rem;
-    left: 35%;
     font-family: 'Montserrat', sans-serif;
     font-weight: lighter;
     font-size: 3rem;

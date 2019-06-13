@@ -1,6 +1,7 @@
 import './CityDisplay.css';
 import React from 'react';
 import CityChoice from './CityChoice';
+import Image from 'react-bootstrap/Image';
 
 class CityDisplay extends React.Component {
     state = {currentCity: '', selectedCity: '', cityDisplay: false, loadedCityURL: ''}
@@ -66,7 +67,7 @@ class CityDisplay extends React.Component {
 
     return (
         <div className="landingPicDisplay">
-            <img src={this.props.images} alt="city selected"/>
+            <Image src={this.props.images} fluid alt="city selected"/>
             <div onClick={this.displayList}>{menuDisplay}</div>
         </div>
     );

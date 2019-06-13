@@ -44,7 +44,6 @@ class EducationContainer extends React.Component {
         //Science score stats
         let highScienceValue = cityEducation.data["categories"][6].data[7].percent_value;
         let lowScienceValue = cityEducation.data["categories"][6].data[8].percent_value;
-
         let meanScienceValue = cityEducation.data["categories"][6].data[9].float_value;
 
         const percentage = x => {

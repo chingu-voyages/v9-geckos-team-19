@@ -25,49 +25,48 @@ class EducationContainer extends React.Component {
 
         let cityEducation = await teleport.get(cityDetails);
 
+        //happiness of student stats
         let happyStudent = cityEducation.data["categories"][6].data[0].percent_value;
-        happyStudent = (happyStudent.toPrecision(2) * 100).toFixed(1);
 
+        //overall ranking of education
+        let overallRanking = cityEducation.data["categories"][6].data[12].float_value;
+
+        //Math score stats
         let highMathValue = cityEducation.data["categories"][6].data[1].percent_value;
-        highMathValue = (highMathValue.toPrecision(2) * 100).toFixed(1);
         let lowMathValue = cityEducation.data["categories"][6].data[2].percent_value;
-        lowMathValue = (lowMathValue.toPrecision(2) * 100).toFixed(1);
-
         let meanMathValue = cityEducation.data["categories"][6].data[3].float_value;
-        meanMathValue = meanMathValue.toPrecision(3);
 
+        //Reading score stats
         let highReadingValue = cityEducation.data["categories"][6].data[4].percent_value;
-        highReadingValue = (highReadingValue.toPrecision(2) * 100).toFixed(1);
         let lowReadingValue = cityEducation.data["categories"][6].data[5].percent_value;
-        lowReadingValue = (lowReadingValue.toPrecision(2) * 100).toFixed(1);
-
         let meanReadingValue = cityEducation.data["categories"][6].data[6].float_value;
-        meanReadingValue = meanReadingValue.toPrecision(3);
 
+        //Science score stats
         let highScienceValue = cityEducation.data["categories"][6].data[7].percent_value;
-        highScienceValue = (highScienceValue.toPrecision(2) * 100).toFixed(1);
         let lowScienceValue = cityEducation.data["categories"][6].data[8].percent_value;
-        lowScienceValue = (lowScienceValue.toPrecision(2) * 100).toFixed(1);
-
 
         let meanScienceValue = cityEducation.data["categories"][6].data[9].float_value;
-        meanScienceValue = meanScienceValue.toPrecision(3);
 
-        let overallRanking = cityEducation.data["categories"][6].data[12].float_value;
-        overallRanking = (overallRanking.toPrecision(2) * 100).toFixed(1);
+        const percentage = x => {
+            return x = (x.toPrecision(2) * 100).toFixed(1);
+        }
+
+        const statFormat = x => {
+            return x = x.toPrecision(3);
+        }
 
         this.setState({
-            happiness: happyStudent, 
-            ranking: overallRanking,
-            mathAvg: meanMathValue,
-            highMath: highMathValue,
-            lowMath: lowMathValue,
-            readingAvg: meanReadingValue,
-            highReading: highReadingValue,
-            lowReading: lowReadingValue,
-            scienceAvg: meanScienceValue,
-            highScience: highScienceValue,
-            lowScience: lowScienceValue,
+            happiness: percentage(happyStudent), 
+            ranking: percentage(overallRanking),
+            mathAvg: statFormat(meanMathValue),
+            highMath: percentage(highMathValue),
+            lowMath: percentage(lowMathValue),
+            readingAvg: statFormat(meanReadingValue),
+            highReading: percentage(highReadingValue),
+            lowReading: percentage(lowReadingValue),
+            scienceAvg: statFormat(meanScienceValue),
+            highScience: percentage(highScienceValue),
+            lowScience: percentage(lowScienceValue),
             loadedCityURL: chosenCity
         })
     }

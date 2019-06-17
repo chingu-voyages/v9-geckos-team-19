@@ -1,4 +1,12 @@
 .topBar {
     height: 7rem;
     background-color: #1C1747;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.topBar > img {
+    height: 5rem;
+    width: 5rem;    
 }

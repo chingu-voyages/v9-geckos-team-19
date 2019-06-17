@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import siteLogo from './image/CityScope.png';
 import SearchBar from './components/SearchBar/SearchBar';
 import CityDisplayContainer from './components/CityDisplay/CityDisplayContainer';
 import SafetyContainer from './components/Safety/SafetyContainer';
@@ -49,7 +50,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <div className="topBar"></div>
+        <div className="topBar">
+          <img src={siteLogo} alt="CityScope logo"/>
+        </div>
         <SearchBar onCitySubmit = {this.onCitySubmit}
                    searchError = {this.state.displayError}/>
         <CityDisplayContainer images = {this.state.images} 

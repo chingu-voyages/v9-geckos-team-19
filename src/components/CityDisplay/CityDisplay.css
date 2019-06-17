@@ -1,7 +1,7 @@
 .cityPicDisplay {
     position: relative;
     width: 100%;
-    
+    border-bottom: 2rem solid #57537F;
 }
 
 .dropup,

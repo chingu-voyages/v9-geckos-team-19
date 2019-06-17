@@ -49,6 +49,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <div className="topBar"></div>
         <SearchBar onCitySubmit = {this.onCitySubmit}
                    searchError = {this.state.displayError}/>
         <CityDisplayContainer images = {this.state.images} 

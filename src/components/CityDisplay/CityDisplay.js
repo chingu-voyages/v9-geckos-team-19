@@ -78,6 +78,7 @@ class CityDisplay extends React.Component {
                         onClick={this.displayList} 
                         variant="cityName" 
                         title={displayCurrent}
+                        drop="right"
                     >
                         <Dropdown.Item className= "dropDownMenu">
                             {menuDisplay}

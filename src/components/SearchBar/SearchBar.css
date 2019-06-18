@@ -2,6 +2,9 @@
     height: 1.5rem;
 }
 
-.row {
+.searcBar > .row {
     width: 100%;
+    margin-left: 0;
+    padding-left: 0;
+    padding-right: 0; 
 }

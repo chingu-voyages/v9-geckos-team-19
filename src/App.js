@@ -51,7 +51,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="App">
         <div className="topBar">
           <img src={siteLogo} alt="CityScope logo"/>
           <p>CityScope</p>
@@ -67,7 +67,17 @@ class App extends React.Component {
             <EducationContainer city={this.state.urbanscores} />
             <SafetyContainer city={this.state.urbanscores} />
           </Col>
-          <Col md={2} className="graySpace"></Col>
+          <Col md={2} className="graySpace">
+            <div className="menu">
+              <p>Life Quality</p>
+              <p>Cost of Living</p>
+              <p>Salary</p>
+              <p>Education</p>
+              <p>Safety</p>
+              <p>Climate</p>
+              <p>Population</p>
+            </div>
+          </Col>
         </Row>
       </div>
     );

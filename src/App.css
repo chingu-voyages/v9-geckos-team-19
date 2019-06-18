@@ -25,3 +25,25 @@
 .graySpace {
     background-color: #EDEDED;
 }
+
+.App > .row{
+    width: 100%;
+    margin-left: 0;
+    padding-left: 0;
+    padding-right: 0; 
+}
+
+.menu {
+    background-color: #A49FD3;
+    margin-top: 5rem;
+    margin-left: -5rem;
+    padding: 2rem;
+}
+
+.menu > p {
+    font-family: 'Roboto', sans-serif;  
+    color: white;   
+    text-transform: uppercase;
+    line-height: 30px;
+    font-size: 20px;
+}

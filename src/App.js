@@ -52,6 +52,7 @@ class App extends React.Component {
       <div>
         <div className="topBar">
           <img src={siteLogo} alt="CityScope logo"/>
+          <p>CityScope</p>
         </div>
         <SearchBar onCitySubmit = {this.onCitySubmit}
                    searchError = {this.state.displayError}/>

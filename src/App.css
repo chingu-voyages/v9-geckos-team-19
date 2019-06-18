@@ -7,6 +7,16 @@
 }
 
 .topBar > img {
+    position: relative;
     height: 5rem;
     width: 5rem;    
+}
+
+.topBar > p {
+    position: absolute;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 2rem;
+    background-color: rgba(0, 0, 0, 0.4);
 }

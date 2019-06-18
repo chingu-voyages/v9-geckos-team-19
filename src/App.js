@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 import siteLogo from './image/CityScope.png';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import SearchBar from './components/SearchBar/SearchBar';
 import CityDisplayContainer from './components/CityDisplay/CityDisplayContainer';
 import SafetyContainer from './components/Safety/SafetyContainer';
@@ -56,11 +58,17 @@ class App extends React.Component {
         </div>
         <SearchBar onCitySubmit = {this.onCitySubmit}
                    searchError = {this.state.displayError}/>
-        <CityDisplayContainer images = {this.state.images} 
-                              city= {this.state.urbanscores}
-                              onCitySubmit = {this.onCitySubmit}/>
-        <EducationContainer city={this.state.urbanscores}/>
-        <SafetyContainer city={this.state.urbanscores}/>
+        <CityDisplayContainer images={this.state.images}
+          city={this.state.urbanscores}
+          onCitySubmit={this.onCitySubmit} />
+        <Row>
+          <Col md={2} className="graySpace"></Col>
+          <Col md={8}>
+            <EducationContainer city={this.state.urbanscores} />
+            <SafetyContainer city={this.state.urbanscores} />
+          </Col>
+          <Col md={2} className="graySpace"></Col>
+        </Row>
       </div>
     );
   }

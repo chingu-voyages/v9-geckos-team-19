@@ -14,9 +14,14 @@
 
 .topBar > p {
     position: absolute;
+    margin-top: .5rem;
     color: white;
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-size: 2rem;
     background-color: rgba(0, 0, 0, 0.4);
+}
+
+.graySpace {
+    background-color: #EDEDED;
 }

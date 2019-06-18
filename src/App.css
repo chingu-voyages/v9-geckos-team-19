@@ -1,3 +1,25 @@
+body, html {
+    height: 100%;
+}
+
+.appRow {
+   background-color: #57537F;
+}
+
+.appRow > .col-md-8  {
+    padding: 0;
+}
+
+.card {
+    margin-bottom: 1rem;
+}
+
+.card-title > h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
 .topBar {
     height: 8rem;
     background-color: #1C1747;
@@ -29,6 +51,7 @@
 .App > .row{
     width: 100%;
     margin-left: 0;
+    margin-right: 0;
     padding-left: 0;
     padding-right: 0; 
 }

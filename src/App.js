@@ -61,11 +61,15 @@ class App extends React.Component {
         <CityDisplayContainer images={this.state.images}
           city={this.state.urbanscores}
           onCitySubmit={this.onCitySubmit} />
-        <Row>
+        <Row className="appRow">
           <Col md={2} className="graySpace"></Col>
           <Col md={8}>
-            <EducationContainer city={this.state.urbanscores} />
-            <SafetyContainer city={this.state.urbanscores} />
+            <div className="card">
+                <EducationContainer city={this.state.urbanscores} />
+            </div>
+            <div className="card">
+                <SafetyContainer city={this.state.urbanscores} />
+            </div>
           </Col>
           <Col md={2} className="graySpace">
             <div className="menu">

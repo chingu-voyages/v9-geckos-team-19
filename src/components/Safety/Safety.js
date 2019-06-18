@@ -9,11 +9,17 @@ const Safety = ({ gunCount, gunDeaths }) => {
 
     return (
         <div>
-            <h1>Safety</h1>
-            <h2>{gunCount}</h2>     
-            <p>Guns owned per 100 residents</p>
-            <h2>{gunDeaths}</h2>
-            <p>Gun deaths per 100,000 residents per year</p>
+            <div className="card-body">
+                <div className="card-title">
+                    <h4>Safety</h4>
+                </div>
+                <div className="card-text">
+                    <h5>{gunCount}</h5>     
+                    <p>Guns owned per 100 residents</p>
+                    <h5>{gunDeaths}</h5>
+                    <p>Gun deaths per 100,000 residents per year</p>
+                </div>
+            </div>           
         </div>
     );
 }

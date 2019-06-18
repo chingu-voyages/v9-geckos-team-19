@@ -1,3 +1,7 @@
-.searchBar > .col-md-3, .col-md-4, .col-md-5 {
+.searchBar > .col-md-3, .col-md-4 {
     height: 1.5rem;
+}
+
+.row {
+    width: 100%;
 }

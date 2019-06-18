@@ -44,7 +44,7 @@ class SearchBar extends React.Component {
                             </InputGroup.Append>
                         </InputGroup>
                     </Col>
-                    <Col md={5}></Col>
+                    <Col md={4}></Col>
                     <Col md={4}></Col>
                 </Row>                                
                 <h1>{errorText}</h1>             

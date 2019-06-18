@@ -72,7 +72,7 @@ class CityDisplay extends React.Component {
     return (
         <div >
             <div className="cityPicDisplay">
-                <Image src={this.props.images} fluid alt="city selected"/>
+                <Image src={this.props.images} alt="city selected"/>
                 <Dropdown>
                     <DropdownButton 
                         onClick={this.displayList} 

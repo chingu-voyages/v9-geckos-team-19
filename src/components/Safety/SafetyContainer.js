@@ -3,7 +3,7 @@ import Safety from './Safety';
 import teleport from '../../api/teleport';
 
 class SafetyContainer extends React.Component {
-    state = { gunCount: 0, gunDeaths: 0, loadedCityURL: ''};
+    state = { gunCount: 0, gunDeaths: 0, loadedCityURL: '', compareCount: 0, compareDeath: 0};
 
     safetyDetails = async (city) => {
         let chosenCity = city;
@@ -13,13 +13,43 @@ class SafetyContainer extends React.Component {
 
         let citySafety = await teleport.get(cityDetails);
 
-        let gunsOwned = citySafety.data["categories"][16].data[3].int_value;
-        let gunFatalities = citySafety.data["categories"][16].data[1].int_value;
+        const gunsOwned = citySafety.data["categories"][16].data[3].int_value;
+        const gunFatalities = citySafety.data["categories"][16].data[1].int_value;
+
+        let cityNameList = await teleport.get('urban_areas/');
+        cityNameList = cityNameList.data["_links"]["ua:item"];
+        cityNameList = cityNameList.map(x => x.href);
+
+        let compareCity = await Promise.all(cityNameList.map(async x => teleport.get(x)));
+        compareCity = compareCity.map(x => x.data["_links"]["ua:details"]["href"]);
+        const compareCityCrime = await Promise.all(compareCity.map(async x => teleport.get(x)));
+        
+        console.log(compareCityCrime);
+
+        const compareGunCount = compareCityCrime.map(x => {
+            try {
+                return x.data.categories[16].data[3].int_value;
+            } catch (err) {
+                return undefined;
+            }
+        });
+        console.log(compareGunCount);
+
+        const compareGunDeaths = compareCityCrime.map(x => {
+            try {
+                return x.data.categories[16].data[1].int_value;
+            } catch (err) {
+                return undefined;
+            }
+        });
+        console.log(compareGunDeaths);
 
         this.setState({
             gunCount: gunsOwned,
             gunDeaths: gunFatalities, 
-            loadedCityURL: chosenCity
+            loadedCityURL: chosenCity,
+            compareCount: compareGunCount,
+            compareDeath: compareGunDeaths
         })
     }
 

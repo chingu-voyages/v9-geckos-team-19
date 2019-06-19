@@ -9,7 +9,6 @@ class CityDisplayContainer extends React.Component {
         let cityDropDownList = await teleport.get('urban_areas/');
         cityDropDownList = cityDropDownList.data["_links"]["ua:item"];
         cityDropDownList = cityDropDownList.map(x => x.name);
-        console.log(cityDropDownList);
 
         this.setState({
             cityList: cityDropDownList, 

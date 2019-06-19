@@ -24,7 +24,6 @@ class CityDisplay extends React.Component {
     }
 
     displayList = () => {
-        debugger;
         let cityShow = this.state.cityDisplay;
         cityShow = !cityShow;
 

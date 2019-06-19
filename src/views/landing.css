@@ -1,0 +1,23 @@
+body {
+  background-image: url("../../public/landing.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.landing {
+  text-align: center;
+  margin: 45% auto;
+  font-family: Helvetica, san-serif;
+  font-size: 3rem;
+  color: ;
+}
+
+.landing-head {
+  font-family: Georgia, serif;
+  color: #fff;
+}
+.landing-head span {
+  font-family: Helvetica, san-serif;
+  color: #31a298;
+  font-weight: bolder;
+}

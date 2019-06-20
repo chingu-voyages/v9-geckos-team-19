@@ -32,22 +32,15 @@ class SafetyContainer extends React.Component {
 
         
         const compareGunCount = compareCityCrime.map(x => {
-            //suppose to look for categories with the proper label
-            if(x.data.categories[16].label === "Safety") {
-                console.log(x.data.categories[16].label);
-                return x.data.categories[16].data[3].int_value;
+            // I'm assuming id gets always returned 
+            let safetyCategory = x.data.categories.find(category => category.id.toUpperCase() === "SAFETY")
+
+            // if you got something other than undefined since find returns undefined if no match
+            if (safetyCategory) {
+                return safetyCategory.data[3].int_value
             }
-            //if the proper label is not initilally matched (code does not get this far)
-            else {
-                return x.data.categories.map(y => {
-                    if(x.data.categories[y] === "Safety") {
-                        return x.data.categories[y].data[3].int_value;
-                    }
-                    else {
-                        return "N/A";
-                    }
-                });
-            } 
+
+            return "N/A"; // could return whatever 
         })
 
         console.log(compareGunCount);

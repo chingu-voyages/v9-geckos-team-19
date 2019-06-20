@@ -2,6 +2,8 @@ import React from 'react';
 import Safety from './Safety';
 import teleport from '../../api/teleport';
 
+//TODO: Need to implement better algorithm to ensure that the correct data is being pulled in all containers
+
 class SafetyContainer extends React.Component {
     state = { gunCount: 0, gunDeaths: 0, loadedCityURL: '', compareCount: 0, compareDeath: 0};
 
@@ -22,27 +24,47 @@ class SafetyContainer extends React.Component {
 
         let compareCity = await Promise.all(cityNameList.map(async x => teleport.get(x)));
         compareCity = compareCity.map(x => x.data["_links"]["ua:details"]["href"]);
-        const compareCityCrime = await Promise.all(compareCity.map(async x => teleport.get(x)));
-        
-        console.log(compareCityCrime);
+        const compareCityCrime = await Promise.all(compareCity.map(async x => teleport.get(x)));   
+
+        // const cityCategories = compareCityCrime.map(x => x.data.categories[6].label);
+        //     console.log(cityCategories);
+
 
         const compareGunCount = compareCityCrime.map(x => {
-            try {
-                return x.data.categories[16].data[3].int_value;
-            } catch (err) {
-                return undefined;
+            debugger;
+            if(x.data.categories[16].label === "Safety") {
+                return x.data.categories[16].data.int_value;
             }
-        });
+            
+            else {
+                return x.data.categories.map(y => {
+                    if(x.data.categories[y] === "Safety") {
+                        return x.data.categories[y].data.int_value;
+                    }
+                    else {
+                        return "N/A";
+                    }
+                });
+            } 
+        })
+
         console.log(compareGunCount);
+
+        // const compareGunCount = compareCityCrime.map(x => {
+        //     try {
+        //         return x.data.categories[16].data[3].int_value;
+        //     } catch (err) {
+        //         return "N/A";
+        //     }
+        // });
 
         const compareGunDeaths = compareCityCrime.map(x => {
             try {
                 return x.data.categories[16].data[1].int_value;
             } catch (err) {
-                return undefined;
+                return "N/A";
             }
         });
-        console.log(compareGunDeaths);
 
         this.setState({
             gunCount: gunsOwned,

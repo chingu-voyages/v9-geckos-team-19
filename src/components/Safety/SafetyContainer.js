@@ -30,16 +30,18 @@ class SafetyContainer extends React.Component {
         //     console.log(cityCategories);
 
 
+        
         const compareGunCount = compareCityCrime.map(x => {
-            debugger;
+            //suppose to look for categories with the proper label
             if(x.data.categories[16].label === "Safety") {
-                return x.data.categories[16].data.int_value;
+                console.log(x.data.categories[16].label);
+                return x.data.categories[16].data[3].int_value;
             }
-            
+            //if the proper label is not initilally matched (code does not get this far)
             else {
                 return x.data.categories.map(y => {
                     if(x.data.categories[y] === "Safety") {
-                        return x.data.categories[y].data.int_value;
+                        return x.data.categories[y].data[3].int_value;
                     }
                     else {
                         return "N/A";

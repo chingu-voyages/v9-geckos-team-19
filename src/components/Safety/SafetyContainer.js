@@ -32,34 +32,28 @@ class SafetyContainer extends React.Component {
 
         
         const compareGunCount = compareCityCrime.map(x => {
-            // I'm assuming id gets always returned 
             let safetyCategory = x.data.categories.find(category => category.id.toUpperCase() === "SAFETY")
 
-            // if you got something other than undefined since find returns undefined if no match
             if (safetyCategory) {
                 return safetyCategory.data[3].int_value
             }
 
-            return "N/A"; // could return whatever 
+            return "N/A"; 
         })
 
         console.log(compareGunCount);
 
-        // const compareGunCount = compareCityCrime.map(x => {
-        //     try {
-        //         return x.data.categories[16].data[3].int_value;
-        //     } catch (err) {
-        //         return "N/A";
-        //     }
-        // });
-
         const compareGunDeaths = compareCityCrime.map(x => {
-            try {
-                return x.data.categories[16].data[1].int_value;
-            } catch (err) {
-                return "N/A";
+            let safetyCategory = x.data.categories.find(category => category.id.toUpperCase() === "SAFETY")
+
+            if (safetyCategory) {
+                return safetyCategory.data[1].int_value
             }
-        });
+
+            return "N/A"; 
+        })
+
+        console.log(compareGunCount);
 
         this.setState({
             gunCount: gunsOwned,

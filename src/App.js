@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import SearchBar from './components/SearchBar/SearchBar';
 import CityDisplayContainer from './components/CityDisplay/CityDisplayContainer';
+import PopulationContainer from './components/Population/PopulationContainer';
 import SafetyContainer from './components/Safety/SafetyContainer';
 import EducationContainer from './components/Education/EducationContainer';
 import teleport from './api/teleport';
@@ -64,6 +65,9 @@ class App extends React.Component {
         <Row className="appRow">
           <Col md={2} className="graySpace"></Col>
           <Col md={8}>
+            <div className="card">
+              <PopulationContainer city={this.state.urbanscores}/>
+            </div>
             <div className="card">
                 <EducationContainer city={this.state.urbanscores} />
             </div>

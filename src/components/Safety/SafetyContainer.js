@@ -11,6 +11,7 @@ class SafetyContainer extends React.Component {
         //for stats specific to city chosen by user
         let chosenCity = city;
 
+        //navigation of teleport API to Safety section for chosen city
         let cityDetails = await teleport.get(chosenCity);
         cityDetails = cityDetails.data["_links"]["ua:details"]["href"];
 
@@ -20,22 +21,21 @@ class SafetyContainer extends React.Component {
         let gunsOwned, gunFatalities;
 
 
-        //if chosen city safety data is not available
         if(!citySafety) {
                 gunsOwned = "N/A";
                 gunFatalities = "N/A"
         }
-    
-        //allows for proper display of numbers
+
+
         const statFormat = x => {
             if (!x) return "N/A";
             return x = x.toFixed(2);
         }
-
         gunsOwned = statFormat(citySafety.data[3].int_value);
         gunFatalities = statFormat(citySafety.data[1].int_value);
 
-        //for comparing all of the city's crime data
+
+        //retrieval of safety data for multiple cities for comparison purposes from teleport API
         let cityNameList = await teleport.get('urban_areas/');
         cityNameList = cityNameList.data["_links"]["ua:item"];
         cityNameList = cityNameList.map(x => x.href);
@@ -45,7 +45,7 @@ class SafetyContainer extends React.Component {
         const compareCityCrime = await Promise.all(compareCity.map(async x => teleport.get(x)));   
 
         
-        //make sure each city for comparison has a safety category and that it is selected properly
+        //make sure each city for comparison has a safety category and that it is selected properly if present
         const compareGunCount = compareCityCrime.map(x => {
             let safetyCategory = x.data.categories.find(category => category.id.toUpperCase() === "SAFETY")
 
@@ -55,7 +55,6 @@ class SafetyContainer extends React.Component {
 
             return "N/A"; 
         })
-
         const compareGunDeaths = compareCityCrime.map(x => {
             let safetyCategory = x.data.categories.find(category => category.id.toUpperCase() === "SAFETY")
 

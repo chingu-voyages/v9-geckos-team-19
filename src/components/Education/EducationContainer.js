@@ -18,19 +18,17 @@ class EducationContainer extends React.Component {
             };
 
     educationDetails = async (city) => {
-        debugger;
         const chosenCity = city;
 
-        let happyStudent, overallRanking, highMathValue, lowMathValue, meanMathValue, highReadingValue, lowReadingValue, meanReadingValue,
-        highScienceValue, lowScienceValue, meanScienceValue;
+        let happyStudent, overallRanking, highMathValue, lowMathValue, meanMathValue, highReadingValue, 
+        lowReadingValue, meanReadingValue, highScienceValue, lowScienceValue, meanScienceValue;
 
+        //navigation of teleport API to desired education sections
         let cityDetails = await teleport.get(chosenCity);
         cityDetails = cityDetails.data["_links"]["ua:details"]["href"];
 
         let cityEducation = await teleport.get(cityDetails);
         cityEducation = cityEducation.data.categories.find(category => category.id.toUpperCase() === "EDUCATION");
-
-        //if chosen city does not possess an education section
 
         if(!cityEducation) {
             happyStudent = "N/A";
@@ -46,7 +44,7 @@ class EducationContainer extends React.Component {
             meanScienceValue = "N/A";
         }
 
-        //formats numbers properly
+
         const percentage = x => {
             if (!x) return "N/A";
             return x = (x.toPrecision(2) * 100).toFixed(1);
@@ -62,6 +60,7 @@ class EducationContainer extends React.Component {
 
         //overall ranking of education
         overallRanking = statFormat(cityEducation.data[12].float_value);
+
 
         //Math score stats
         highMathValue = percentage(cityEducation.data[1].percent_value);  
@@ -79,8 +78,6 @@ class EducationContainer extends React.Component {
         lowScienceValue = percentage(cityEducation.data[7].percent_value);
         highScienceValue = percentage(cityEducation.data[8].percent_value);      
         meanScienceValue = statFormat(cityEducation.data[9].float_value);
-
-
 
         this.setState({
             happiness: happyStudent, 

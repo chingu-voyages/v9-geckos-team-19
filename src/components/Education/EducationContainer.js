@@ -14,14 +14,16 @@ class EducationContainer extends React.Component {
         scienceAvg: 0,
             highScience: 0,
             lowScience: 0,
-        loadedCityURL: ''
+        loadedCityURL: '',
+        loadSuccess: false
             };
 
     educationDetails = async (city) => {
+        debugger;
         const chosenCity = city;
 
         let happyStudent, overallRanking, highMathValue, lowMathValue, meanMathValue, highReadingValue, 
-        lowReadingValue, meanReadingValue, highScienceValue, lowScienceValue, meanScienceValue;
+        lowReadingValue, meanReadingValue, highScienceValue, lowScienceValue, meanScienceValue, success;
 
         //navigation of teleport API to desired education sections
         let cityDetails = await teleport.get(chosenCity);
@@ -31,53 +33,57 @@ class EducationContainer extends React.Component {
         cityEducation = cityEducation.data.categories.find(category => category.id.toUpperCase() === "EDUCATION");
 
         if(!cityEducation) {
-            happyStudent = "N/A";
-            overallRanking = "N/A";
-            highMathValue = "N/A";
-            lowMathValue = "N/A"; 
-            meanMathValue = "N/A"; 
-            highReadingValue = "N/A"; 
-            lowReadingValue = "N/A"; 
-            meanReadingValue = "N/A";
-            highScienceValue = "N/A"; 
-            lowScienceValue = "N/A"; 
-            meanScienceValue = "N/A";
+            happyStudent = 0;
+            overallRanking = 0;
+            highMathValue = 0;
+            lowMathValue = 0; 
+            meanMathValue = 0; 
+            highReadingValue = 0; 
+            lowReadingValue = 0; 
+            meanReadingValue = 0;
+            highScienceValue = 0; 
+            lowScienceValue = 0; 
+            meanScienceValue = 0;
+            success = false;
         }
 
+        if(cityEducation) {
+            const percentage = x => {
+                if (!x) return 0;
+                return x = (x.toPrecision(2) * 100).toFixed(1);
+            }
 
-        const percentage = x => {
-            if (!x) return "N/A";
-            return x = (x.toPrecision(2) * 100).toFixed(1);
+            const statFormat = x => {
+                if (!x) return 0;
+                return x = x.toPrecision(3);
+            }
+
+            //happiness of student stats
+            happyStudent = percentage(cityEducation.data[0].percent_value);
+
+            //overall ranking of education
+            overallRanking = statFormat(cityEducation.data[12].float_value);
+
+
+            //Math score stats
+            highMathValue = percentage(cityEducation.data[1].percent_value);
+            lowMathValue = percentage(cityEducation.data[2].percent_value);
+            meanMathValue = statFormat(cityEducation.data[3].float_value);
+
+
+            //Reading score stats
+            highReadingValue = percentage(cityEducation.data[4].percent_value);
+            lowReadingValue = percentage(cityEducation.data[5].percent_value);
+            meanReadingValue = statFormat(cityEducation.data[6].float_value);
+
+
+            //Science score stats
+            lowScienceValue = percentage(cityEducation.data[7].percent_value);
+            highScienceValue = percentage(cityEducation.data[8].percent_value);
+            meanScienceValue = statFormat(cityEducation.data[9].float_value);
+
+            success = true;
         }
-
-        const statFormat = x => {
-            if (!x) return "N/A";
-            return x = x.toPrecision(3);
-        }
-
-        //happiness of student stats
-        happyStudent = percentage(cityEducation.data[0].percent_value);
-
-        //overall ranking of education
-        overallRanking = statFormat(cityEducation.data[12].float_value);
-
-
-        //Math score stats
-        highMathValue = percentage(cityEducation.data[1].percent_value);  
-        lowMathValue = percentage(cityEducation.data[2].percent_value);
-        meanMathValue = statFormat(cityEducation.data[3].float_value);
-
-
-        //Reading score stats
-        highReadingValue = percentage(cityEducation.data[4].percent_value);
-        lowReadingValue = percentage(cityEducation.data[5].percent_value);
-        meanReadingValue = statFormat(cityEducation.data[6].float_value);
-        
-
-        //Science score stats
-        lowScienceValue = percentage(cityEducation.data[7].percent_value);
-        highScienceValue = percentage(cityEducation.data[8].percent_value);      
-        meanScienceValue = statFormat(cityEducation.data[9].float_value);
 
         this.setState({
             happiness: happyStudent, 
@@ -91,7 +97,8 @@ class EducationContainer extends React.Component {
             scienceAvg: meanScienceValue,
             highScience: highScienceValue,
             lowScience: lowScienceValue,
-            loadedCityURL: chosenCity
+            loadedCityURL: chosenCity, 
+            loadSuccess: success
         })
     }
 
@@ -100,19 +107,31 @@ class EducationContainer extends React.Component {
         {
             this.educationDetails(this.props.city);
         }
-        return <Education education={this.state.education}
-            happiness={this.state.happiness}
-            ranking={this.state.ranking}
-            mathAvg={this.state.mathAvg}
-            highMath={this.state.highMath}
-            lowMath={this.state.lowMath}
-            readingAvg={this.state.readingAvg}
-            highReading={this.state.highReading}
-            lowReading={this.state.lowReading}
-            scienceAvg={this.state.scienceAvg}
-            highScience={this.state.highScience}
-            lowScience={this.state.lowScience}
-        />;
+
+        let showEducation = null;
+
+        if(this.state.loadSuccess) {
+            showEducation = (
+                <div className="card">
+                    <Education education={this.state.education}
+                        happiness={this.state.happiness}
+                        ranking={this.state.ranking}
+                        mathAvg={this.state.mathAvg}
+                        highMath={this.state.highMath}
+                        lowMath={this.state.lowMath}
+                        readingAvg={this.state.readingAvg}
+                        highReading={this.state.highReading}
+                        lowReading={this.state.lowReading}
+                        scienceAvg={this.state.scienceAvg}
+                        highScience={this.state.highScience}
+                        lowScience={this.state.lowScience}
+                    />
+                </div>
+                
+            )
+        }
+
+        return <div>{showEducation}</div>;
     }
 }
 

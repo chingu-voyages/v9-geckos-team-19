@@ -18,54 +18,82 @@ class EducationContainer extends React.Component {
             };
 
     educationDetails = async (city) => {
-        let chosenCity = city;
+        debugger;
+        const chosenCity = city;
+
+        let happyStudent, overallRanking, highMathValue, lowMathValue, meanMathValue, highReadingValue, lowReadingValue, meanReadingValue,
+        highScienceValue, lowScienceValue, meanScienceValue;
 
         let cityDetails = await teleport.get(chosenCity);
         cityDetails = cityDetails.data["_links"]["ua:details"]["href"];
 
         let cityEducation = await teleport.get(cityDetails);
+        cityEducation = cityEducation.data.categories.find(category => category.id.toUpperCase() === "EDUCATION");
 
-        //happiness of student stats
-        let happyStudent = cityEducation.data["categories"][6].data[0].percent_value;
+        //if chosen city does not possess an education section
 
-        //overall ranking of education
-        let overallRanking = cityEducation.data["categories"][6].data[12].float_value;
+        if(!cityEducation) {
+            happyStudent = "N/A";
+            overallRanking = "N/A";
+            highMathValue = "N/A";
+            lowMathValue = "N/A"; 
+            meanMathValue = "N/A"; 
+            highReadingValue = "N/A"; 
+            lowReadingValue = "N/A"; 
+            meanReadingValue = "N/A";
+            highScienceValue = "N/A"; 
+            lowScienceValue = "N/A"; 
+            meanScienceValue = "N/A";
+        }
 
-        //Math score stats
-        let highMathValue = cityEducation.data["categories"][6].data[1].percent_value;
-        let lowMathValue = cityEducation.data["categories"][6].data[2].percent_value;
-        let meanMathValue = cityEducation.data["categories"][6].data[3].float_value;
-
-        //Reading score stats
-        let highReadingValue = cityEducation.data["categories"][6].data[4].percent_value;
-        let lowReadingValue = cityEducation.data["categories"][6].data[5].percent_value;
-        let meanReadingValue = cityEducation.data["categories"][6].data[6].float_value;
-
-        //Science score stats
-        let highScienceValue = cityEducation.data["categories"][6].data[7].percent_value;
-        let lowScienceValue = cityEducation.data["categories"][6].data[8].percent_value;
-        let meanScienceValue = cityEducation.data["categories"][6].data[9].float_value;
-
+        //formats numbers properly
         const percentage = x => {
+            if (!x) return "N/A";
             return x = (x.toPrecision(2) * 100).toFixed(1);
         }
 
         const statFormat = x => {
+            if (!x) return "N/A";
             return x = x.toPrecision(3);
         }
 
+        //happiness of student stats
+        happyStudent = percentage(cityEducation.data[0].percent_value);
+
+        //overall ranking of education
+        overallRanking = statFormat(cityEducation.data[12].float_value);
+
+        //Math score stats
+        highMathValue = percentage(cityEducation.data[1].percent_value);  
+        lowMathValue = percentage(cityEducation.data[2].percent_value);
+        meanMathValue = statFormat(cityEducation.data[3].float_value);
+
+
+        //Reading score stats
+        highReadingValue = percentage(cityEducation.data[4].percent_value);
+        lowReadingValue = percentage(cityEducation.data[5].percent_value);
+        meanReadingValue = statFormat(cityEducation.data[6].float_value);
+        
+
+        //Science score stats
+        lowScienceValue = percentage(cityEducation.data[7].percent_value);
+        highScienceValue = percentage(cityEducation.data[8].percent_value);      
+        meanScienceValue = statFormat(cityEducation.data[9].float_value);
+
+
+
         this.setState({
-            happiness: percentage(happyStudent), 
-            ranking: percentage(overallRanking),
-            mathAvg: statFormat(meanMathValue),
-            highMath: percentage(highMathValue),
-            lowMath: percentage(lowMathValue),
-            readingAvg: statFormat(meanReadingValue),
-            highReading: percentage(highReadingValue),
-            lowReading: percentage(lowReadingValue),
-            scienceAvg: statFormat(meanScienceValue),
-            highScience: percentage(highScienceValue),
-            lowScience: percentage(lowScienceValue),
+            happiness: happyStudent, 
+            ranking: overallRanking,
+            mathAvg: meanMathValue,
+            highMath: highMathValue,
+            lowMath: lowMathValue,
+            readingAvg: meanReadingValue,
+            highReading: highReadingValue,
+            lowReading: lowReadingValue,
+            scienceAvg: meanScienceValue,
+            highScience: highScienceValue,
+            lowScience: lowScienceValue,
             loadedCityURL: chosenCity
         })
     }

@@ -8,7 +8,6 @@ class SafetyContainer extends React.Component {
     state = { gunCount: 0, gunDeaths: 0, loadedCityURL: '', compareCount: 0, compareDeath: 0};
 
     safetyDetails = async (city) => {
-
         //for stats specific to city chosen by user
         let chosenCity = city;
 
@@ -16,42 +15,42 @@ class SafetyContainer extends React.Component {
         cityDetails = cityDetails.data["_links"]["ua:details"]["href"];
 
         let citySafety = await teleport.get(cityDetails);
+        citySafety = citySafety.data.categories.find(category => category.id.toUpperCase() === "SAFETY");
 
-        const gunsOwned = citySafety.map(x => {
-            let safetyCategory = x.data.categories.find(category => category.id.toUpperCase() === "SAFETY")
+        let gunsOwned, gunFatalities;
 
-            if (safetyCategory) {
-                return safetyCategory.data[3].int_value
-            }
 
-            return "N/A";
-        })
+        //if chosen city safety data is not available
+        if(!citySafety) {
+                gunsOwned = "N/A";
+                gunFatalities = "N/A"
+        }
+    
+        //allows for proper display of numbers
+        const statFormat = x => {
+            if (!x) return "N/A";
+            return x = x.toFixed(2);
+        }
 
-        const gunFatalities = citySafety.map(x => {
-            let safetyCategory = x.data.categories.find(category => category.id.toUpperCase() === "SAFETY")
+        gunsOwned = statFormat(citySafety.data[3].int_value);
+        gunFatalities = statFormat(citySafety.data[1].int_value);
 
-            if (safetyCategory) {
-                return safetyCategory.data[1].int_value
-            }
-
-            return "N/A";
-        })
-
+        //for comparing all of the city's crime data
         let cityNameList = await teleport.get('urban_areas/');
         cityNameList = cityNameList.data["_links"]["ua:item"];
         cityNameList = cityNameList.map(x => x.href);
 
-        //for comparing all of the city's crime data
-
         let compareCity = await Promise.all(cityNameList.map(async x => teleport.get(x)));
         compareCity = compareCity.map(x => x.data["_links"]["ua:details"]["href"]);
         const compareCityCrime = await Promise.all(compareCity.map(async x => teleport.get(x)));   
+
         
+        //make sure each city for comparison has a safety category and that it is selected properly
         const compareGunCount = compareCityCrime.map(x => {
             let safetyCategory = x.data.categories.find(category => category.id.toUpperCase() === "SAFETY")
 
             if (safetyCategory) {
-                return safetyCategory.data[3].int_value
+                return statFormat(safetyCategory.data[3].int_value);
             }
 
             return "N/A"; 
@@ -61,11 +60,12 @@ class SafetyContainer extends React.Component {
             let safetyCategory = x.data.categories.find(category => category.id.toUpperCase() === "SAFETY")
 
             if (safetyCategory) {
-                return safetyCategory.data[1].int_value
+                return statFormat(safetyCategory.data[1].int_value);
             }
 
             return "N/A"; 
         })
+
 
         this.setState({
             gunCount: gunsOwned,

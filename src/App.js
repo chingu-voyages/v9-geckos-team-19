@@ -6,6 +6,7 @@ import SafetyContainer from "./components/Safety/SafetyContainer";
 import EducationContainer from "./components/Education/EducationContainer";
 import teleport from "./api/teleport";
 import Display from "./components/Housing/Housing";
+import Population from "./components/Population/Population";
 
 class App extends React.Component {
   state = { geoname_id: 0, urbanscores: "", images: [] };
@@ -41,6 +42,17 @@ class App extends React.Component {
   };
 
   render() {
+    const costOfLivingIndex = [
+      "Movie Ticket",
+      "Lunch",
+      "Monthly Public Transport",
+      "Monthly Fitness Club Membership"
+    ];
+    // const housingIndex = [
+    //   "Large Apartment",
+    //   "Medium Apartment",
+    //   "Small Apartment"
+    // ];
     return (
       <div>
         <SearchBar onCitySubmit={this.onCitySubmit} />
@@ -49,7 +61,11 @@ class App extends React.Component {
         <SafetyContainer city={this.state.urbanscores} />
         <Population city={this.state.geoname_id} />
         <Display city={this.state.urbanscores} datatype="HOUSING" />
-        <Display city={this.state.urbanscores} datatype="COST-OF-LIVING" />
+        <Display
+          city={this.state.urbanscores}
+          datatype="COST-OF-LIVING"
+          selectedIndex={costOfLivingIndex}
+        />
       </div>
     );
   }

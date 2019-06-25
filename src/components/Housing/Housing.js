@@ -2,18 +2,21 @@ import "./Housing.css";
 import React from "react";
 import teleport from "../../api/teleport";
 import VisualizeData from "./visualizeData";
+import { Table } from "react-bootstrap";
 
 class Housing extends React.Component {
   state = { label: "" };
+
   getData = async (city, datatype) => {
     const chosenCity = city;
     let urbanAreaData = await teleport.get(chosenCity);
     let urbanDetailUrl = urbanAreaData.data["_links"]["ua:details"]["href"];
     let UrbanInfo = await teleport.get(urbanDetailUrl);
 
-    var cityData = UrbanInfo.data["categories"].filter(
+    let cityData = UrbanInfo.data["categories"].filter(
       item => item.id === datatype
     );
+
     const label = cityData[0].label;
 
     let valueData = cityData[0].data;
@@ -31,17 +34,18 @@ class Housing extends React.Component {
     this.setState({ label: label });
   };
 
-  componentDidMount() {
-    if (!this.state.result) {
+  render() {
+    if (this.props.city) {
       this.getData(this.props.city, this.props.datatype);
     }
-  }
-  render() {
     if (this.state.result) {
       return (
         <div>
           <h4> {this.state.label} </h4>
-          <VisualizeData cityData={this.state.result} />
+          <VisualizeData
+            cityData={this.state.result}
+            selectedIndex={this.props.selectedIndex}
+          />
         </div>
       );
     } else {

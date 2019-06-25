@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import SearchBar from './components/SearchBar/SearchBar';
 import CityDisplayContainer from './components/CityDisplay/CityDisplayContainer';
-import JobCalculatorContainer from './components/JobCalculator/JobCalculatorContainer';
+import SalaryContainer from './components/Salary/SalaryContainer';
 import ClimateContainer from './components/Climate/ClimateContainer';
 import SafetyContainer from './components/Safety/SafetyContainer';
 import EducationContainer from './components/Education/EducationContainer';
@@ -23,14 +23,14 @@ class App extends React.Component {
       ]["city:item"]["href"];
 
       let idSearch = /[0-9]/g;
-      
+
       let city_id = cityResponseURL.match(idSearch);
       city_id = city_id.toString().replace(/,/g, '');
 
-      let urbanArea = await teleport.get('cities/geonameid:' + city_id);    
+      let urbanArea = await teleport.get('cities/geonameid:' + city_id);
       urbanArea = urbanArea.data["_links"]["city:urban_area"]["href"];
 
-      let imageURL = await teleport.get(urbanArea);   
+      let imageURL = await teleport.get(urbanArea);
       imageURL = imageURL.data["_links"]["ua:images"]["href"];
 
       let image = await teleport.get(imageURL);
@@ -44,11 +44,11 @@ class App extends React.Component {
         cityLoad: true
       })
     }
-    catch(error) {
+    catch (error) {
       this.setState({
         displayError: true
       })
-    } 
+    }
 
   }
 
@@ -56,15 +56,15 @@ class App extends React.Component {
 
     let cityContent = null;
 
-    if(this.state.cityLoad) {
+    if (this.state.cityLoad) {
       cityContent = (
         <Row className="appRow">
           <Col md={2} className="graySpace"></Col>
           <Col md={8}>
-              <ClimateContainer city={this.state.urbanscores} />
-              <JobCalculatorContainer city={this.state.urbanscores} />
-              <EducationContainer city={this.state.urbanscores} />
-              <SafetyContainer city={this.state.urbanscores} />
+            <ClimateContainer city={this.state.urbanscores} />
+            <SalaryContainer city={this.state.urbanscores} />
+            <EducationContainer city={this.state.urbanscores} />
+            <SafetyContainer city={this.state.urbanscores} />
           </Col>
           <Col md={2} className="graySpace">
             <div className="menu">
@@ -84,11 +84,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="topBar">
-          <img src={siteLogo} alt="CityScope logo"/>
+          <img src={siteLogo} alt="CityScope logo" />
           <p>CityScope</p>
         </div>
-        <SearchBar onCitySubmit = {this.onCitySubmit}
-                   searchError = {this.state.displayError}/>
+        <SearchBar onCitySubmit={this.onCitySubmit}
+          searchError={this.state.displayError} />
         <CityDisplayContainer images={this.state.images}
           city={this.state.urbanscores}
           onCitySubmit={this.onCitySubmit} />

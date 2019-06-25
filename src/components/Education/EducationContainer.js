@@ -19,7 +19,6 @@ class EducationContainer extends React.Component {
             };
 
     educationDetails = async (city) => {
-        debugger;
         const chosenCity = city;
 
         let happyStudent, overallRanking, highMathValue, lowMathValue, meanMathValue, highReadingValue, 

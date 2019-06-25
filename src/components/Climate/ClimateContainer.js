@@ -6,7 +6,6 @@ class ClimateContainer extends React.Component {
     state = { weatherType: '', avgHigh: '', avgLow: '', rainDays: 0, sunnyDays: 0, dayLength: 0, loadSuccess: false, loadedCityURL: '' }
 
     climateDetails = async (city) => {
-        debugger;
         let chosenCity = city;
         let weatherType, avgHighTemp, avgLowTemp, rainDayCount, sunnyDayCount, dayHourAvg, success;
         //navigation of teleport API to Safety section for chosen city

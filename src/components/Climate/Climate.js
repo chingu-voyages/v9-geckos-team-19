@@ -1,5 +1,9 @@
 import React from 'react';
 
+//filter method for those variables who are not used to prevent rendering of sentence
+//function either not equal to 0 or set to "N/A"
+
+
 const Climate = ({weatherType, avgHigh, avgLow, rainDays, sunnyChance, dayLength}) => {
     if(!weatherType) {
         return <div></div>

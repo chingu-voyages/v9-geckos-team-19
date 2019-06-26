@@ -7,10 +7,10 @@ import _ from "lodash";
 const VisualizeData = props => {
   let cityData = props.cityData;
 
-  // let selectedData = Object.keys(cityData).filter((key, index) =>
-  //   props.selectedIndex.includes(_.startCase(key))
-  // );
-  let visualizedData = Object.keys(cityData).map((key, index) => (
+  let selectedKey = Object.keys(cityData).filter(key =>
+    props.selectedIndex.includes(_.startCase(key))
+  );
+  let visualizedData = selectedKey.map(key => (
     <tr>
       <td>{_.startCase(key)}</td>
       <td colSpan="2">

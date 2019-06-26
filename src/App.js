@@ -7,14 +7,15 @@ import EducationContainer from "./components/Education/EducationContainer";
 import teleport from "./api/teleport";
 import Display from "./components/Housing/Housing";
 import Population from "./components/Population/Population";
+import _ from "lodash";
 
 class App extends React.Component {
-  state = { geoname_id: 0, urbanscores: "", images: [] };
+  state = { geoname_id: 0, urbanscores: "", images: [], cityName: "" };
 
   onCitySubmit = async city => {
     city = city.toLowerCase().replace(/ /g, "%20");
     let citySearch = await teleport.get("cities/?search=" + city);
-
+    let cityName = _.startCase(city.match(/(?<=.*slug:)\w+(?=\/)/));
     let cityResponseURL =
       citySearch.data["_embedded"]["city:search-results"][0]["_links"][
         "city:item"
@@ -37,7 +38,8 @@ class App extends React.Component {
     this.setState({
       geoname_id: city_id,
       urbanscores: urbanArea,
-      images: image
+      images: image,
+      cityName: cityName
     });
   };
 
@@ -48,11 +50,11 @@ class App extends React.Component {
       "Monthly Public Transport",
       "Monthly Fitness Club Membership"
     ];
-    // const housingIndex = [
-    //   "Large Apartment",
-    //   "Medium Apartment",
-    //   "Small Apartment"
-    // ];
+    const housingIndex = [
+      "Large Apartment",
+      "Medium Apartment",
+      "Small Apartment"
+    ];
     return (
       <div>
         <SearchBar onCitySubmit={this.onCitySubmit} />
@@ -60,11 +62,17 @@ class App extends React.Component {
         <EducationContainer city={this.state.urbanscores} />
         <SafetyContainer city={this.state.urbanscores} />
         <Population city={this.state.geoname_id} />
-        <Display city={this.state.urbanscores} datatype="HOUSING" />
+        <Display
+          city={this.state.urbanscores}
+          datatype="HOUSING"
+          selectedIndex={housingIndex}
+          cityName={this.state.cityName}
+        />
         <Display
           city={this.state.urbanscores}
           datatype="COST-OF-LIVING"
-          selectedIndex={costOfLivingIndex}
+          selectedIndex={housingIndex}
+          cityName={this.state.cityName}
         />
       </div>
     );

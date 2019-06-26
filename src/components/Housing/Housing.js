@@ -2,18 +2,20 @@ import "./Housing.css";
 import React from "react";
 import teleport from "../../api/teleport";
 import VisualizeData from "./visualizeData";
-import { Table } from "react-bootstrap";
+import { Table, Card, ListGroup, Container } from "react-bootstrap";
+import _ from "lodash";
 
 class Housing extends React.Component {
-  state = { label: "" };
+  state = { label: "", result: undefined };
 
   getData = async (city, datatype) => {
     const chosenCity = city;
+
     let urbanAreaData = await teleport.get(chosenCity);
     let urbanDetailUrl = urbanAreaData.data["_links"]["ua:details"]["href"];
-    let UrbanInfo = await teleport.get(urbanDetailUrl);
+    let urbanInfo = await teleport.get(urbanDetailUrl);
 
-    let cityData = UrbanInfo.data["categories"].filter(
+    let cityData = urbanInfo.data["categories"].filter(
       item => item.id === datatype
     );
 
@@ -30,22 +32,30 @@ class Housing extends React.Component {
       result[i.label] = value;
     });
 
-    this.setState({ result });
-    this.setState({ label: label });
+    this.setState({ label: label, result: result });
   };
 
   render() {
-    if (this.props.city) {
+    if (this.props.city && !this.state.result) {
       this.getData(this.props.city, this.props.datatype);
     }
+
     if (this.state.result) {
       return (
-        <div>
-          <h4> {this.state.label} </h4>
-          <VisualizeData
-            cityData={this.state.result}
-            selectedIndex={this.props.selectedIndex}
-          />
+        <div class="session-container">
+          <Container>
+            <h4> {this.state.label} </h4>
+            <p> fdfasdfdsfasdfdsafda</p>
+            <Card style={{ width: "18rem" }}>
+              <Card.Title>{this.props.cityName}</Card.Title>
+              <Table>
+                <VisualizeData
+                  cityData={this.state.result}
+                  selectedIndex={this.props.selectedIndex}
+                />
+              </Table>
+            </Card>
+          </Container>
         </div>
       );
     } else {

@@ -1,0 +1,22 @@
+{
+  "categories": [
+    {
+      "datatype": "HOUSING",
+      "selectedIndex": [
+        "Large Apartment",
+        "Medium Apartment",
+        "Small Apartment"
+      ]
+    },
+
+    {
+      "datatype": "COST-OF-LIVING",
+      "selectedIndex": [
+        "Movie Ticket",
+        "Lunch",
+        "Monthly Public Transport",
+        "Monthly Fitness Club Membership"
+      ]
+    }
+  ]
+}

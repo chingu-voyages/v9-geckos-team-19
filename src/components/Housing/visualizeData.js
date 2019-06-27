@@ -1,19 +1,19 @@
-//takes props from components and map them to create UI
+//------------------------------------------------------//
+//takes props from parent components and map them to create UI//
+///------------------------------------------------------//
 import React from "react";
-// import { render } from "react-dom";
 import { Table } from "react-bootstrap";
 import _ from "lodash";
 
 const VisualizeData = props => {
   let cityData = props.cityData;
-
   let selectedKey = Object.keys(cityData).filter(key =>
     props.selectedIndex.includes(_.startCase(key))
   );
   let visualizedData = selectedKey.map(key => (
-    <tr>
+    <tr key={key + 1}>
       <td>{_.startCase(key)}</td>
-      <td colSpan="2">
+      <td className="info-value">
         {/score/i.test(key) ? cityData[key] : "$" + cityData[key]}
       </td>
     </tr>

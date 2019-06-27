@@ -1,0 +1,81 @@
+:root {
+  --light-purple: #a49fd3;
+  --teal: #17a2b8;
+  -dark-purple: #1c1747;
+  --light-grey: #f8f8f8;
+}
+
+body {
+  background: var(--light-grey);
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+}
+
+.session-container {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  padding: 10px;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.card-container {
+  padding: 10px;
+}
+
+.card {
+  margin-bottom: 1rem;
+}
+
+.card-body {
+  margin-left: 1rem;
+}
+.vs {
+  margin: auto;
+  text-align: center;
+  color: var(--teal);
+  font-size: 2rem;
+}
+/*title*/
+.compare-city-button {
+  margin-bottom: 6px;
+}
+.info-value {
+  color: var(--teal);
+  font-size: 1.3rem;
+}
+h2 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin: 1rem 0 2rem 0;
+}
+
+h4 {
+  font-family: "Roboto", sans-serif;
+  margin-bottom: 2rem;
+}
+
+p {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+}
+
+/* for numerical stats */
+span {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 1.25rem;
+  margin-left: 0.75rem;
+}
+
+tr {
+  border-bottom: 1px #333 dotted;
+  border-top: 1px #333 dotted;
+}
+
+ul {
+  max-height: 250px;
+  overflow: auto;
+}

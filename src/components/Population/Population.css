@@ -1,0 +1,18 @@
+:root {
+  --light-purple: #a49fd3;
+  --teal: #17a2b8;
+  -dark-purple: #1c1747;
+  --light-grey: #f8f8f8;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+}
+
+.intro {
+  padding: 10px;
+}
+.intro b {
+  color: var(--teal);
+}

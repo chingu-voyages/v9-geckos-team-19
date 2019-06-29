@@ -8,7 +8,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 class SearchBar extends React.Component {
-    state = { term: '' };
+    state = { term: ''};
 
     onInputChange = e => {
         this.setState({ term: e.target.value });
@@ -28,17 +28,18 @@ class SearchBar extends React.Component {
             errorText = "Try another search term"
         }
 
+
         return (
-            <div >
-                <Row className="searchBar">
+            <div>
+                <Row className="searchBar shadow">
                     <Col md={3}>
                         <Form onSubmit={this.onCitySubmit}>
                             <InputGroup size="sm" className="mb-3">
-                                <FormControl
-                                    placeholder="Search for a city"
-                                    value={this.state.term}
-                                    onChange={this.onInputChange}
-                                />
+                                    <FormControl
+                                        placeholder="Search for a city"
+                                        value={this.state.term}
+                                        onChange={this.onInputChange}
+                                    />
                                 <InputGroup.Append>
                                     <Button variant="info" onClick={this.onCitySubmit}>Go</Button>
                                 </InputGroup.Append>
@@ -46,7 +47,8 @@ class SearchBar extends React.Component {
                         </Form>
                     </Col>
                     <Col md={4}></Col>
-                    <Col md={4}></Col>
+                    <Col md={4}> 
+                    </Col>
                 </Row>
                 <h1>{errorText}</h1>
             </div>

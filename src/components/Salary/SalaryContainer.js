@@ -3,7 +3,7 @@ import teleport from '../../api/teleport';
 import Salary from './Salary';
 
 class SalaryContainer extends React.Component {
-    state = { jobTitles: [], lowestPercentile: [], averagePercentile: [], highestPercentile: [], loadedCityURL: '' }
+    state = { jobTitles: [],  loadedCityURL: '', loadSuccess: false}
 
     salaryDetails = async (city) => {
         const chosenCity = city;
@@ -15,18 +15,11 @@ class SalaryContainer extends React.Component {
         const occupations = salaryData.data["salaries"];
         const occupationList = occupations.map(x => x["job"]["title"]);
 
-        const jobSalary = salaryData.data["salaries"];
-        const bottomPercentile = jobSalary.map(x => x["salary_percentiles"]["percentile_25"].toFixed(2));
-        const mediumPercentile = jobSalary.map(x => x["salary_percentiles"]["percentile_50"].toFixed(2));
-        const highPercentile = jobSalary.map(x => x["salary_percentiles"]["percentile_75"].toFixed(2));
-
         this.setState(
             {
                 jobTitles: occupationList,
-                lowestPercentile: bottomPercentile,
-                averagePercentile: mediumPercentile,
-                highestPercentile: highPercentile,
-                loadedCityURL: chosenCity
+                loadedCityURL: chosenCity,
+                loadSuccess: true
             }
         )
     }
@@ -36,13 +29,20 @@ class SalaryContainer extends React.Component {
             this.salaryDetails(this.props.city);
         }
 
-        let showCalculator = null;
+        let showJobInfo = null;
 
-        if (this.state.loadSuccess) {
-            showCalculator = (<div className="card"><Salary /></div>)
+        if(this.state.loadSuccess) {
+            showJobInfo = (
+                <div className="card shadow-sm">
+                        <Salary 
+                            jobs={this.state.jobTitles}
+                            city={this.props.city}
+                        />
+                    </div>
+                )
         }
 
-        return <div>{showCalculator}</div>
+        return <div>{showJobInfo}</div>
     }
 }
 

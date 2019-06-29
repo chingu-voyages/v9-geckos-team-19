@@ -89,10 +89,12 @@ class SafetyContainer extends React.Component {
 
         if(this.state.loadSuccess) {
             showSafety = (
-                <div className="card">
+                <div className="card shadow-sm">
                     <Safety
                         gunCount={this.state.gunCount}
-                        gunDeaths={this.state.gunDeaths} />
+                        gunDeaths={this.state.gunDeaths}
+                        compareCount={this.state.compareCount}
+                        compareDeath={this.state.compareDeaths} />
                 </div>
             )
         }

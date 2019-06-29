@@ -4,7 +4,7 @@ import React from 'react';
 //function either not equal to 0 or set to "N/A"
 
 
-const Climate = ({weatherType, avgHigh, avgLow, rainDays, sunnyChance, dayLength}) => {
+const Climate = ({weatherType, avgHigh, avgLow}) => {
     if(!weatherType) {
         return <div></div>
     }
@@ -13,15 +13,12 @@ const Climate = ({weatherType, avgHigh, avgLow, rainDays, sunnyChance, dayLength
         <div>
             <div className="card-body">
                 <div className="card-title">
-                    Climate
+                    <h2>Climate</h2>                    
                 </div>
                 <div className="card-text">
-                    <p>Type of Climate: {weatherType}</p>
-                    <p>Average High: {avgHigh} C°</p>
-                    <p>Average Low: {avgLow} C°</p>
-                    <p>Average Number of Rainy Days Per Year: {rainDays}</p>
-                    <p>Annual Percent Chance of Sunshine: {sunnyChance}%</p>
-                    <p>Average Length of Day: {dayLength} Hours</p>
+                    <p><span>{weatherType}</span></p>
+                    <p>Average High: <span>{avgHigh} C°</span> </p>
+                    <p>Average Low: <span>{avgLow} C°</span></p>
                 </div>
             </div>
         </div>

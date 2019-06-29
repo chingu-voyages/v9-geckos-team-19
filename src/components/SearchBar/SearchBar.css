@@ -1,9 +1,18 @@
 .searchBar > .col-md-3, .col-md-4 {
-    height: 1.5rem;
+    height: 2rem;
+}
+
+.searchBar {
+    background-color: white;
+    height: 2rem;
+    margin-bottom: -.5rem;
+    width: 110%;
+    z-index: 5;
+    position: fixed;
+    top: 8rem;
 }
 
 .searcBar > .row {
-    width: 100%;
     margin-left: 0;
     padding-left: 0;
     padding-right: 0; 

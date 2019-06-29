@@ -6,7 +6,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
 class CityDisplay extends React.Component {
-    state = {currentCity: '', selectedCity: '', cityDisplay: false, loadedCityURL: ''}
+    state = {currentCity: '', selectedCity: '', loadedCityURL: ''}
 
     displayName = (city) => {
         let beforeCity = 'slug:';
@@ -20,15 +20,6 @@ class CityDisplay extends React.Component {
         this.setState({
             currentCity: cityName, 
             loadedCityURL: this.props.city
-        })
-    }
-
-    displayList = () => {
-        let cityShow = this.state.cityDisplay;
-        cityShow = !cityShow;
-
-        this.setState ({
-            cityDisplay: cityShow
         })
     }
 
@@ -52,10 +43,8 @@ class CityDisplay extends React.Component {
             }
 
             const displayCurrent = this.state.currentCity;
-            let menuDisplay = null;
 
-            if(this.state.cityDisplay) {
-                menuDisplay = 
+            const menuDisplay = 
                 <div>
                     {this.props.cityList.map((city, index) => {
                         return <CityChoice 
@@ -66,7 +55,7 @@ class CityDisplay extends React.Component {
                     })}
                 </div>
                 
-            }
+            
 
     return (
         <div >

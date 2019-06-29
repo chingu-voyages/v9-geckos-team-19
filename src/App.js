@@ -3,6 +3,7 @@ import './App.css';
 import siteLogo from './image/CityScope.png';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Menu from './components/Menu/Menu';
 import SearchBar from './components/SearchBar/SearchBar';
 import CityDisplayContainer from './components/CityDisplay/CityDisplayContainer';
 import SalaryContainer from './components/Salary/SalaryContainer';
@@ -16,6 +17,7 @@ class App extends React.Component {
 
   onCitySubmit = async (city) => {
     try {
+      let urbanArea;
       city = city.toLowerCase().replace(/ /g, '%20');
       let citySearch = await teleport.get('cities/?search=' + city);
 
@@ -23,14 +25,19 @@ class App extends React.Component {
       ]["city:item"]["href"];
 
       let idSearch = /[0-9]/g;
-
+      
       let city_id = cityResponseURL.match(idSearch);
       city_id = city_id.toString().replace(/,/g, '');
 
-      let urbanArea = await teleport.get('cities/geonameid:' + city_id);
-      urbanArea = urbanArea.data["_links"]["city:urban_area"]["href"];
+      if(city_id !== "1650527") {
+        urbanArea = await teleport.get('cities/geonameid:' + city_id);    
+        urbanArea = urbanArea.data["_links"]["city:urban_area"]["href"];
+      }
+      if(city_id === "1650527") {
+        urbanArea = 'https://api.teleport.org/api/urban_areas/slug:bali/';
+      }
 
-      let imageURL = await teleport.get(urbanArea);
+      let imageURL = await teleport.get(urbanArea);   
       imageURL = imageURL.data["_links"]["ua:images"]["href"];
 
       let image = await teleport.get(imageURL);
@@ -44,11 +51,11 @@ class App extends React.Component {
         cityLoad: true
       })
     }
-    catch (error) {
+    catch(error) {
       this.setState({
         displayError: true
       })
-    }
+    } 
 
   }
 
@@ -56,26 +63,18 @@ class App extends React.Component {
 
     let cityContent = null;
 
-    if (this.state.cityLoad) {
+    if(this.state.cityLoad) {
       cityContent = (
         <Row className="appRow">
-          <Col md={2} className="graySpace"></Col>
+          <Col md={2}></Col>
           <Col md={8}>
-            <ClimateContainer city={this.state.urbanscores} />
-            <SalaryContainer city={this.state.urbanscores} />
-            <EducationContainer city={this.state.urbanscores} />
-            <SafetyContainer city={this.state.urbanscores} />
+              <ClimateContainer city={this.state.urbanscores} />
+              <SalaryContainer  city={this.state.urbanscores} />
+              <EducationContainer city={this.state.urbanscores} />
+              <SafetyContainer city={this.state.urbanscores} />
           </Col>
-          <Col md={2} className="graySpace">
-            <div className="menu">
-              <p>Life Quality</p>
-              <p>Cost of Living</p>
-              <p>Salary</p>
-              <p>Education</p>
-              <p>Safety</p>
-              <p>Climate</p>
-              <p>Population</p>
-            </div>
+          <Col md={2}>
+            <Menu city={this.state.urbanscores}/>
           </Col>
         </Row>
       );
@@ -83,15 +82,15 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <div className="topBar">
-          <img src={siteLogo} alt="CityScope logo" />
-          <p>CityScope</p>
-        </div>
-        <SearchBar onCitySubmit={this.onCitySubmit}
-          searchError={this.state.displayError} />
-        <CityDisplayContainer images={this.state.images}
-          city={this.state.urbanscores}
-          onCitySubmit={this.onCitySubmit} />
+          <div className="topBar">
+            <img src={siteLogo} alt="CityScope logo"/>
+            <p>City Scope</p>
+          </div>
+          <SearchBar onCitySubmit = {this.onCitySubmit}
+                    searchError = {this.state.displayError}/>
+          <CityDisplayContainer images={this.state.images}
+            city={this.state.urbanscores}
+            onCitySubmit={this.onCitySubmit} />
         {cityContent}
       </div>
     );

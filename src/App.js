@@ -8,7 +8,7 @@ import teleport from "./api/teleport";
 import Population from "./components/Population/Population";
 import Display from "./components/Housing/SelectedCityInfo";
 import SelectedIndex from "./components/Housing/selectedCategory";
-import CDisplay from "./components/Housing/CompareDisplay";
+
 class App extends React.Component {
   state = { geoname_id: 0, urbanscores: "", images: [], cityName: "" };
 
@@ -53,7 +53,6 @@ class App extends React.Component {
         <Population city={this.state.geoname_id} />
         <EducationContainer city={this.state.urbanscores} />
         <SafetyContainer city={this.state.urbanscores} />
-
         <Display
           datatype={datatypes[0]}
           cityName={this.state.cityName}
@@ -61,13 +60,6 @@ class App extends React.Component {
           selectedIndex={selectedIndex(datatypes[0])}
         />
         <Display
-          datatype={datatypes[1]}
-          cityName={this.state.cityName}
-          city={this.state.urbanscores}
-          selectedIndex={selectedIndex(datatypes[1])}
-        />
-
-        <CDisplay
           datatype={datatypes[1]}
           cityName={this.state.cityName}
           city={this.state.urbanscores}

@@ -32,7 +32,7 @@ class ClimateContainer extends React.Component {
             if (checkLowTemp) {
                 avgLowTemp = checkLowTemp.string_value;
             }
-          
+            
             success = true;
         }
 
@@ -53,21 +53,25 @@ class ClimateContainer extends React.Component {
     }
 
     render() {
-        if (this.props.city && this.state.loadedCityURL !== this.props.city) {
-            this.climateDetails(this.props.city);
-        }
+        let {weatherType, avgHigh, avgLow, loadSuccess, loadedCityURL} = this.state;
         let showClimate = null;
 
-        if (this.state.loadSuccess) {
+        if (this.props.city && loadedCityURL !== this.props.city) {
+            this.climateDetails(this.props.city);
+        }
+
+        if(loadSuccess) {
             showClimate = (
                 <div className="card shadow-sm">
                     <Climate 
-                        weatherType={this.state.weatherType}
-                        avgHigh={this.state.avgHigh}
-                        avgLow={this.state.avgLow} />
+                        weatherType={weatherType}
+                        avgHigh={avgHigh}
+                        avgLow={avgLow}
+                        loaded={loadSuccess} />
                 </div>
             )
         }
+  
 
         return <div>{showClimate}</div>
     }

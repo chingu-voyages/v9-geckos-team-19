@@ -144,14 +144,9 @@ class Salary extends React.Component {
                             </Col>
                             <Col>
                                 <p>Median Salary: <span>${avgPercentile} USD</span></p>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col></Col>
-                            <Col>
                                 <p> Lower 25th Percentile Earnings: <span>{lowerTier}</span></p>
                                 <p> Higher 75th Percentile Earnings: <span>{higherTier}</span></p>
-                            </Col>  
+                            </Col>
                         </Row>
                     </div>   
                 </div>

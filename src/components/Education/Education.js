@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 
 const Education = ({ ranking, mathAvg,  readingAvg, scienceAvg }) => {
     if (!ranking) {
-        return <div></div>
+        return null;
     }
 
     return (
@@ -19,8 +19,13 @@ const Education = ({ ranking, mathAvg,  readingAvg, scienceAvg }) => {
                         <h3 className="pisaInfoTitle">What is PISA?</h3>
                 <Row>
                 <Row>
-                    <p className="pisaInfo"> PISA is an international testing system given to 15 year olds in participating countries 
-                    as a way of assessing how countries educational systems compare in terms of quality. </p> 
+                    <p className="pisaInfo"> 
+                        PISA is an international testing system given to 15 year olds in participating countries 
+                        as a way of assessing how countries educational systems compare in terms of quality. This test is given at the age of 
+                        15 as many countries allow students at this age to chose whether to continue proceeding with their education at this point. 
+
+                        <sup>1</sup> 
+                    </p> 
                 </Row>
                 </Row>
                     <Col>
@@ -31,14 +36,13 @@ const Education = ({ ranking, mathAvg,  readingAvg, scienceAvg }) => {
                     </Col>
                     <Col>
                         <Row>
-                            <p>International Average PISA Score (2015)</p>
+                            <p >International Average PISA Score (2015)</p>
                         </Row>
                         <p><span>490</span></p>
                         <p><span>493</span></p>
                         <p><span>493</span></p>
                     </Col>                  
                 </Row>
-
 
                 </div>           
             </div>

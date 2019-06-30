@@ -10,8 +10,8 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 
 class Salary extends React.Component {
-    state = {currentProfession: 0, lowestPercentile: 0,
-            avgPercentile: 0, highestPercentile: 0, loadedCityURL: ''}
+    state = {currentProfession: 0, 
+            avgPercentile: 0, loadedCityURL: '', loadSuccess: false}
 
 
     onInitialCityLoad = async (job) => {
@@ -30,21 +30,13 @@ class Salary extends React.Component {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
 
-        let lowestPay = jobSalary[0]["salary_percentiles"]["percentile_25"].toFixed(2);
-        let mediumPay = jobSalary[0]["salary_percentiles"]["percentile_50"].toFixed(2);
-        let highPay = jobSalary[0]["salary_percentiles"]["percentile_75"].toFixed(2);
-
-        lowestPay = numberWithCommas(lowestPay);
-        mediumPay = numberWithCommas(mediumPay);
-        highPay = numberWithCommas(highPay);
-
+        const mediumPay = numberWithCommas(jobSalary[0]["salary_percentiles"]["percentile_50"].toFixed(2));
 
         this.setState({
             currentProfession: firstJob,
-            lowestPercentile: lowestPay,
             avgPercentile: mediumPay,
-            highestPercentile: highPay, 
-            loadedCityURL: chosenCity
+            loadedCityURL: chosenCity, 
+            loadSuccess: true
         })
 
     }
@@ -65,24 +57,26 @@ class Salary extends React.Component {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
 
-        let lowestPay = jobSalary[jobIndex]["salary_percentiles"]["percentile_25"].toFixed(2);
-        let mediumPay = jobSalary[jobIndex]["salary_percentiles"]["percentile_50"].toFixed(2);
-        let highPay = jobSalary[jobIndex]["salary_percentiles"]["percentile_75"].toFixed(2);
-
-        lowestPay = numberWithCommas(lowestPay);
-        mediumPay = numberWithCommas(mediumPay);
-        highPay = numberWithCommas(highPay);
+        const mediumPay = numberWithCommas(jobSalary[jobIndex]["salary_percentiles"]["percentile_50"].toFixed(2));
 
         this.setState ({
             currentProfession: selectedJob,
-            lowestPercentile: lowestPay,
             avgPercentile: mediumPay,
-            highestPercentile: highPay,
             loadedCityURL: chosenCity
         })
     }
 
     render() {
+        let loadedContent = null;
+
+        if(!this.state.loadSuccess) {
+            loadedContent = (
+                <div className="card-body">
+                    <p>Is loading </p>
+                </div>
+            )
+        }
+
         if(this.props.jobs && this.props.city !== this.state.loadedCityURL) {
             this.onInitialCityLoad(this.props.jobs);
         }
@@ -100,43 +94,49 @@ class Salary extends React.Component {
                 })}
             </div>
 
+        if(this.state.loadSuccess) {
+            loadedContent = (
+                <div className="card-body">
+                    <div className="card-title">
+                        <Row>
+                            <Col >
+                                <h2>SALARY</h2>
+                            </Col>
+                            <Col md={{ span: 4, offset: 5 }}>
+                                <Dropdown>
+                                    <DropdownButton
+                                        onClick={this.displayProfessionList}
+                                        variant="salary"
+                                        title={displayCurrentProfession ? displayCurrentProfession : 'Select a profession'}
+                                    >
+                                        <Dropdown.Item className='salaryDropDownMenu'>
+                                            {menuDisplay}
+                                        </Dropdown.Item>
+                                    </DropdownButton>
+                                </Dropdown>
+                            </Col>
+                        </Row>
+                    </div>
+                    <div className="card-text">
+                        <Row>
+                            <Col>
+                                <div className="job-style">
+                                    <FontAwesomeIcon className="suitcase-style" icon={faBriefcase} />
+                                    <h4>{displayCurrentProfession}</h4>
+                                </div>
+                            </Col>
+                            <Col>
+                                <p>Median Salary: <span>${this.state.avgPercentile} USD</span></p>
+                            </Col>
+                        </Row>
+                    </div>   
+                </div>
+            )
+        }
+
         return (
-            <div className="card-body">
-                <div className="card-title">
-                <Row>
-                    <Col >    
-                    <h2>SALARY</h2>
-                    </Col>  
-                    <Col md={{ span: 4, offset: 5 }}>
-                        <Dropdown>
-                            <DropdownButton
-                                onClick={this.displayProfessionList}
-                                variant="salary"
-                                title={displayCurrentProfession ? displayCurrentProfession : 'Select a profession'}
-                            >
-                                <Dropdown.Item className='salaryDropDownMenu'>
-                                    {menuDisplay}
-                                </Dropdown.Item>
-                            </DropdownButton>
-                        </Dropdown>
-                    </Col> 
-                </Row>
-                </div>     
-                <div className="card-text"> 
-                    <Row>
-                        <Col>
-                            <div className="job-style">
-                                <FontAwesomeIcon className="suitcase-style" icon={faBriefcase} />
-                                <h4>{displayCurrentProfession}</h4>
-                            </div>
-                        </Col>
-                        <Col>
-                            <p>Median Salary: <span>${this.state.avgPercentile} USD</span></p> 
-                            {/* <p>Lowest 25%: <span>${this.state.lowestPercentile} USD</span></p>
-                            <p>Highest 25%: <span>${this.state.highestPercentile} USD</span></p> */}
-                        </Col>
-                    </Row>
-                </div>   
+            <div >
+                {loadedContent}
             </div>
         )
     }

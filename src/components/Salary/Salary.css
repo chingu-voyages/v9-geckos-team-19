@@ -13,8 +13,11 @@
 .btn-salary {
     background-color: #A49FD3;
     color: white;
-    margin-top: 1rem;
-    margin-left: 3rem;
+    margin-bottom: 2rem;
+}
+
+.row-salary-text {
+  margin-top: 1rem;
 }
 
 .job-style {

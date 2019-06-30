@@ -11,7 +11,11 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 
 class Salary extends React.Component {
     state = {currentProfession: 0, 
-            avgPercentile: 0, loadedCityURL: '', loadSuccess: false}
+            lowerTier: 0,
+            avgPercentile: 0, 
+            higherTier: 0,
+            loadedCityURL: '', 
+            loadSuccess: false}
 
 
     onInitialCityLoad = async (job) => {
@@ -30,11 +34,15 @@ class Salary extends React.Component {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
 
+        const lowPay = numberWithCommas(jobSalary[0]["salary_percentiles"]["percentile_25"].toFixed(2));
         const mediumPay = numberWithCommas(jobSalary[0]["salary_percentiles"]["percentile_50"].toFixed(2));
+        const highPay = numberWithCommas(jobSalary[0]["salary_percentiles"]["percentile_75"].toFixed(2));
 
         this.setState({
             currentProfession: firstJob,
+            lowerTier: lowPay,
             avgPercentile: mediumPay,
+            higherTier: highPay,
             loadedCityURL: chosenCity, 
             loadSuccess: true
         })
@@ -57,19 +65,25 @@ class Salary extends React.Component {
             return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
 
+        const lowPay = numberWithCommas(jobSalary[jobIndex]["salary_percentiles"]["percentile_25"].toFixed(2));
         const mediumPay = numberWithCommas(jobSalary[jobIndex]["salary_percentiles"]["percentile_50"].toFixed(2));
+        const highPay = numberWithCommas(jobSalary[jobIndex]["salary_percentiles"]["percentile_75"].toFixed(2));
 
         this.setState ({
             currentProfession: selectedJob,
+            lowerTier: lowPay,
             avgPercentile: mediumPay,
+            higherTier: highPay,
             loadedCityURL: chosenCity
         })
     }
 
     render() {
+        let {currentProfession, lowerTier, avgPercentile, higherTier, loadedCityURL, loadSuccess} = this.state;
+        const {jobs, city} = this.props;
         let loadedContent = null;
 
-        if(!this.state.loadSuccess) {
+        if(!loadSuccess) {
             loadedContent = (
                 <div className="card-body">
                     <p>Is loading </p>
@@ -77,15 +91,15 @@ class Salary extends React.Component {
             )
         }
 
-        if(this.props.jobs && this.props.city !== this.state.loadedCityURL) {
-            this.onInitialCityLoad(this.props.jobs);
+        if(jobs && city !== loadedCityURL) {
+            this.onInitialCityLoad(jobs);
         }
 
-        const displayCurrentProfession = this.state.currentProfession;
+        const displayCurrentProfession = currentProfession;
 
         const menuDisplay = 
             <div>
-                {this.props.jobs.map((job, index) => {
+                {jobs.map((job, index) => {
                     return <SalaryDetails 
                                 job={job}
                                 key={index}
@@ -94,7 +108,7 @@ class Salary extends React.Component {
                 })}
             </div>
 
-        if(this.state.loadSuccess) {
+        if(loadSuccess) {
             loadedContent = (
                 <div className="card-body">
                     <div className="card-title">
@@ -102,7 +116,10 @@ class Salary extends React.Component {
                             <Col >
                                 <h2>SALARY</h2>
                             </Col>
-                            <Col md={{ span: 4, offset: 5 }}>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <p>Select Your Profession for Average City Salary Pay </p>
                                 <Dropdown>
                                     <DropdownButton
                                         onClick={this.displayProfessionList}
@@ -126,8 +143,15 @@ class Salary extends React.Component {
                                 </div>
                             </Col>
                             <Col>
-                                <p>Median Salary: <span>${this.state.avgPercentile} USD</span></p>
+                                <p>Median Salary: <span>${avgPercentile} USD</span></p>
                             </Col>
+                        </Row>
+                        <Row>
+                            <Col></Col>
+                            <Col>
+                                <p> Lower 25th Percentile Earnings: <span>{lowerTier}</span></p>
+                                <p> Higher 75th Percentile Earnings: <span>{higherTier}</span></p>
+                            </Col>  
                         </Row>
                     </div>   
                 </div>
@@ -141,7 +165,5 @@ class Salary extends React.Component {
         )
     }
 }
-
-
 
 export default Salary;

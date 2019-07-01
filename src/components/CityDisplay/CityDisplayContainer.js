@@ -6,26 +6,28 @@ class CityDisplayContainer extends React.Component {
     state = {cityList: [], loadedCityURL: ''};
 
     cityList = async () => {
+        const {city} = this.props;
         let cityDropDownList = await teleport.get('urban_areas/');
         cityDropDownList = cityDropDownList.data["_links"]["ua:item"];
         cityDropDownList = cityDropDownList.map(x => x.name);
 
         this.setState({
             cityList: cityDropDownList, 
-            loadedCityURL: this.props.city
+            loadedCityURL: city
         })
     }
 
     render() {
-        if(this.props.city && this.state.loadedCityURL !== this.props.city) {
+        const {images, city, onCitySubmit} = this.props;
+        if(city && this.state.loadedCityURL !== city) {
             this.cityList();
         }
 
         return <CityDisplay 
-                images={this.props.images}
-                city={this.props.city}
+                images={images}
+                city={city}
                 cityList={this.state.cityList}
-                onCitySubmit={this.props.onCitySubmit}/>;
+                onCitySubmit={onCitySubmit}/>;
     }
 }
 

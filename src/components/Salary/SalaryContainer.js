@@ -3,7 +3,7 @@ import teleport from '../../api/teleport';
 import Salary from './Salary';
 
 class SalaryContainer extends React.Component {
-    state = { jobTitles: [],  loadedCityURL: '', loadSuccess: false}
+    state = { jobTitles: [], loadedCityURL: '', loadSuccess: false }
 
     salaryDetails = async (city) => {
         const chosenCity = city;
@@ -25,21 +25,21 @@ class SalaryContainer extends React.Component {
     }
 
     render() {
-        if (this.props.city && this.state.loadedCityURL !== this.props.city) {
+        let {loadedCityURL, loadSuccess, jobTitles} = this.state
+        let showJobInfo;
+        if (this.props.city && loadedCityURL !== this.props.city) {
             this.salaryDetails(this.props.city);
         }
 
-        let showJobInfo = null;
-
-        if(this.state.loadSuccess) {
+        if (loadSuccess) {
             showJobInfo = (
                 <div className="card shadow-sm">
-                        <Salary 
-                            jobs={this.state.jobTitles}
-                            city={this.props.city}
-                        />
-                    </div>
-                )
+                    <Salary
+                        jobs={jobTitles}
+                        city={this.props.city}
+                    />
+                </div>
+            )
         }
 
         return <div>{showJobInfo}</div>

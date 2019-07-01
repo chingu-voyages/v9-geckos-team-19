@@ -1,13 +1,39 @@
 import './Safety.css';
-import React from 'react';
+import React, {useRef, useEffect} from 'react';
 import CanvasJSReact from '../../canvasjs/canvasjs.react';
 
 
 const Safety = ({ gunCount, gunDeaths, compareCount, compareDeaths }) => {
-    if (!gunCount) {
-        return <div></div>
+    let isLoading = useRef(true);
+    let content;
+
+    useEffect(() => {
+        isLoading.current = false;
+    }, []);
+
+
+    if (isLoading) {
+        content = (
+            <div>
+                <p>Is Loading</p>
+            </div>
+        )
     }
 
+    content = (
+        <div className="card-body">
+            <div className="card-title">
+                <h2>Safety</h2>
+            </div>
+            <div className="card-text">
+                <span>{gunCount}</span>
+                <p>Guns owned per 100 residents</p>
+                <span>{gunDeaths}</span>
+                <p>Gun deaths per 100,000 residents per year</p>
+                {/* <CanvasJS options = {options}/> */}
+            </div>
+        </div>   
+    )
     // const options = {
     //     title: {
     //         text: "Gun Safety Statistics Amongst Cities"
@@ -27,20 +53,11 @@ const Safety = ({ gunCount, gunDeaths, compareCount, compareDeaths }) => {
     //         ]
     //     }]
     // }
+
+    
     return (
         <div>
-            <div className="card-body">
-                <div className="card-title">
-                    <h2>Safety</h2>
-                </div>
-                <div className="card-text">
-                    <span>{gunCount}</span>     
-                    <p>Guns owned per 100 residents</p>
-                    <span>{gunDeaths}</span>
-                    <p>Gun deaths per 100,000 residents per year</p>
-                    {/* <CanvasJS options = {options}/> */}
-                </div>
-            </div>           
+            {content}        
         </div>
     );
 }

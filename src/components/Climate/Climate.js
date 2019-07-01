@@ -1,14 +1,23 @@
-import React from 'react';
-
-//filter method for those variables who are not used to prevent rendering of sentence
-//function either not equal to 0 or set to "N/A"
+import React, {useRef, useEffect} from 'react';
 
 
-const Climate = ({weatherType, avgHigh, avgLow, loaded}) => {
-   
-    let content = null;
+const Climate = ({weatherType, avgHigh, avgLow}) => {
+    let isLoading = useRef(true);
+    let content;
 
-    if(loaded) {
+    useEffect(() => {
+        isLoading.current = false;
+    }, []); 
+
+
+    if(isLoading) {
+        content = (
+            <div>
+                <p>Is Loading</p>
+            </div>
+        )
+    }
+
         content = (
             <div className="card-body">
                 <div className="card-title">
@@ -19,9 +28,9 @@ const Climate = ({weatherType, avgHigh, avgLow, loaded}) => {
                     <p>Average High: <span>{avgHigh} C°</span> </p>
                     <p>Average Low: <span>{avgLow} C°</span></p>
                 </div>
-        </div>  
+            </div>  
         )
-    }
+
 
     return(
         <div>

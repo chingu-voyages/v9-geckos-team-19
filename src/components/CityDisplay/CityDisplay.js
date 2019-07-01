@@ -19,34 +19,36 @@ class CityDisplay extends React.Component {
 
         this.setState({
             currentCity: cityName, 
-            loadedCityURL: this.props.city
+            loadedCityURL: city
         })
     }
 
     onCitySelect = (index) => {
+        const {cityList} = this.props;
         const cityIndex = index;
 
-        const selectedCityName = this.props.cityList[cityIndex];
+        const selectedCityName = cityList[cityIndex];
 
         this.setState({
             selectedCity: selectedCityName
         })
-        this.props.onCitySubmit(selectedCityName)
+        this.onCitySubmit(selectedCityName)
     }
 
     render() {
-            if(!this.props.city) {
+        const {city, cityList, images} = this.props;
+            if(!city) {
                 return <div></div>
             }
-            if (this.props.city && this.state.loadedCityURL !== this.props.city) {
-                this.displayName(this.props.city);
+            if (city && this.state.loadedCityURL !== city) {
+                this.displayName(city);
             }
 
             const displayCurrent = this.state.currentCity;
 
             const menuDisplay = 
                 <div>
-                    {this.props.cityList.map((city, index) => {
+                    {cityList.map((city, index) => {
                         return <CityChoice 
                             city = {city}
                             key={index}
@@ -60,7 +62,7 @@ class CityDisplay extends React.Component {
     return (
         <div >
             <div className="cityPicDisplay">
-                <Image src={this.props.images} alt="city selected"/>
+                <Image src={images} alt="city selected"/>
                 <Dropdown>
                     <DropdownButton 
                         onClick={this.displayList} 

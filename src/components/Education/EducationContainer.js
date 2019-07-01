@@ -63,21 +63,22 @@ class EducationContainer extends React.Component {
     }
 
     render() {
-        if(this.props.city && this.state.loadedCityURL !== this.props.city)
+        let {loadedCityURL, loadSuccess, ranking, mathAvg, readingAvg, scienceAvg} = this.state;
+        if(this.props.city && loadedCityURL !== this.props.city)
         {
             this.educationDetails(this.props.city);
         }
 
         let showEducation = null;
 
-        if(this.state.loadSuccess) {
+        if(loadSuccess) {
             showEducation = (
                 <div className="card shadow-sm">
                     <Education 
-                        ranking={this.state.ranking}
-                        mathAvg={this.state.mathAvg}
-                        readingAvg={this.state.readingAvg}
-                        scienceAvg={this.state.scienceAvg}
+                        ranking={ranking}
+                        mathAvg={mathAvg}
+                        readingAvg={readingAvg}
+                        scienceAvg={scienceAvg}
                     />
                 </div>
                 

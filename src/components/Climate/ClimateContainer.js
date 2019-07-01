@@ -9,10 +9,9 @@ class ClimateContainer extends React.Component {
         const chosenCity = city;
         let weatherType, avgHighTemp, avgLowTemp, success;
         //navigation of teleport API to Safety section for chosen city
-        let cityDetails = await teleport.get(chosenCity);
-        cityDetails = cityDetails.data["_links"]["ua:details"]["href"];
+        const cityDetails = await teleport.get(chosenCity);
+        let cityClimate = await teleport.get(cityDetails.data["_links"]["ua:details"]["href"]);
 
-        let cityClimate = await teleport.get(cityDetails);
         cityClimate = cityClimate.data.categories.find(category => category.id.toUpperCase() === "CLIMATE");
 
         if(cityClimate) {
@@ -54,7 +53,7 @@ class ClimateContainer extends React.Component {
 
     render() {
         let {weatherType, avgHigh, avgLow, loadSuccess, loadedCityURL} = this.state;
-        let showClimate = null;
+        let showClimate;
 
         if (this.props.city && loadedCityURL !== this.props.city) {
             this.climateDetails(this.props.city);
@@ -66,8 +65,7 @@ class ClimateContainer extends React.Component {
                     <Climate 
                         weatherType={weatherType}
                         avgHigh={avgHigh}
-                        avgLow={avgLow}
-                        loaded={loadSuccess} />
+                        avgLow={avgLow} />
                 </div>
             )
         }

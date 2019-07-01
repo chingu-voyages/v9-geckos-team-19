@@ -1,0 +1,37 @@
+.dropup,
+.dropright,
+.dropdown,
+.dropleft {
+  position: static;
+}
+
+.salaryDropDownMenu {
+    height: 10rem;
+    overflow: auto;
+}
+
+.btn-salary {
+    background-color: #A49FD3;
+    color: white;
+    margin-bottom: 5rem;
+}
+
+.row-salary-text {
+  margin-top: 1rem;
+}
+
+.job-style {
+  display: flex;
+  margin-left: 1.5rem;
+}
+
+.job-style > h4 {
+  text-decoration: underline;
+}
+
+.suitcase-style {
+  font-size: 3rem;
+  color: #17A2B8;
+  margin-right: 1rem;
+  margin-top: -.75rem;
+}

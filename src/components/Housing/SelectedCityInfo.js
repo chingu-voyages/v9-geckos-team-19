@@ -49,12 +49,14 @@ class SelectedCityInfo extends React.Component {
     }
     if (this.state.result) {
       return (
-        <Container className="session-container">
-          <h2> {_.startCase(this.props.datatype.toLowerCase())} </h2>
-          <Card>
-            <Card.Body>
-              <div class="card-container">
-                <h4>{this.props.cityName}</h4>
+        <div className="card shadow-sm">
+          <div className="housing">
+            <div className="card-body">
+              <div className="card-title">
+                <h2> {_.startCase(this.props.datatype.toLowerCase())} </h2>
+              </div>
+
+              <div class="card-text">
                 <Table borderless>
                   <VisualizeData
                     cityData={this.state.result}
@@ -62,9 +64,9 @@ class SelectedCityInfo extends React.Component {
                   />
                 </Table>
               </div>
-            </Card.Body>
-          </Card>
-        </Container>
+            </div>
+          </div>
+        </div>
       );
     } else {
       return <div />;

@@ -1,23 +1,84 @@
 import './CityDisplay.css';
 import React from 'react';
-// import teleport from '../../api/teleport';
+import CityChoice from './CityChoice';
+import Image from 'react-bootstrap/Image';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
-const CityDisplay = ({ images, city }) => {
-    if(!city) {
-        return <div></div>
+class CityDisplay extends React.Component {
+    state = {currentCity: '', selectedCity: '', loadedCityURL: ''}
+
+    displayName = (city) => {
+        let beforeCity = 'slug:';
+        let afterCity = city.replace(new RegExp('.*' + beforeCity), '');
+        const cityName = afterCity.toLowerCase()
+            .split('-')
+            .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+            .join(' ')
+            .replace('/', '');
+
+        this.setState({
+            currentCity: cityName, 
+            loadedCityURL: city
+        })
     }
 
-    let beforeCity = 'slug:';
-    let afterCity = city.replace(new RegExp('.*' + beforeCity), '');
-    let cityName = afterCity.charAt(0).toUpperCase() + afterCity.slice(1);
-    cityName = cityName.replace('/', '');
+    onCitySelect = (index) => {
+        const {cityList} = this.props;
+        const cityIndex = index;
+
+        const selectedCityName = cityList[cityIndex];
+
+        this.setState({
+            selectedCity: selectedCityName
+        })
+        this.onCitySubmit(selectedCityName)
+    }
+
+    render() {
+        const {city, cityList, images} = this.props;
+            if(!city) {
+                return <div></div>
+            }
+            if (city && this.state.loadedCityURL !== city) {
+                this.displayName(city);
+            }
+
+            const displayCurrent = this.state.currentCity;
+
+            const menuDisplay = 
+                <div>
+                    {cityList.map((city, index) => {
+                        return <CityChoice 
+                            city = {city}
+                            key={index}
+                            select={() => this.onCitySelect(index)}
+                        />
+                    })}
+                </div>
+                
+            
 
     return (
-        <div className="landingPicDisplay">
-            <img src={images} alt="city selected"/>
-            <button>{cityName}</button>
+        <div >
+            <div className="cityPicDisplay">
+                <Image src={images} alt="city selected"/>
+                <Dropdown>
+                    <DropdownButton 
+                        onClick={this.displayList} 
+                        variant="cityName" 
+                        title={displayCurrent}
+                    >
+                        <Dropdown.Item className= "dropDownMenu">
+                            {menuDisplay}
+                        </Dropdown.Item>
+                    </DropdownButton>
+                </Dropdown>
+            </div>
         </div>
     );
+    }
+
 }
 
 export default CityDisplay;

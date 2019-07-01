@@ -1,0 +1,105 @@
+body, html {
+    height: 100%;
+    background-color: #EDEDED;
+}
+
+.row {
+    width:100%;
+}
+
+.appRow > .col-md-8  {
+    padding: 0;
+}
+
+.card {
+    margin-bottom: 1rem;
+}
+
+.card-body {
+    margin-left: 1rem;
+}
+
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin: 1rem 0 2rem 0;
+}
+
+h4 {
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 2rem;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+}
+
+
+span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 1.25rem;
+    margin-left: 0.75rem;
+}
+
+.topBar {
+    height: 8rem;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background-color: #1C1747;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.topBar > img {
+    position: relative;
+    height: 5rem;
+    width: 5rem;    
+}
+
+.topBar > p {
+    position: absolute;
+    margin-top: .5rem;
+    padding: 0 1rem 0 1rem;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 2.5rem;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+.App > .row{
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0;
+    padding-right: 0; 
+}
+
+.menu {
+    background-color: #A49FD3;
+    position: sticky;
+    top: 14rem;
+    margin-top: 5rem;
+    margin-left: -5rem;
+    padding: 2rem;
+}
+
+.menu > p {
+    font-family: 'Roboto', sans-serif;  
+    color: white;   
+    text-transform: uppercase;
+    line-height: 30px;
+    font-size: 20px;
+}
+
+.invisible {
+    display: none;
+}
+

@@ -31,14 +31,20 @@ class Population extends React.Component {
 
     if (this.state.population) {
       return (
-        <Container className="session-container">
+        <div className="card">
           <div className="intro">
-            <br />
-            {ReactHtmlParser(this.state.description)}
-            <br />
-            <h4>Population: {this.state.population}</h4>
+            <div className="card-body">
+              <div className="card-text">
+                <br />
+                {ReactHtmlParser(this.state.description)}
+                <br />
+                <p>
+                  Population: <span>{this.state.population}</span>
+                </p>
+              </div>
+            </div>
           </div>
-        </Container>
+        </div>
       );
     } else {
       return <div />;

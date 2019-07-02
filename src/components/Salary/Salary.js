@@ -82,9 +82,9 @@ class Salary extends React.Component {
                             <h2>SALARY</h2>
                         </Col>
                     </Row>
-                    <Row>
-                        <Col>
-                            <p><span className="salarySpan"> Select Your Profession for Average City Salary Pay </span></p>
+                    <Row className="selectProfessionForWage">
+                        <p><span className="salarySpan"> Select Your Profession for Average City Salary Pay </span></p>
+                            <FontAwesomeIcon className="suitcase-style" icon={faBriefcase} />
                             <Dropdown>
                                 <DropdownButton
                                     onClick={this.displayProfessionList}
@@ -96,22 +96,22 @@ class Salary extends React.Component {
                                     </Dropdown.Item>
                                 </DropdownButton>
                             </Dropdown>
-                        </Col>
                     </Row>
                 </div>
                 <hr></hr>
                 <div className="card-text">
                     <Row>
                         <Col>
-                            <div className="job-style">
-                                <FontAwesomeIcon className="suitcase-style" icon={faBriefcase} />
-                                <h4>{currentProfession}</h4>
-                            </div>
-                        </Col>
-                        <Col>
-                            <p><span className="salarySpan">Median Salary:</span> <span>${avgPercentile} USD</span></p>
-                            <p><span className="salarySpan">Lower 25th Percentile Earnings: </span> <span>${lowerTier} USD</span></p>
-                            <p><span className="salarySpan">Higher 75th Percentile Earnings: </span> <span>${higherTier} USD</span></p>
+                            <p>
+                                <span className="salarySpan">Median Salary:</span> 
+                                <span className="salaryResultsSpan">${avgPercentile} USD</span>
+                            </p>
+                            <p>
+                                <span className="salarySpan">Lower 25th Percentile Earnings: </span> 
+                                <span className="salaryResultsSpan">${lowerTier} USD</span></p>
+                            <p>
+                                <span className="salarySpan">Higher 75th Percentile Earnings: </span> 
+                                <span className="salaryResultsSpan">${higherTier} USD</span></p>
                         </Col>
                     </Row>
                 </div>   

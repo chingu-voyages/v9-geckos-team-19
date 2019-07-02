@@ -5,6 +5,10 @@
   position: static;
 }
 
+.selectProfessionForWage {
+  margin-left: .5rem;
+}
+
 .salaryDropDownMenu {
     height: 10rem;
     overflow: auto;
@@ -29,20 +33,25 @@
   text-decoration: underline;
 }
 
+hr {
+  margin-bottom: 3rem;
+}
+
 .suitcase-style {
   font-size: 3rem;
   color: #17A2B8;
-  margin-right: 1rem;
-  margin-top: -.75rem;
+  margin-right: 2rem;
+  margin-left: 15rem;
+  margin-top: -.6rem;
 }
 
 .salarySpan {
   color: #17A2B8;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 800;
   margin-left: 0;
 }
 
-hr {
-  margin-bottom: 3rem;
+.salaryResultsSpan {
+  font-size: 1.1rem;
 }

@@ -1,11 +1,12 @@
 import './Education.css';
-import React, {useRef, useEffect} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-const Education = ({ ranking, mathAvg,  readingAvg, scienceAvg }) => {
+const Education = ({ cityName, ranking, mathAvg,  readingAvg, scienceAvg }) => {
     let isLoading = useRef(true);
     let content;
+
 
     useEffect(() => {
         isLoading.current = false;
@@ -40,11 +41,13 @@ const Education = ({ ranking, mathAvg,  readingAvg, scienceAvg }) => {
                         </Row>
                     </Row>
                     <Col>
+                        <h3>{cityName}</h3>
                         <p>Overall Ranking:  <span className="educationStat">{ranking} out of 100</span>
                         </p>
+                        <p></p>
                         <table className="educationTable">
                             <tr>
-                                <th></th>
+                                <th>{cityName}</th>
                                 <th></th>
                                 <th>International Average PISA Score (2015)</th> 
                             </tr>
@@ -70,6 +73,7 @@ const Education = ({ ranking, mathAvg,  readingAvg, scienceAvg }) => {
             </div>
         </div>
     )
+
     return (
         <div className="education">            
             {content}

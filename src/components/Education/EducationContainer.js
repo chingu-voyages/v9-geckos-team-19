@@ -9,6 +9,7 @@ class EducationContainer extends React.Component {
         readingAvg: 0, 
         scienceAvg: 0,
         loadedCityURL: '',
+        currentCity: '',
         loadSuccess: false
             };
 
@@ -62,11 +63,27 @@ class EducationContainer extends React.Component {
         })
     }
 
+    displayName = (city) => {
+        let beforeCity = 'slug:';
+        let afterCity = city.replace(new RegExp('.*' + beforeCity), '');
+        const cityName = afterCity.toLowerCase()
+            .split('-')
+            .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+            .join(' ')
+            .replace('/', '');
+
+        this.setState({
+            currentCity: cityName,
+            loadedCityURL: this.props.city
+        })
+    }
+
     render() {
-        let {loadedCityURL, loadSuccess, ranking, mathAvg, readingAvg, scienceAvg} = this.state;
+        let {loadedCityURL, loadSuccess, ranking, mathAvg, readingAvg, scienceAvg, currentCity} = this.state;
         if(this.props.city && loadedCityURL !== this.props.city)
         {
             this.educationDetails(this.props.city);
+            this.displayName(this.props.city);
         }
 
         let showEducation = null;
@@ -75,6 +92,7 @@ class EducationContainer extends React.Component {
             showEducation = (
                 <div className="card shadow-sm">
                     <Education 
+                        cityName={currentCity}
                         ranking={ranking}
                         mathAvg={mathAvg}
                         readingAvg={readingAvg}

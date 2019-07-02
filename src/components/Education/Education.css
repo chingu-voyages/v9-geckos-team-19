@@ -10,11 +10,38 @@
 }
 
 .educationTable {
+    margin: 3rem 0;
+    border: none;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #ebe9e9;
     width: 100%;
 }
 
 .educationTable > tr > th {
+    padding: 1rem;
+}
+
+.educationTable > tr > th:nth-child(3) {
     text-align: right;
+}
+
+.educationTable > tr > th:first-child {
+    padding-left: .5rem;
+}
+
+.educationTable td {
+    padding: .5rem;
+    border-top: 1px solid #eeeeee;
+}
+
+.educationTable td:nth-child(2), .educationTable td:nth-child(3) {
+    padding-left: 5rem;
+    text-align: right;
+}
+
+.educationTable td:first-child {
+    color: #17A2B8;
+    font-weight: 800;
 }
 
 .educationStat {

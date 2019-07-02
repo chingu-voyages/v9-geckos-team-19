@@ -2,7 +2,6 @@
 //takes props from parent components and map them to create UI//
 ///------------------------------------------------------//
 import React from "react";
-import { Table } from "react-bootstrap";
 import _ from "lodash";
 
 const VisualizeData = props => {

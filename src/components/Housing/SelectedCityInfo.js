@@ -2,7 +2,7 @@ import "./Display.css";
 import React from "react";
 import teleport from "../../api/teleport";
 import VisualizeData from "./visualizeData";
-import { Table, Card, Container } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import _ from "lodash";
 
 class SelectedCityInfo extends React.Component {

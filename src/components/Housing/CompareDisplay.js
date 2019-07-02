@@ -3,8 +3,7 @@
 
 import React from "react";
 import "./Display.css";
-import VisualizeData from "./visualizeData";
-import { Table, Card, CardDeck, ListGroup, Container } from "react-bootstrap";
+import { Card, CardDeck,  Container } from "react-bootstrap";
 import SelectedCityInfo from "./SelectedCityInfo";
 import CompareCityInfo from "./CompareCityInfo";
 import SelectedIndex from "./selectedCategory";

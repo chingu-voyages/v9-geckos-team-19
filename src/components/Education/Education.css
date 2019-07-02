@@ -8,3 +8,15 @@
     margin-left: 3rem;
     margin-bottom: 3rem;
 }
+
+.educationTable {
+    width: 100%;
+}
+
+.educationTable > tr > th {
+    text-align: right;
+}
+
+.educationStat {
+    font-size: 1.15rem;
+}

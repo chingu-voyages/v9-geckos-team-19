@@ -40,21 +40,33 @@ const Education = ({ ranking, mathAvg,  readingAvg, scienceAvg }) => {
                         </Row>
                     </Row>
                     <Col>
-                        <p>Overall Ranking:  <span>{ranking} out of 100</span></p>
-                        <p>Average Math PISA Score:  <span>{mathAvg}</span></p>
-                        <p>Average Reading PISA Score:  <span>{readingAvg}</span></p>
-                        <p>Average Science PISA Score: <span>{scienceAvg}</span></p>
-                    </Col>
-                    <Col>
-                        <Row>
-                            <p >International Average PISA Score (2015)</p>
-                        </Row>
-                        <p><span>490</span></p>
-                        <p><span>493</span></p>
-                        <p><span>493</span></p>
+                        <p>Overall Ranking:  <span className="educationStat">{ranking} out of 100</span>
+                        </p>
+                        <table className="educationTable">
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th>International Average PISA Score (2015)</th> 
+                            </tr>
+                            <tr>
+                                <td>Average Math PISA Score:  </td>
+                                <td><span className="educationStat">{mathAvg}</span></td>
+                                <td><span className="educationStat">490</span></td>
+                            </tr>
+                            <tr>
+                                <td>Average Reading PISA Score:  </td>
+                                <td><span className="educationStat">{readingAvg}</span></td>
+                                <td><span className="educationStat">493</span></td>
+                            </tr>
+                            <tr>
+                                <td>Average Science PISA Score: </td>
+                                <td><span className="educationStat">{scienceAvg}</span></td>
+                                <td><span className="educationStat">493</span></td>
+                            </tr>
+                        </table>
                     </Col>
                 </Row>
-
+            {/* add source at bottom */}
             </div>
         </div>
     )

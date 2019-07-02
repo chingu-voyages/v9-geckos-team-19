@@ -14,8 +14,13 @@ class Population extends React.Component {
     let urbanScore = await teleport.get(urbanScoreUrl);
     let urbanSummary = urbanScore.data["summary"];
 
+
+    const numberWithCommas = (x) => {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
     let cityPop = await teleport.get("cities/geonameid:" + geoname_id);
-    cityPop = cityPop.data["population"];
+    cityPop = numberWithCommas(cityPop.data["population"]);
 
     this.setState({
       population: cityPop,
@@ -42,7 +47,7 @@ class Population extends React.Component {
                 <p className="cityDescription">{ReactHtmlParser(this.state.description)}</p>
                 <br />
                 <p>
-                  Population: <span>{this.state.population}</span>
+                  <span className="popSpan">Population: </span><span>{this.state.population}</span>
                 </p>
               </div>
             </div>

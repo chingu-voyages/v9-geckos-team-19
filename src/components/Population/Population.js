@@ -1,24 +1,24 @@
 import React from "react";
 import "./Population.css";
 import teleport from "../../api/teleport";
-import { Container } from "react-bootstrap";
 import ReactHtmlParser from "react-html-parser";
 
 class Population extends React.Component {
   state = { population: null, cityId: "", description: "" };
-  getData = async city => {
-    const chosenCity = "https://api.teleport.org/api/cities/geonameid:" + city;
-    let cityDetails = await teleport.get(chosenCity);
-    let urbanUrl = cityDetails.data["_links"]["city:urban_area"]["href"];
+  getData = async (city, geoname) => {
+    const urban = city;
+    const geoname_id = geoname;
 
-    let urbanInfo = await teleport.get(urbanUrl);
+    let urbanInfo = await teleport.get(urban);
     let urbanScoreUrl = urbanInfo.data["_links"]["ua:scores"]["href"];
     let urbanScore = await teleport.get(urbanScoreUrl);
     let urbanSummary = urbanScore.data["summary"];
-    let cityData = cityDetails.data["population"];
+
+    let cityPop = await teleport.get("cities/geonameid:" + geoname_id);
+    cityPop = cityPop.data["population"];
 
     this.setState({
-      population: cityData,
+      population: cityPop,
       cityId: city,
       description: urbanSummary
     });
@@ -26,7 +26,7 @@ class Population extends React.Component {
 
   render() {
     if (this.props.city && this.props.city !== this.state.cityId) {
-      this.getData(this.props.city);
+      this.getData(this.props.city, this.props.geoname);
     }
 
     if (this.state.population) {

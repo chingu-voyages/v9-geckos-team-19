@@ -80,7 +80,7 @@ class App extends React.Component {
         <Row className="appRow">
           <Col md={2} />
           <Col md={8}>
-            <Population city={this.state.geoname_id} />
+            <Population city={this.state.urbanscores} geoname={this.state.geoname_id}/>
             <ClimateContainer city={this.state.urbanscores} />
             <SalaryContainer city={this.state.urbanscores} />
             <EducationContainer city={this.state.urbanscores} />

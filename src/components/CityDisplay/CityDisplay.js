@@ -32,19 +32,21 @@ class CityDisplay extends React.Component {
         this.setState({
             selectedCity: selectedCityName
         })
-        this.onCitySubmit(selectedCityName)
+
+        this.props.onCitySubmit(selectedCityName)
     }
 
     render() {
         const {city, cityList, images} = this.props;
+        const {currentCity, loadedCityURL} = this.state;
             if(!city) {
                 return <div></div>
             }
-            if (city && this.state.loadedCityURL !== city) {
+            if (city && loadedCityURL !== city) {
                 this.displayName(city);
             }
 
-            const displayCurrent = this.state.currentCity;
+            const displayCurrent = currentCity;
 
             const menuDisplay = 
                 <div>

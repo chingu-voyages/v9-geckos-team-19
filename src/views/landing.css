@@ -1,12 +1,13 @@
 body {
-  background-image: url("../../public/landing.png");
+}
+.landing-container {
+  background-image: url("../image/landing.png");
+  height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 .landing {
-  text-align: center;
-  margin: 45% auto;
+  margin-top: 15% !important;
   font-family: Helvetica, san-serif;
   font-size: 3rem;
 }

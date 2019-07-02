@@ -1,8 +1,7 @@
 :root {
   --light-purple: #a49fd3;
-  --teal: #17a2b8;
+  --teal: #17A2B8;
   -dark-purple: #1c1747;
-  --light-grey: #f8f8f8;
 }
 
 body {
@@ -15,4 +14,8 @@ body {
 }
 .intro b {
   color: var(--teal);
+}
+
+.cityDescription {
+  width: 95%;
 }

@@ -97,6 +97,7 @@ class Menu extends React.Component {
         return (
             <div className = "menu shadow-lg">
                 <p>{displayCurrent}</p>
+                <p onClick={this.scrollToTop}> Quality of Life</p>
                 <p> <Link activeClass="active" to="climate" spy={true} smooth={true} duration={500} isDynamic={true}>Climate </Link > </p>
                 <p> <Link activeClass="active" to="salary" spy={true} smooth={true} duration={500} isDynamic={true}>Salary </Link > </p>
                 <p> <Link activeClass="active" to="education" spy={true} smooth={true} duration={500} isDynamic={true}>Education </Link > </p>

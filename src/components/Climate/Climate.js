@@ -1,5 +1,5 @@
+import './Climate.css';
 import React, {useRef, useEffect} from 'react';
-
 
 const Climate = ({weatherType, avgHigh, avgLow}) => {
     let isLoading = useRef(true);
@@ -24,7 +24,7 @@ const Climate = ({weatherType, avgHigh, avgLow}) => {
                     <h2>Climate</h2>
                 </div>
                 <div className="card-text">
-                    <p><span>{weatherType}</span></p>
+                    <p><span className="weatherType">{weatherType}</span></p>
                     <p>Average High: <span>{avgHigh} C°</span> </p>
                     <p>Average Low: <span>{avgLow} C°</span></p>
                 </div>

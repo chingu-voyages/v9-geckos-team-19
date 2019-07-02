@@ -34,9 +34,12 @@ class Population extends React.Component {
         <div className="card">
           <div className="intro">
             <div className="card-body">
+              <div className="card-title">
+                <h2>Quality Of Life</h2>
+              </div>
               <div className="card-text">
                 <br />
-                {ReactHtmlParser(this.state.description)}
+                <p className="cityDescription">{ReactHtmlParser(this.state.description)}</p>
                 <br />
                 <p>
                   Population: <span>{this.state.population}</span>

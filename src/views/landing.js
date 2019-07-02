@@ -41,10 +41,11 @@ class LandingPage extends React.Component {
                     className="d-flex justify-content-center"
                   >
                     <Button
+                      className="landingbutton"
                       variant="outline-secondary"
                       onClick={this.handleForm}
                     >
-                      Button
+                      GO
                     </Button>
                   </Link>
                 </InputGroup.Append>

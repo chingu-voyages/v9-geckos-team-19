@@ -10,15 +10,15 @@ const VisualizeData = props => {
     props.selectedIndex.includes(_.startCase(key))
   );
   let visualizedData = selectedKey.map(key => (
-    <tr key={key + 1}>
-      <td>{_.startCase(key)}</td>
-      <td className="info-value">
+    <tr className="col-12" key={key + 1}>
+      <td className="col-6">{_.startCase(key)}</td>
+      <td className="info-value col-6">
         {/score/i.test(key) ? cityData[key] : "$" + cityData[key]}
       </td>
     </tr>
   ));
 
-  return <tbody>{visualizedData}</tbody>;
+  return <tbody className="row">{visualizedData}</tbody>;
 };
 
 export default VisualizeData;

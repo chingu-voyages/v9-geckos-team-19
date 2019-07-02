@@ -9,15 +9,27 @@ body {
 .landing {
   margin-top: 15% !important;
   font-family: Helvetica, san-serif;
-  font-size: 3rem;
 }
 
 .landing-head {
   font-family: Georgia, serif;
   color: #fff;
+  font-size: 3rem;
 }
 .landing-head span {
   font-family: Helvetica, san-serif;
   color: #31a298;
   font-weight: bolder;
+  font-size: 3rem;
+}
+
+.landingbutton {
+  border-color: #31a298 !important;
+  color: #31a298 !important;
+}
+
+.landingbutton:hover {
+  background-color: #31a298 !important;
+  color: #fff !important;
+  border: none !important;
 }

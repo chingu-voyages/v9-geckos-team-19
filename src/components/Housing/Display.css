@@ -1,7 +1,7 @@
 :root {
   --light-purple: #a49fd3;
   --teal: #17a2b8;
-  -dark-purple: #1c1747;
+  --dark-purple: #1c1747;
 }
 
 body {
@@ -43,6 +43,9 @@ body {
   color: var(--teal);
   font-size: 1.3rem;
 }
+table {
+  margin-top: 1.2rem;
+}
 h2 {
   font-family: "Montserrat", sans-serif;
   font-weight: 800;
@@ -67,11 +70,11 @@ span {
   font-weight: bold;
   margin-top: 1.25rem;
   margin-left: 0.75rem;
+  color: var(--teal);
 }
 
 tr {
   border-bottom: 1px #333 dotted;
-  border-top: 1px #333 dotted;
 }
 
 ul {

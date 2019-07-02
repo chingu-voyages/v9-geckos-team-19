@@ -14,6 +14,7 @@ import teleport from "./api/teleport";
 import Population from "./components/Population/Population";
 import Display from "./components/Housing/SelectedCityInfo";
 import SelectedIndex from "./components/Housing/selectedCategory";
+import StreetView from "./components/GoogleStreetView/googlestreetview";
 
 class App extends React.Component {
   state = {
@@ -22,7 +23,8 @@ class App extends React.Component {
     images: [],
     displayError: false,
     cityLoad: false,
-    cityName: ""
+    cityName: "",
+    location: {}
   };
 
   onCitySubmit = async city => {
@@ -48,7 +50,8 @@ class App extends React.Component {
       if (city_id === "1650527") {
         urbanArea = "https://api.teleport.org/api/urban_areas/slug:bali/";
       }
-
+      let locationData = await teleport.get("cities/geonameid:" + city_id);
+      let location = locationData.data.location.latlon;
       let imageURL = await teleport.get(urbanArea);
       imageURL = imageURL.data["_links"]["ua:images"]["href"];
 
@@ -61,7 +64,8 @@ class App extends React.Component {
         images: image,
         displayError: false,
         cityLoad: true,
-        cityName: city.charAt(0).toUpperCase() + city.slice(1)
+        cityName: city.charAt(0).toUpperCase() + city.slice(1),
+        location: location
       });
     } catch (error) {
       this.setState({
@@ -92,17 +96,14 @@ class App extends React.Component {
             <EducationContainer city={this.state.urbanscores} />
             <SafetyContainer city={this.state.urbanscores} />
             <Display
-              datatype={datatypes[0]}
+              datatype1={datatypes[0]}
+              datatype2={datatypes[1]}
               cityName={this.state.cityName}
               city={this.state.urbanscores}
-              selectedIndex={selectedIndex(datatypes[0])}
+              selectedIndex1={selectedIndex(datatypes[0])}
+              selectedIndex2={selectedIndex(datatypes[1])}
             />
-            <Display
-              datatype={datatypes[1]}
-              cityName={this.state.cityName}
-              city={this.state.urbanscores}
-              selectedIndex={selectedIndex(datatypes[1])}
-            />
+            {/*<StreetView location={this.state.location} />*/}
           </Col>
           <Col md={2}>
             <Menu city={this.state.urbanscores} />

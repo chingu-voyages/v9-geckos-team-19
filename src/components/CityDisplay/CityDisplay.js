@@ -11,11 +11,15 @@ class CityDisplay extends React.Component {
     displayName = (city) => {
         let beforeCity = 'slug:';
         let afterCity = city.replace(new RegExp('.*' + beforeCity), '');
-        const cityName = afterCity.toLowerCase()
+        let cityName = afterCity.toLowerCase()
             .split('-')
             .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
             .join(' ')
             .replace('/', '');
+
+        if(cityName === "Washington Dc") {
+            cityName = "Washington DC";
+        }
 
         this.setState({
             currentCity: cityName, 

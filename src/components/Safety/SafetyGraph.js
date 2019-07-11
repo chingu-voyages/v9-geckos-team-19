@@ -1,5 +1,5 @@
 import React from 'react';
-import { VictoryChart, VictoryGroup, VictoryVoronoiContainer, VictoryScatter} from 'victory';
+import { VictoryAxis, VictoryChart, VictoryGroup, VictoryVoronoiContainer, VictoryScatter} from 'victory';
 
 class SafetyGraph extends React.Component {
     state = {chosenCityGuns: '', chosenCityDeaths: '', dataPoints: [], calculated: false}
@@ -19,12 +19,12 @@ class SafetyGraph extends React.Component {
             return x = parseFloat(x);
         }
 
-        let valueOfX = deaths.map( x => {
+        let valueOfX = guns.map( x => {
                 return x = stringToFloat(x)
             } 
         );
 
-        let valueOfY = guns.map(x => {
+        let valueOfY = deaths.map(x => {
             return x = stringToFloat(x)
             }
         );
@@ -58,7 +58,13 @@ class SafetyGraph extends React.Component {
         const data = this.state.dataPoints;
         const guns = this.state.chosenCityGuns;
         const deaths = this.state.chosenCityDeaths;
-    
+
+        let cityGunCount = parseFloat(this.props.cityGuns)
+
+        if(this.state.calculated && guns !== cityGunCount) {
+            this.chartSafetyData();
+        }
+
         if(this.state.calculated) {
             return (
                 <div>
@@ -70,27 +76,43 @@ class SafetyGraph extends React.Component {
                                 />
                             }
                         >
+                        <VictoryAxis dependentAxis
+                                orientation="left"
+                                tickValues={[10,20,30,40,50]}
+                                tickFormat={
+                                    [`Low 
+                                    Crime`,
+                                     '',
+                                      '',
+                                       '',
+                                    `High 
+                                    Crime`]}                                     
+                                />
+                            <VictoryAxis 
+                                tickValues={[100, 200, 300, 400]}
+                                tickFormat={['Few Guns', '', '', 'Many Guns']}    
+                                />
                         <VictoryGroup >
-                            <VictoryScatter 
+                            <VictoryScatter
                                 style={{
                                     data: { fill: "#A49FD3" }
                                 }}
                                 data={data}
                             />
-                            <VictoryScatter 
+                            <VictoryScatter
                                 style={{
-                                    data: { 
+                                    data: {
                                         fill: "#17A2B8",
                                         stroke: "#72e9fc",
-                                        strokeWidth: 3 
+                                        strokeWidth: 3
                                     }
                                 }}
                                 size={10}
                                 data={[
-                                { 
-                                        x: deaths,
-                                        y: guns,
-                                        name: this.props.cityName
+                                    {
+                                        x: guns,
+                                        y: deaths,
+                                        name: "(Selected)"
                                     }
                                 ]}
                             />

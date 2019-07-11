@@ -1,9 +1,11 @@
 import './Safety.css';
 import React, {useRef, useEffect} from 'react';
-import CanvasJSReact from '../../canvasjs/canvasjs.react';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import SafetyGraph from './SafetyGraph';
 
 
-const Safety = ({ gunCount, gunDeaths, compareCount, compareDeaths }) => {
+const Safety = ({ gunCount, gunDeaths, compareCount, compareDeaths, cityList, cityName }) => {
     let isLoading = useRef(true);
     let content;
 
@@ -26,33 +28,36 @@ const Safety = ({ gunCount, gunDeaths, compareCount, compareDeaths }) => {
                 <h2>Safety</h2>
             </div>
             <div className="card-text">
-                <span>{gunCount}</span>
-                <p>Guns owned per 100 residents</p>
-                <span>{gunDeaths}</span>
-                <p>Gun deaths per 100,000 residents per year</p>
-                {/* <CanvasJS options = {options}/> */}
+                <div className="safetyDesktopDisplay">
+                    <Row>
+                        <Col>
+                            <h3>Gun Crimes and Ownership</h3>
+                            <div className="gunStats">
+                                <span>{gunCount}</span>
+                                <p>Guns owned per 100 residents</p>
+                                <span>{gunDeaths}</span>
+                                <p>Gun deaths per 100,000 residents per year</p>
+                            </div>
+                        </Col>
+                        <Col>
+                            <SafetyGraph city={cityName} cityGuns={gunCount} cityDeaths={gunDeaths} guns={compareCount} deaths={compareDeaths} cityList={cityList} />
+                        </Col>
+                    </Row>
+                </div>
+                <div className="safetyOtherViewportDisplay">
+                    <h3>Gun Crimes and Ownership</h3>
+                    <div className="gunStats">
+                        <span>{gunCount}</span>
+                        <p>Guns owned per 100 residents</p>
+                        <span>{gunDeaths}</span>
+                        <p>Gun deaths per 100,000 residents per year</p>
+                    </div>
+                    <SafetyGraph city={cityName} cityGuns={gunCount} cityDeaths={gunDeaths} guns={compareCount} deaths={compareDeaths} cityList={cityList} />
+                </div>
             </div>
         </div>   
     )
-    // const options = {
-    //     title: {
-    //         text: "Gun Safety Statistics Amongst Cities"
-    //     },
-    //     axisX: {
-    //         title: "Guns Per 100 Residents"
-    //     },
-    //     axisY: {
-    //         title: "Guns Deaths Per 100K Residents Per Year"
-    //     },
-    //     data: [{
-    //         type: "scatter",
-    //         markerSize: 15,
-    //         toolTipContent: '<b> Guns: </b>{x} <br/> <b>Deaths: </b>{y}',
-    //         dataPoints: [
-                
-    //         ]
-    //     }]
-    // }
+ 
 
     
     return (

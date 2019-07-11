@@ -17,3 +17,15 @@
     padding-left: 0;
     padding-right: 0; 
 }
+
+@media (max-width:425px) and (min-width: 390px) {
+    .btn-info {
+        margin-left: -3rem;
+    }
+}
+
+@media (max-width:375px) and (min-width: 374px) {
+    .btn-info {
+        margin-left: -2.9rem;
+    }
+}

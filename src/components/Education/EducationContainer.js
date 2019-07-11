@@ -40,8 +40,7 @@ class EducationContainer extends React.Component {
             }
 
             //overall ranking of education
-            overallRanking = statFormat(cityEducation.data[12].float_value);
-            overallRanking = overallRanking * 100;
+            overallRanking = statFormat(cityEducation.data[12].float_value * 100);
 
             //Math score stats
             meanMathValue = statFormat(cityEducation.data[3].float_value);

@@ -15,7 +15,8 @@
     "react-html-parser": "^2.0.2",
     "react-scripts": "3.0.1",
     "react-scroll": "^1.7.12",
-    "save": "^2.4.0"
+    "save": "^2.4.0",
+    "victory": "^32.3.3"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,4 +1,5 @@
 import React from "react";
+import { Events, animateScroll as scroll} from 'react-scroll';
 import "./App.css";
 import siteLogo from "./image/CityScope.png";
 import Row from "react-bootstrap/Row";
@@ -24,6 +25,18 @@ class App extends React.Component {
     cityLoad: false,
     cityName: ""
   };
+
+  componentDidMount = () => {
+    Events.scrollEvent.register('begin', function () {
+      console.log("begin", arguments);
+    });
+
+    Events.scrollEvent.register('end', function () {
+      console.log("end", arguments);
+
+    // window.addEventListener('scroll', this.scrollEvent);
+    });
+  }
 
   onCitySubmit = async city => {
     try {
@@ -69,6 +82,15 @@ class App extends React.Component {
       });
     }
   };
+
+  scrollToTop = () => {
+    scroll.scrollToTop();
+  }
+
+  componentWillUnmount() {
+    Events.scrollEvent.remove('begin');
+    Events.scrollEvent.remove('end');
+  }
 
   render() {
     let cityContent = null;
@@ -120,6 +142,7 @@ class App extends React.Component {
           city={this.state.urbanscores}
           onCitySubmit={this.onCitySubmit}
         />
+        <div onClick={this.scrollToTop} className="mobile-back-to-top"></div>
         {cityContent}
       </div>
     );

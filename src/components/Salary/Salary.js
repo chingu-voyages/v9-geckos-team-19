@@ -18,12 +18,11 @@ class Salary extends React.Component {
             isLoading: true}
 
 
-    componentDidMount = async (jobIndex) => {
+    componentDidMount = async () => {
         this.onProfessionSelect(0);
     }
 
     onProfessionSelect = async (index) => {
-        debugger;
         const { city, jobs } = this.props;
         const jobIndex = index;
         let cityDetails, salaryData, jobSalary;
@@ -51,8 +50,8 @@ class Salary extends React.Component {
     }
 
     render() {
-        let {currentProfession, lowerTier, avgPercentile, higherTier, isLoading} = this.state;
-        const {jobs} = this.props;
+        let {currentProfession, lowerTier, avgPercentile, higherTier, loadedCityURL, isLoading} = this.state;
+        const {city, jobs} = this.props;
         let loadedContent;
 
         const menuDisplay = 
@@ -74,6 +73,10 @@ class Salary extends React.Component {
             )
         }
 
+        if(loadedCityURL !== city) {
+            this.onProfessionSelect(0);
+        }
+
         loadedContent = (
             <div className="card-body">
                 <div className="card-title">
@@ -84,18 +87,20 @@ class Salary extends React.Component {
                     </Row>
                     <Row className="selectProfessionForWage">
                         <p><span className="salarySpan"> Select Your Profession for Average City Salary Pay </span></p>
-                            <FontAwesomeIcon className="suitcase-style" icon={faBriefcase} />
-                            <Dropdown>
-                                <DropdownButton
-                                    onClick={this.displayProfessionList}
-                                    variant="salary"
-                                    title={currentProfession ? currentProfession : 'Select a profession'}
-                                >
-                                    <Dropdown.Item className='salaryDropDownMenu'>
-                                        {menuDisplay}
-                                    </Dropdown.Item>
-                                </DropdownButton>
-                            </Dropdown>
+                    </Row>
+                    <Row>
+                        <FontAwesomeIcon className="suitcase-style" icon={faBriefcase} />
+                        <Dropdown>
+                            <DropdownButton
+                                onClick={this.displayProfessionList}
+                                variant="salary"
+                                title={currentProfession ? currentProfession : 'Select a profession'}
+                            >
+                                <Dropdown.Item className='salaryDropDownMenu'>
+                                    {menuDisplay}
+                                </Dropdown.Item>
+                            </DropdownButton>
+                        </Dropdown>
                     </Row>
                 </div>
                 <hr></hr>

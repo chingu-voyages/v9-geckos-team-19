@@ -7,6 +7,7 @@
 
 .selectProfessionForWage {
   margin-left: .5rem;
+  margin-bottom: 1rem;
 }
 
 .salaryDropDownMenu {
@@ -41,7 +42,7 @@ hr {
   font-size: 3rem;
   color: #17A2B8;
   margin-right: 2rem;
-  margin-left: 15rem;
+  margin-left: 2rem;
   margin-top: -.6rem;
 }
 
@@ -54,4 +55,10 @@ hr {
 
 .salaryResultsSpan {
   font-size: 1.1rem;
+}
+
+@media screen and (max-width: 340px) {
+  .suitcase-style {
+    margin: -.6rem 1rem 0 1rem;
+  }
 }

@@ -1,3 +1,4 @@
+import './Menu.css';
 import React from 'react';
 import * as Scroll from 'react-scroll';
 import { Link, Element , Events, animateScroll as scroll, scroller } from 'react-scroll';
@@ -95,32 +96,33 @@ class Menu extends React.Component {
 
 
         return (
-            <div className = "menu shadow-lg">
-                <p>{displayCurrent}</p>
-                <p onClick={this.scrollToTop}> Quality of Life</p>
-                <p> <Link activeClass="active" to="climate" spy={true} smooth={true} duration={500} isDynamic={true}>Climate </Link > </p>
-                <p> <Link activeClass="active" to="salary" spy={true} smooth={true} duration={500} isDynamic={true}>Salary </Link > </p>
-                <p> <Link activeClass="active" to="education" spy={true} smooth={true} duration={500} isDynamic={true}>Education </Link > </p>
-                <p> <Link activeClass="active" to="safety" spy={true} smooth={true} duration={500} isDynamic={true}>Safety </Link > </p>
-                <p> <Link onClick={this.scrollToBottom}>Housing </Link > </p>
-                <p> <Link onClick={this.scrollToBottom}>Cost Of Living </Link > </p>
-                <p onClick={this.scrollToTop}>Back To Top</p>
+                <div className = "menu shadow-lg">
+                    <p>{displayCurrent}</p>
+                    <p onClick={this.scrollToTop}> Quality of Life</p>
+                    <p> <Link activeClass="active" to="climate" spy={true} smooth={true} duration={500} isDynamic={true}>Climate </Link > </p>
+                    <p> <Link activeClass="active" to="salary" spy={true} smooth={true} duration={500} isDynamic={true}>Salary </Link > </p>
+                    <p> <Link activeClass="active" to="education" spy={true} smooth={true} duration={500} isDynamic={true}>Education </Link > </p>
+                    <p> <Link activeClass="active" to="safety" spy={true} smooth={true} duration={500} isDynamic={true}>Safety </Link > </p>
+                    <p> <Link onClick={this.scrollToBottom}>Housing </Link > </p>
+                    <p> <Link onClick={this.scrollToBottom}>Cost Of Living </Link > </p>
+                    <p onClick={this.scrollToTop}>Back To Top</p>
 
-                <div>
-                    <Element name="climate" className="element">
-                        <Climate />
-                    </Element>
-                    <Element name="education" className="element">
-                        <Education />
-                    </Element>
-                    <Element name="safety" className="element">
-                        <Safety />
-                    </Element>
-                    <Element name="salary" className="element">
-                        <Salary />
-                    </Element>
-                </div>
-            </div>        
+                    <div>
+                        <Element name="climate" className="element">
+                            <Climate />
+                        </Element>
+                        <Element name="education" className="element">
+                            <Education />
+                        </Element>
+                        <Element name="safety" className="element">
+                            <Safety />
+                        </Element>
+                        <Element name="salary" className="element">
+                            <Salary />
+                        </Element>
+                    </div>
+                </div>  
+    
         );
     }
 }

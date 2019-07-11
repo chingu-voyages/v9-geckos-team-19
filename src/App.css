@@ -74,32 +74,44 @@ span {
 }
 
 
+.App {
+    max-width:100%;
+    margin-bottom: 3rem;
+}
+
 .App > .row{
-    width: 100%;
+    max-width: 100%;
     margin-left: 0;
     margin-right: 0;
     padding-left: 0;
     padding-right: 0; 
 }
 
-.menu {
-    background-color: #A49FD3;
-    position: sticky;
-    top: 18rem;
-    margin-top: 3rem;
-    margin-left: -3rem;
-    padding: 2rem;
-}
-
-.menu > p {
-    font-family: 'Roboto', sans-serif;  
-    color: white;   
-    text-transform: uppercase;
-    line-height: 30px;
-    font-size: 20px;
-}
-
 .invisible {
     display: none;
 }
 
+
+@media (min-width: 769px) {
+    .mobile-back-to-top {
+        display: none;
+    }
+}
+
+.mobile-back-to-top {
+    position: fixed;
+    z-index: 2;
+    bottom: 0;
+    right: 0;
+    height: 4.5rem;
+    width: 4.5rem;
+    border-radius: 50%;
+    background-color: #A49FD3;
+    margin: 0 1rem 1rem 0;
+}
+
+@media (max-width:425px) {
+    .mobile-back-to-top {
+        background-color: rgba(164, 159, 211, 0.712);
+    }
+}

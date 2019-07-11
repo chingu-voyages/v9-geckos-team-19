@@ -1,3 +1,7 @@
+.row {
+    max-width: 100;
+}
+
 .pisaInfoTitle {
     margin-left: 1rem;
     margin-bottom: 2rem;
@@ -21,7 +25,7 @@
     padding: 1rem;
 }
 
-.educationTable > tr > th:nth-child(3) {
+.international-pisa-avg {
     text-align: right;
 }
 
@@ -37,6 +41,12 @@
 .educationTable td:nth-child(2), .educationTable td:nth-child(3) {
     padding-left: 5rem;
     text-align: right;
+}
+
+@media (min-width: 320px) and (max-width:450px) {
+    .educationTable td:nth-child(2), .educationTable td:nth-child(3) {
+        padding-left: 0;
+    }
 }
 
 .educationTable td:first-child {

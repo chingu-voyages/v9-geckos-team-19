@@ -19,38 +19,49 @@ class LandingPage extends React.Component {
   render() {
     return (
       <div className="landing-container">
+        <nav className="navbar navbar-expand-sm ">
+          <div className="nav-brand">
+            <Link to="/">CityScope</Link>
+          </div>
+        </nav>
+        <div />
         <div className="row">
-          <div className="landing col-6 mx-auto pt-5 text-center">
-            <h4 className="landing-head ">
-              Know About A City with <span className="landing-one">ONE </span>
-              Click
-            </h4>
+          <div className="landing col-10 mx-auto pt-5 ">
+            <div className=" col-md-9 mx-auto row align-items-center landing-content p-5">
+              <div className="col-7 mx-auto  ">
+                <p className=" landing-head text-center mx-auto">
+                  Explore Your City
+                </p>
+              </div>
 
-            <Form onSubmit={this.handleForm}>
-              <InputGroup className="mb-3">
-                <FormControl
-                  onChange={this.handleInput}
-                  name="cityName"
-                  placeholder="Type the Name of the City"
-                  aria-label="CityName"
-                  aria-describedby="basic-addon2"
-                />
-                <InputGroup.Append>
-                  <Link
-                    to="/citypage"
-                    className="d-flex justify-content-center"
-                  >
-                    <Button
-                      className="landingbutton"
-                      variant="outline-secondary"
-                      onClick={this.handleForm}
-                    >
-                      GO
-                    </Button>
-                  </Link>
-                </InputGroup.Append>
-              </InputGroup>
-            </Form>
+              <div className="col-md-6 mx-auto">
+                <Form onSubmit={this.handleForm}>
+                  <InputGroup className="mb-3">
+                    <FormControl
+                      onChange={this.handleInput}
+                      name="cityName"
+                      placeholder="Type the Name of the City"
+                      aria-label="CityName"
+                      aria-describedby="basic-addon2"
+                    />
+                    <InputGroup.Append>
+                      <Link
+                        to="/citypage"
+                        className="d-flex justify-content-center"
+                      >
+                        <Button
+                          className="landingbutton"
+                          variant="outline-secondary"
+                          onClick={this.handleForm}
+                        >
+                          <i class="fas fa-search" />
+                        </Button>
+                      </Link>
+                    </InputGroup.Append>
+                  </InputGroup>
+                </Form>
+              </div>
+            </div>
           </div>
         </div>
       </div>

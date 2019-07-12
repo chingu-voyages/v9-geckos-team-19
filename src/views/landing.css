@@ -1,35 +1,84 @@
-body {
+:root {
+  --light-purple: #a49fd3;
+  --teal: #17a2b8;
+  --dark-purple: #1c1747;
+}
+
+nav,
+.navbar-expand-sm {
+  background: rgba(255, 255, 255, 0.3);
+}
+a {
+  color: #333 !important;
 }
 .landing-container {
-  background-image: url("../image/landing.png");
+  background-image: url(https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1413&q=80);
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
 }
 .landing {
   margin-top: 15% !important;
-  font-family: Helvetica, san-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .landing-head {
-  font-family: Georgia, serif;
+  width: 25rem;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
   color: #fff;
   font-size: 3rem;
 }
-.landing-head span {
-  font-family: Helvetica, san-serif;
-  color: #31a298;
-  font-weight: bolder;
-  font-size: 3rem;
+
+.landing-content {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .landingbutton {
-  border-color: #31a298 !important;
-  color: #31a298 !important;
+  border-color: var(--teal) !important;
+  color: var(--teal) !important;
 }
 
 .landingbutton:hover {
-  background-color: #31a298 !important;
+  background-color: var(--teal) !important;
   color: #fff !important;
   border: none !important;
+}
+
+.landing-head {
+  overflow: hidden;
+  border-right: 0.15em solid orange; /* The typwriter cursor */
+  white-space: nowrap;
+  letter-spacing: 0.1rem;
+  animation: typing 2s steps(16, end), blink-caret 1s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 70%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
+}
+
+@media (max-width: 1023px) {
+  .landing-head {
+    width: auto;
+    font-size: 2rem;
+    overflow: visible;
+    animation: none !important;
+    white-space: normal;
+    border: none;
+  }
 }

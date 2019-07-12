@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Landing from "./views/landing";
 import App from "./App";
 
-//create state in routes, and methods getCity()
 class Routes extends React.Component {
   state = {
     city: ""
@@ -15,7 +14,6 @@ class Routes extends React.Component {
   };
 
   render() {
-    // console.log("we get" + this.state.city);
     return (
       <Router>
         <Switch>

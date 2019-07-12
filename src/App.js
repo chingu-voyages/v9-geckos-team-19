@@ -14,7 +14,6 @@ import teleport from "./api/teleport";
 import Population from "./components/Population/Population";
 import Display from "./components/Housing/SelectedCityInfo";
 import SelectedIndex from "./components/Housing/selectedCategory";
-import StreetView from "./components/GoogleStreetView/googlestreetview";
 
 class App extends React.Component {
   state = {
@@ -52,6 +51,7 @@ class App extends React.Component {
       }
       let locationData = await teleport.get("cities/geonameid:" + city_id);
       let location = locationData.data.location.latlon;
+
       let imageURL = await teleport.get(urbanArea);
       imageURL = imageURL.data["_links"]["ua:images"]["href"];
 

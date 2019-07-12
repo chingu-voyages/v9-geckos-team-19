@@ -7,9 +7,7 @@ class LifeQuality extends React.Component {
     state = {scoreList: [], loadedCity: '', renderList: []}
 
     componentDidMount = async () => {
-        const scores = this.props.cityScores;
-        const city = this.props.city; 
-
+        const {scores, city} = this.props;
         this.setState({
             scoreList: scores,
             loadedCity: city
@@ -19,9 +17,8 @@ class LifeQuality extends React.Component {
     updateScores = (scores, city) => {
         const categoryScores = scores;
         const loadedScores = categoryScores.map((score) => {
-            let key = new Date();
             return <LifeQualityScore
-                key={key}
+                key={score.name}
                 name={score.name}
                 score={score.score}
                 color={score.color}

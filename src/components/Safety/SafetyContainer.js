@@ -2,13 +2,13 @@ import React from 'react';
 import Safety from './Safety';
 import teleport from '../../api/teleport';
 
-
 class SafetyContainer extends React.Component {
     state = { gunCount: 0, gunDeaths: 0, loadedCityURL: '', compareCount: 0, compareDeath: 0, cityList: [], cityName: '', loadSuccess: false};
 
     safetyDetails = async (city) => {
         //for stats specific to city chosen by user
         let chosenCity = city;
+
         let citySafetyList = await teleport.get('urban_areas/');
         citySafetyList = citySafetyList.data["_links"]["ua:item"];
         citySafetyList = citySafetyList.map(x => x.name);

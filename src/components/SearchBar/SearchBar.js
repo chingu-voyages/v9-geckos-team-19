@@ -33,7 +33,7 @@ class SearchBar extends React.Component {
             <div>
                 <Row className="searchBar shadow">
                     <Col md={3}>
-                        <Form onSubmit={this.onCitySubmit}>
+                        <Form className="searchForm" onSubmit={this.onCitySubmit}>
                             <InputGroup size="sm" className="mb-3">
                                     <FormControl
                                         placeholder="Search for a city"

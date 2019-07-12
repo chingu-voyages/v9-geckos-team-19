@@ -1,0 +1,21 @@
+@media screen and (max-width: 768px){
+    .menu {
+        display: none;
+    }
+}
+
+.menu {
+    background-color: #A49FD3;
+    top: 18rem;
+    margin-top: 3rem;
+    margin-left: -3rem;
+    padding: 2rem;
+}
+
+.menu > p {
+    font-family: 'Roboto', sans-serif;  
+    color: white;   
+    text-transform: uppercase;
+    line-height: 30px;
+    font-size: 20px;
+}

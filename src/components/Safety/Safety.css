@@ -1,0 +1,19 @@
+h3 {
+    margin-bottom: 1rem;
+}
+
+.gunStats {
+    margin-top: 2.5rem;
+}
+
+@media (min-width: 1180px) {
+    .safetyOtherViewportDisplay {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1179px) {
+    .safetyDesktopDisplay {
+        display: none;
+    }
+}

@@ -1,5 +1,5 @@
 import './Education.css';
-import React, {useRef, useState, useEffect} from 'react';
+import React, {useRef, useEffect} from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
@@ -46,26 +46,29 @@ const Education = ({ cityName, ranking, mathAvg,  readingAvg, scienceAvg }) => {
                         </p>
                         <p></p>
                         <table className="educationTable">
-                            <tr>
-                                <th>{cityName}</th>
-                                <th></th>
-                                <th>International Average PISA Score (2015)</th> 
-                            </tr>
-                            <tr>
-                                <td>Average Math PISA Score:  </td>
-                                <td><span className="educationStat">{mathAvg}</span></td>
-                                <td><span className="educationStat">490</span></td>
-                            </tr>
-                            <tr>
-                                <td>Average Reading PISA Score:  </td>
-                                <td><span className="educationStat">{readingAvg}</span></td>
-                                <td><span className="educationStat">493</span></td>
-                            </tr>
-                            <tr>
-                                <td>Average Science PISA Score: </td>
-                                <td><span className="educationStat">{scienceAvg}</span></td>
-                                <td><span className="educationStat">493</span></td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <th>{cityName}</th>
+                                    <th></th>
+                                    <th className="international-pisa-avg">International Average PISA Score (2015)</th> 
+                                </tr>
+                                <tr>
+                                    <td>Average Math PISA Score:  </td>
+                                    <td><span className="educationStat">{mathAvg}</span></td>
+                                    <td><span className="educationStat">490</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Average Reading PISA Score:  </td>
+                                    <td><span className="educationStat">{readingAvg}</span></td>
+                                    <td><span className="educationStat">493</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Average Science PISA Score: </td>
+                                    <td><span className="educationStat">{scienceAvg}</span></td>
+                                    <td><span className="educationStat">493</span></td>
+                                </tr>
+                            </tbody>
+
                         </table>
                     </Col>
                 </Row>

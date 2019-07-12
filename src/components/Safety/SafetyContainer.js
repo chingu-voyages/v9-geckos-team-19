@@ -2,14 +2,16 @@ import React from 'react';
 import Safety from './Safety';
 import teleport from '../../api/teleport';
 
-//TODO: Need to implement better algorithm to ensure that the correct data is being pulled in all containers
-
 class SafetyContainer extends React.Component {
-    state = { gunCount: 0, gunDeaths: 0, loadedCityURL: '', compareCount: 0, compareDeath: 0, loadSuccess: false};
+    state = { gunCount: 0, gunDeaths: 0, loadedCityURL: '', compareCount: 0, compareDeath: 0, cityList: [], cityName: '', loadSuccess: false};
 
     safetyDetails = async (city) => {
         //for stats specific to city chosen by user
         let chosenCity = city;
+
+        let citySafetyList = await teleport.get('urban_areas/');
+        citySafetyList = citySafetyList.data["_links"]["ua:item"];
+        citySafetyList = citySafetyList.map(x => x.name);
 
         //navigation of teleport API to Safety section for chosen city
         let cityDetails = await teleport.get(chosenCity);
@@ -19,7 +21,6 @@ class SafetyContainer extends React.Component {
         citySafety = citySafety.data.categories.find(category => category.id.toUpperCase() === "SAFETY");
 
         let gunsOwned, gunFatalities, compareGunCount, compareGunDeaths, success;
-
 
         if(!citySafety) {
                 gunsOwned = 0;
@@ -55,6 +56,7 @@ class SafetyContainer extends React.Component {
 
                 return 0;
             })
+
             compareGunDeaths = compareCityCrime.map(x => {
                 let safetyCategory = x.data.categories.find(category => category.id.toUpperCase() === "SAFETY")
 
@@ -64,10 +66,17 @@ class SafetyContainer extends React.Component {
 
                 return 0;
             })
-
+            
             success = true
         }
 
+        let beforeCity = 'slug:';
+        let afterCity = chosenCity.replace(new RegExp('.*' + beforeCity), '');
+        const selectedCity = afterCity.toLowerCase()
+            .split('-')
+            .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+            .join(' ')
+            .replace('/', '');
 
         this.setState({
             gunCount: gunsOwned,
@@ -75,26 +84,32 @@ class SafetyContainer extends React.Component {
             loadedCityURL: chosenCity,
             compareCount: compareGunCount,
             compareDeath: compareGunDeaths, 
+            cityList: citySafetyList,
+            cityName: selectedCity,
             loadSuccess: success
         })
     }
 
     render() {
+        const {gunCount, gunDeaths, compareCount, compareDeath, cityList, cityName, loadedCityURL, loadSuccess} = this.state;
+        const {city} = this.props;
 
-        if (this.props.city && this.state.loadedCityURL !== this.props.city) {
-            this.safetyDetails(this.props.city);
+        if (city && loadedCityURL !== city) {
+            this.safetyDetails(city);
         }
 
         let showSafety = null;
 
-        if(this.state.loadSuccess) {
+        if(loadSuccess) {
             showSafety = (
                 <div className="card shadow-sm">
                     <Safety
-                        gunCount={this.state.gunCount}
-                        gunDeaths={this.state.gunDeaths}
-                        compareCount={this.state.compareCount}
-                        compareDeath={this.state.compareDeaths} />
+                        gunCount={gunCount}
+                        gunDeaths={gunDeaths}
+                        compareCount={compareCount}
+                        compareDeaths={compareDeath}
+                        cityList={cityList} 
+                        cityName={cityName}/>
                 </div>
             )
         }

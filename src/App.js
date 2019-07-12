@@ -1,4 +1,5 @@
 import React from "react";
+import { Events, animateScroll as scroll } from "react-scroll";
 import "./App.css";
 import siteLogo from "./image/CityScope.png";
 import Row from "react-bootstrap/Row";
@@ -6,6 +7,7 @@ import Col from "react-bootstrap/Col";
 import Menu from "./components/Menu/Menu";
 import SearchBar from "./components/SearchBar/SearchBar";
 import CityDisplayContainer from "./components/CityDisplay/CityDisplayContainer";
+import LifeQualityContainer from "./components/LifeQuality/LifeQualityContainer";
 import SalaryContainer from "./components/Salary/SalaryContainer";
 import ClimateContainer from "./components/Climate/ClimateContainer";
 import SafetyContainer from "./components/Safety/SafetyContainer";
@@ -24,6 +26,18 @@ class App extends React.Component {
     cityLoad: false,
     cityName: "",
     location: {}
+  };
+
+  componentDidMount = () => {
+    Events.scrollEvent.register("begin", function() {
+      console.log("begin", arguments);
+    });
+
+    Events.scrollEvent.register("end", function() {
+      console.log("end", arguments);
+
+      // window.addEventListener('scroll', this.scrollEvent);
+    });
   };
 
   onCitySubmit = async city => {
@@ -74,6 +88,15 @@ class App extends React.Component {
     }
   };
 
+  scrollToTop = () => {
+    scroll.scrollToTop();
+  };
+
+  componentWillUnmount() {
+    Events.scrollEvent.remove("begin");
+    Events.scrollEvent.remove("end");
+  }
+
   render() {
     if (this.props.landingCity && this.state.cityName == "") {
       this.onCitySubmit(this.props.landingCity);
@@ -91,6 +114,7 @@ class App extends React.Component {
               city={this.state.urbanscores}
               geoname={this.state.geoname_id}
             />
+            <LifeQualityContainer city={this.state.urbanscores} />
             <ClimateContainer city={this.state.urbanscores} />
             <SalaryContainer city={this.state.urbanscores} />
             <EducationContainer city={this.state.urbanscores} />
@@ -131,6 +155,7 @@ class App extends React.Component {
               : this.onCitySubmit
           }
         />
+        <div onClick={this.scrollToTop} className="mobile-back-to-top" />
         {cityContent}
       </div>
     );

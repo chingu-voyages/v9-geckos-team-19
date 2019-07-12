@@ -54,7 +54,7 @@ class LifeQualityContainer extends React.Component {
                 <div className="card shadow-sm">
                     <div className="card-body">
                         <div className="card-title">
-                            <h2>Life Quality</h2>
+                            <h2>Life Quality Scores</h2>
                         </div>
                         <div className="card-text">
                             <LifeQuality 

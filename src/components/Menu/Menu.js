@@ -1,12 +1,17 @@
-import './Menu.css';
-import React from 'react';
-import * as Scroll from 'react-scroll';
-import { Link, Element , Events, animateScroll as scroll, scroller } from 'react-scroll';
-import Salary from '../Salary/SalaryContainer';
-import Education from '../Education/EducationContainer';
-import Climate from '../Climate/ClimateContainer';
-import Safety from '../Safety/SafetyContainer';
-
+import "./Menu.css";
+import React from "react";
+import * as Scroll from "react-scroll";
+import {
+  Link,
+  Element,
+  Events,
+  animateScroll as scroll,
+  scroller
+} from "react-scroll";
+import Salary from "../Salary/SalaryContainer";
+import Education from "../Education/EducationContainer";
+import Climate from "../Climate/ClimateContainer";
+import Safety from "../Safety/SafetyContainer";
 
 class Menu extends React.Component {
   state = { displayCity: "", loadedCityURL: "" };
@@ -81,6 +86,17 @@ class Menu extends React.Component {
     Events.scrollEvent.remove("end");
   }
 
+  // render() {
+  //   if (this.props.city && this.state.loadedCityURL !== this.props.city) {
+  //     this.displayName(this.props.city);
+  //   }
+  //
+  //   let displayCurrent = null;
+  //
+  //   if (this.props.city && this.state.loadedCityURL === this.props.city) {
+  //     displayCurrent = <div>{this.state.currentCity}</div>;
+  //   }
+
   render() {
     if (this.props.city && this.state.loadedCityURL !== this.props.city) {
       this.displayName(this.props.city);
@@ -92,49 +108,89 @@ class Menu extends React.Component {
       displayCurrent = <div>{this.state.currentCity}</div>;
     }
 
-    render() {
+    return (
+      <div className="menu shadow-lg">
+        <p>{displayCurrent}</p>
+        <p onClick={this.scrollToTop}> Quality of Life</p>
+        <p>
+          {" "}
+          <Link
+            activeClass="active"
+            to="climate"
+            spy={true}
+            smooth={true}
+            duration={500}
+            isDynamic={true}
+          >
+            Climate{" "}
+          </Link>{" "}
+        </p>
+        <p>
+          {" "}
+          <Link
+            activeClass="active"
+            to="salary"
+            spy={true}
+            smooth={true}
+            duration={500}
+            isDynamic={true}
+          >
+            Salary{" "}
+          </Link>{" "}
+        </p>
+        <p>
+          {" "}
+          <Link
+            activeClass="active"
+            to="education"
+            spy={true}
+            smooth={true}
+            duration={500}
+            isDynamic={true}
+          >
+            Education{" "}
+          </Link>{" "}
+        </p>
+        <p>
+          {" "}
+          <Link
+            activeClass="active"
+            to="safety"
+            spy={true}
+            smooth={true}
+            duration={500}
+            isDynamic={true}
+          >
+            Safety{" "}
+          </Link>{" "}
+        </p>
+        <p>
+          {" "}
+          <Link onClick={this.scrollToBottom}>Housing </Link>{" "}
+        </p>
+        <p>
+          {" "}
+          <Link onClick={this.scrollToBottom}>Cost Of Living </Link>{" "}
+        </p>
+        <p onClick={this.scrollToTop}>Back To Top</p>
 
-        if (this.props.city && this.state.loadedCityURL !== this.props.city) {
-            this.displayName(this.props.city);
-        }
-
-        let displayCurrent = null
-
-        if (this.props.city && this.state.loadedCityURL === this.props.city) {
-                displayCurrent = (<div>{this.state.currentCity}</div>);
-            }
-
-
-        return (
-                <div className = "menu shadow-lg">
-                    <p>{displayCurrent}</p>
-                    <p onClick={this.scrollToTop}> Quality of Life</p>
-                    <p> <Link activeClass="active" to="climate" spy={true} smooth={true} duration={500} isDynamic={true}>Climate </Link > </p>
-                    <p> <Link activeClass="active" to="salary" spy={true} smooth={true} duration={500} isDynamic={true}>Salary </Link > </p>
-                    <p> <Link activeClass="active" to="education" spy={true} smooth={true} duration={500} isDynamic={true}>Education </Link > </p>
-                    <p> <Link activeClass="active" to="safety" spy={true} smooth={true} duration={500} isDynamic={true}>Safety </Link > </p>
-                    <p> <Link onClick={this.scrollToBottom}>Housing </Link > </p>
-                    <p> <Link onClick={this.scrollToBottom}>Cost Of Living </Link > </p>
-                    <p onClick={this.scrollToTop}>Back To Top</p>
-
-                    <div>
-                        <Element name="climate" className="element">
-                            <Climate />
-                        </Element>
-                        <Element name="education" className="element">
-                            <Education />
-                        </Element>
-                        <Element name="safety" className="element">
-                            <Safety />
-                        </Element>
-                        <Element name="salary" className="element">
-                            <Salary />
-                        </Element>
-                    </div>
-                </div>
-
-        );
-    }
+        <div>
+          <Element name="climate" className="element">
+            <Climate />
+          </Element>
+          <Element name="education" className="element">
+            <Education />
+          </Element>
+          <Element name="safety" className="element">
+            <Safety />
+          </Element>
+          <Element name="salary" className="element">
+            <Salary />
+          </Element>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Menu;

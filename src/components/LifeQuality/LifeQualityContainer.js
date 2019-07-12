@@ -48,13 +48,21 @@ class LifeQualityContainer extends React.Component {
             this.categoryScores(this.props.city);
         }
 
-        if (this.state.loadedCityURL)
+        if (this.state.cityScores)
         {
             return(
                 <div className="card shadow-sm">
-                    <LifeQuality 
-                        cityScores = {this.state.cityScores} 
-                    />
+                    <div className="card-body">
+                        <div className="card-title">
+                            <h2>Life Quality</h2>
+                        </div>
+                        <div className="card-text">
+                            <LifeQuality 
+                            cityScores = {this.state.cityScores}
+                            city = {this.state.loadedCityURL}
+                        />       
+                        </div>
+                    </div>
                 </div>
             )
         }

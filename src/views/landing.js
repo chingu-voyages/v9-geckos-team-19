@@ -2,6 +2,7 @@ import "./landing.css";
 import React from "react";
 import { Button, Form, InputGroup, FormControl } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class LandingPage extends React.Component {
   state = { city: "" };
@@ -14,6 +15,17 @@ class LandingPage extends React.Component {
 
   handleForm = () => {
     this.props.getCity(this.state.city);
+    this.props.history.push("/citypage");
+  };
+
+  componentDidMount = () => {
+    document.addEventListener("keypress", e => {
+      // Number 13 is the "Enter" key on the keyboard
+      if (e.keyCode === 13) {
+        e.preventDefault();
+        this.handleForm();
+      }
+    });
   };
 
   render() {
@@ -45,18 +57,13 @@ class LandingPage extends React.Component {
                       aria-describedby="basic-addon2"
                     />
                     <InputGroup.Append>
-                      <Link
-                        to="/citypage"
-                        className="d-flex justify-content-center"
+                      <Button
+                        className="landingbutton"
+                        variant="outline-secondary"
+                        onClick={this.handleForm}
                       >
-                        <Button
-                          className="landingbutton"
-                          variant="outline-secondary"
-                          onClick={this.handleForm}
-                        >
-                          <i class="fas fa-search" />
-                        </Button>
-                      </Link>
+                        <i class="fas fa-search" />
+                      </Button>
                     </InputGroup.Append>
                   </InputGroup>
                 </Form>
@@ -69,4 +76,5 @@ class LandingPage extends React.Component {
   }
 }
 
-export default LandingPage;
+const Landing = withRouter(LandingPage);
+export default Landing;

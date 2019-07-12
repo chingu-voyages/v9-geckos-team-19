@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 import Menu from "./components/Menu/Menu";
 import SearchBar from "./components/SearchBar/SearchBar";
 import CityDisplayContainer from "./components/CityDisplay/CityDisplayContainer";
+import LifeQualityContainer from "./components/LifeQuality/LifeQualityContainer";
 import SalaryContainer from "./components/Salary/SalaryContainer";
 import ClimateContainer from "./components/Climate/ClimateContainer";
 import SafetyContainer from "./components/Safety/SafetyContainer";
@@ -103,6 +104,7 @@ class App extends React.Component {
           <Col md={2} />
           <Col md={8}>
             <Population city={this.state.urbanscores} geoname={this.state.geoname_id}/>
+            <LifeQualityContainer city={this.state.urbanscores} />
             <ClimateContainer city={this.state.urbanscores} />
             <SalaryContainer city={this.state.urbanscores} />
             <EducationContainer city={this.state.urbanscores} />

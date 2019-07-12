@@ -64,7 +64,6 @@ class SelectedCityInfo extends React.Component {
       this.getData(this.props.city, this.props.datatype1, this.props.datatype2);
     }
     if (this.state.result1 && this.state.result2) {
-      console.log(this.state.result2);
       return (
         <div className="card shadow-sm">
           <div className="housing">

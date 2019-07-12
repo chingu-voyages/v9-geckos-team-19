@@ -98,13 +98,13 @@ class App extends React.Component {
   }
 
   render() {
-    if (this.props.landingCity && this.state.cityName == "") {
+    if (this.props.landingCity && this.state.cityName === "") {
       this.onCitySubmit(this.props.landingCity);
     }
     let cityContent = null;
     const datatypes = ["HOUSING", "COST-OF-LIVING"];
     const selectedIndex = datatype =>
-      SelectedIndex.categories.find(i => i.datatype == datatype).selectedIndex;
+      SelectedIndex.categories.find(i => i.datatype === datatype).selectedIndex;
     if (this.state.cityLoad) {
       cityContent = (
         <Row className="appRow">

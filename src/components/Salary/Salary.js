@@ -14,8 +14,7 @@ class Salary extends React.Component {
             lowerTier: 0,
             avgPercentile: 0, 
             higherTier: 0,
-            loadedCityURL: '', 
-            isLoading: true}
+            loadedCityURL: ''}
 
 
     componentDidMount = async () => {
@@ -50,9 +49,8 @@ class Salary extends React.Component {
     }
 
     render() {
-        let {currentProfession, lowerTier, avgPercentile, higherTier, loadedCityURL, isLoading} = this.state;
+        let {currentProfession, lowerTier, avgPercentile, higherTier, loadedCityURL} = this.state;
         const {city, jobs} = this.props;
-        let loadedContent;
 
         const menuDisplay = 
             <div>
@@ -65,19 +63,11 @@ class Salary extends React.Component {
                 })}
             </div>
 
-        if(isLoading) {
-            loadedContent = (
-                <div>
-                    <p>is Loading</p>
-                </div>
-            )
-        }
-
         if(loadedCityURL !== city) {
             this.onProfessionSelect(0);
         }
 
-        loadedContent = (
+        const loadedContent = (
             <div className="card-body">
                 <div className="card-title">
                     <Row>

@@ -1,28 +1,13 @@
 import './Safety.css';
-import React, {useRef, useEffect} from 'react';
+import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import SafetyGraph from './SafetyGraph';
 
 
 const Safety = ({ gunCount, gunDeaths, compareCount, compareDeaths, cityList, cityName }) => {
-    let isLoading = useRef(true);
-    let content;
 
-    useEffect(() => {
-        isLoading.current = false;
-    }, []);
-
-
-    if (isLoading) {
-        content = (
-            <div>
-                <p>Is Loading</p>
-            </div>
-        )
-    }
-
-    content = (
+    const content = (
         <div className="card-body">
             <div className="card-title">
                 <h2>Safety</h2>

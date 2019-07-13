@@ -1,30 +1,14 @@
 import './Climate.css';
 import Warm from '../../image/WarmTemp.svg';
 import Cold from '../../image/ColdTemp.svg';
-import React, {useRef, useEffect} from 'react';
+import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 
 const Climate = ({weatherType, avgHigh, avgLow}) => {
-    let isLoading = useRef(true);
-    let content;
 
-    useEffect(() => {
-        isLoading.current = false;
-    }, []); 
-
-
-    if(isLoading) {
-        content = (
-            <div>
-                <p>Is Loading</p>
-            </div>
-        )
-    }
-
-    //change img files to svgs
-        content = (
+    const content = (
             <div className="card-body">
                 <div className="card-title">
                     <h2>Climate</h2>

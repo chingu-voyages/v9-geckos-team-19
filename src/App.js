@@ -1,11 +1,13 @@
 import React from "react";
 import { Events, animateScroll as scroll } from "react-scroll";
 import "./App.css";
-import siteLogo from "./image/CityScope.png";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons';
 import Menu from "./components/Menu/Menu";
 import SearchBar from "./components/SearchBar/SearchBar";
+import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 import CityDisplayContainer from "./components/CityDisplay/CityDisplayContainer";
 import LifeQualityContainer from "./components/LifeQuality/LifeQualityContainer";
 import SalaryContainer from "./components/Salary/SalaryContainer";
@@ -99,6 +101,7 @@ class App extends React.Component {
         <Row className="appRow">
           <Col md={2} />
           <Col md={8}>
+            <ErrorMessage searchError={this.state.displayError} />
             <Population
               city={this.state.urbanscores}
               geoname={this.state.geoname_id}
@@ -140,7 +143,6 @@ class App extends React.Component {
 
         <SearchBar
           onCitySubmit={this.onCitySubmit}
-          searchError={this.state.displayError}
         />
         <CityDisplayContainer
           images={this.state.images}
@@ -151,7 +153,9 @@ class App extends React.Component {
               : this.onCitySubmit
           }
         />
-        <div onClick={this.scrollToTop} className="mobile-back-to-top" />
+        <div onClick={this.scrollToTop} className="mobile-back-to-top">
+          <FontAwesomeIcon className="arrow-style" icon={faAngleDoubleUp} />
+        </div>
         {cityContent}
       </div>
     );

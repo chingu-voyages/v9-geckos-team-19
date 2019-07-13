@@ -22,13 +22,6 @@ class SearchBar extends React.Component {
 
     render() {
 
-        let errorText = null;
-
-        if (this.props.searchError) {
-            errorText = "Try another search term"
-        }
-
-
         return (
             <div>
                 <Row className="searchBar shadow">
@@ -50,7 +43,6 @@ class SearchBar extends React.Component {
                     <Col md={4}> 
                     </Col>
                 </Row>
-                <h1>{errorText}</h1>
             </div>
         );
     }

@@ -2,6 +2,7 @@
   --light-purple: #a49fd3;
   --teal: #17a2b8;
   --dark-purple: #1c1747;
+  --border-color: #eeeeee;
 }
 
 body {
@@ -74,7 +75,7 @@ span {
 }
 
 tr {
-  border-bottom: 1px #333 dotted;
+  border-bottom: 1px var(--border-color) solid;
 }
 
 ul {

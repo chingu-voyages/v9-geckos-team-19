@@ -28,17 +28,6 @@ class App extends React.Component {
     location: {}
   };
 
-  componentDidMount = () => {
-    Events.scrollEvent.register("begin", function() {
-      console.log("begin", arguments);
-    });
-
-    Events.scrollEvent.register("end", function() {
-      console.log("end", arguments);
-
-      // window.addEventListener('scroll', this.scrollEvent);
-    });
-  };
 
   onCitySubmit = async city => {
     try {
@@ -117,8 +106,6 @@ class App extends React.Component {
             <LifeQualityContainer city={this.state.urbanscores} />
             <ClimateContainer city={this.state.urbanscores} />
             <SalaryContainer city={this.state.urbanscores} />
-            <EducationContainer city={this.state.urbanscores} />
-            <SafetyContainer city={this.state.urbanscores} />
             <Display
               datatype1={datatypes[0]}
               datatype2={datatypes[1]}
@@ -127,7 +114,8 @@ class App extends React.Component {
               selectedIndex1={selectedIndex(datatypes[0])}
               selectedIndex2={selectedIndex(datatypes[1])}
             />
-            {/*<StreetView location={this.state.location} />*/}
+            <EducationContainer city={this.state.urbanscores} />
+            <SafetyContainer city={this.state.urbanscores} />
           </Col>
           <Col md={2}>
             <Menu city={this.state.urbanscores} />

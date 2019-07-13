@@ -30,6 +30,11 @@ class LifeQualityContainer extends React.Component {
         for(let i = 0; i < cityScoreNames.length; i++) {
             let data = Object.create(dataFormat);
             data.score = cityScoreList[i].toPrecision(2);
+
+            if (cityScoreList[i] < 1) {
+                data.score = cityScoreList[i].toPrecision(1);
+            }
+
             data.name = cityScoreNames[i];
             data.color = cityScoreColors[i];
             cityScoreData.push(data);

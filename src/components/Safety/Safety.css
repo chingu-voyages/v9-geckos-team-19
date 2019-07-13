@@ -6,6 +6,10 @@ h3 {
     margin-top: 2.5rem;
 }
 
+.gunStats > span {
+    margin-left: 0;
+}
+
 @media (min-width: 1180px) {
     .safetyOtherViewportDisplay {
         display: none;

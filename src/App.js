@@ -1,7 +1,6 @@
 import React from "react";
 import { Events, animateScroll as scroll } from "react-scroll";
 import "./App.css";
-import siteLogo from "./image/CityScope.png";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Menu from "./components/Menu/Menu";

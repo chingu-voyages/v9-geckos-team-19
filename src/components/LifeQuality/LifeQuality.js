@@ -1,7 +1,6 @@
 import "./LifeQuality.css";
 import React from "react";
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import LifeQualityScore from "./LifeQualityScore";
 
 const LifeQuality = ({cityScores}) => {
@@ -21,13 +20,11 @@ const LifeQuality = ({cityScores}) => {
         return (
             <div>
                 <Row>
-                    <Col></Col>
-                    <Col></Col>
-                    <Col md={2}>
-                        <p className="range">
-                            Out of 10
-                        </p>
-                    </Col>
+                    <p className="range">
+                        Scores are on a scale out of 10, and are a result
+                        of city's data calculated and comparison to other
+                        cities in the database.
+                    </p>
                 </Row>
                     {renderList}                    
             </div>);

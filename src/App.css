@@ -90,16 +90,6 @@ span {
   display: none;
 }
 
-.menu:hover {
-  cursor: pointer !important;
-}
-
-.element {
-  color: red !important;
-}
-.element:hover {
-  color: #fff! !important;
-}
 @media (min-width: 769px) {
   .mobile-back-to-top {
     display: none;
@@ -122,4 +112,8 @@ span {
   .mobile-back-to-top {
     background-color: rgba(164, 159, 211, 0.712);
   }
+}
+
+a {
+  color: white;
 }

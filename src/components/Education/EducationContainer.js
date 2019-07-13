@@ -25,7 +25,12 @@ class EducationContainer extends React.Component {
         let cityEducation = await teleport.get(cityDetails);
         cityEducation = cityEducation.data.categories.find(category => category.id.toUpperCase() === "EDUCATION");
 
-        if(!cityEducation) {
+        overallRanking = cityEducation.data.find(x => x.id === "PISA-RANKING-TELESCORE");
+        meanMathValue = cityEducation.data.find(x => x.id === "PISA-DETAIL-MATH-MEAN-SCORES");
+        meanReadingValue = cityEducation.data.find(x => x.id === "PISA-DETAIL-READING-MEAN-SCORES");
+        meanScienceValue = cityEducation.data.find(x => x.id === "PISA-DETAIL-SCIENCE-MEAN-SCORES");
+
+        if(!cityEducation || !overallRanking || !meanMathValue || !meanReadingValue || !meanScienceValue) {
             overallRanking = 0;
             meanMathValue = 0; 
             meanReadingValue = 0;
@@ -33,21 +38,21 @@ class EducationContainer extends React.Component {
             success = false;
         }
 
-        if(cityEducation) {
+        if(cityEducation && overallRanking && meanMathValue && meanReadingValue && meanScienceValue) {
             const statFormat = x => {
                 if (!x) return 0;
                 return x = x.toPrecision(3);
             }
 
             //overall ranking of education
-            overallRanking = statFormat(cityEducation.data[12].float_value * 100);
+            overallRanking = statFormat(overallRanking.float_value * 100);
 
             //Math score stats
-            meanMathValue = statFormat(cityEducation.data[3].float_value);
+            meanMathValue = statFormat(meanMathValue.float_value);
             //Reading score stats
-            meanReadingValue = statFormat(cityEducation.data[6].float_value);
+            meanReadingValue = statFormat(meanReadingValue.float_value);
             //Science score stats
-            meanScienceValue = statFormat(cityEducation.data[9].float_value);
+            meanScienceValue = statFormat(meanScienceValue.float_value);
 
             success = true;
         }

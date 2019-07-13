@@ -35,8 +35,6 @@ class LifeQualityContainer extends React.Component {
             cityScoreData.push(data);
         }
 
-        console.log(cityScoreData);
-
         this.setState({
             cityScores: cityScoreData,
             loadedCityURL: chosenCity

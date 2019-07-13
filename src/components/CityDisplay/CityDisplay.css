@@ -24,6 +24,10 @@ img {
     overflow: auto;
 }
 
+.dropdown-menu {
+    z-index: 4;
+}
+
 .btn-cityName {
     position: absolute;
     top:50%;

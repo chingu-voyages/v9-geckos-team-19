@@ -16,6 +16,7 @@ import teleport from "./api/teleport";
 import Population from "./components/Population/Population";
 import Display from "./components/Housing/SelectedCityInfo";
 import SelectedIndex from "./components/Housing/selectedCategory";
+import logo from "./image/CityScope -purple.png";
 
 class App extends React.Component {
   state = {
@@ -127,9 +128,17 @@ class App extends React.Component {
     return (
       <div className="App">
         <div className="topBar">
-          <img src={siteLogo} alt="CityScope logo" />
+          {" "}
+          <a className="navbar-brand" href="/">
+            <img
+              src={logo}
+              alt="CityScope logo"
+              style={{ width: "5rem", height: "5rem" }}
+            />
+          </a>
           <p>City Scope</p>
         </div>
+
         <SearchBar
           onCitySubmit={this.onCitySubmit}
           searchError={this.state.displayError}

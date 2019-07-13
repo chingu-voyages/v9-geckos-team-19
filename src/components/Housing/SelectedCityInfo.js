@@ -60,11 +60,18 @@ class SelectedCityInfo extends React.Component {
   render() {
     const housingdescription =
       "Cost of living is divided into two parts: housing and daily living expenses.The rent are median values of  large, medium, and small apartments in city center.";
+    // const icon=[\u1F3A6,\u1F35E,\u1F683,\u1F4AA];
+
+    const fa = [
+      <i class="fas fa-film" />,
+      <i class="fas fa-dumbbell" />,
+      <i class="fas fa-bus" />,
+      <i class="fas fa-hamburger" />
+    ];
     if (this.props.city && this.state.city !== this.props.city) {
       this.getData(this.props.city, this.props.datatype1, this.props.datatype2);
     }
     if (this.state.result1 && this.state.result2) {
-      console.log(this.state.result2);
       return (
         <div className="card shadow-sm">
           <div className="housing">
@@ -81,6 +88,7 @@ class SelectedCityInfo extends React.Component {
                   <VisualizeData
                     cityData={this.state.result1}
                     selectedIndex={this.props.selectedIndex1}
+                    fa={[]}
                   />
                 </Table>
                 <br />
@@ -90,6 +98,7 @@ class SelectedCityInfo extends React.Component {
                   <VisualizeData
                     cityData={this.state.result2}
                     selectedIndex={this.props.selectedIndex2}
+                    fa={fa}
                   />
                 </Table>
               </div>

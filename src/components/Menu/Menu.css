@@ -1,21 +1,37 @@
-@media screen and (max-width: 768px){
-    .menu {
-        display: none;
-    }
+:root {
+  --light-purple: #a49fd3;
+  --teal: #17a2b8;
+  --dark-purple: #1c1747;
+  --light-grey: #ededed;
+}
+
+@media screen and (max-width: 768px) {
+  .menu {
+    display: none;
+  }
 }
 
 .menu {
-    background-color: #A49FD3;
-    top: 18rem;
-    margin-top: 3rem;
-    margin-left: -3rem;
-    padding: 2rem;
+  background-color: var(--light-grey);
+  top: 18rem;
+  margin-top: 3rem;
+  margin-left: -3rem;
+  padding: 2rem;
+}
+.menu:hover {
+  cursor: pointer !important;
 }
 
+.element:hover {
+  color: #fff !important;
+}
 .menu > p {
-    font-family: 'Roboto', sans-serif;  
-    color: white;   
-    text-transform: uppercase;
-    line-height: 30px;
-    font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  color: white;
+  text-transform: uppercase;
+  line-height: 30px;
+  font-size: 20px;
+}
+.menu > p:hover {
+  color: #fff !important;
 }

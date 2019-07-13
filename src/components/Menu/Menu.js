@@ -86,17 +86,6 @@ class Menu extends React.Component {
     Events.scrollEvent.remove("end");
   }
 
-  // render() {
-  //   if (this.props.city && this.state.loadedCityURL !== this.props.city) {
-  //     this.displayName(this.props.city);
-  //   }
-  //
-  //   let displayCurrent = null;
-  //
-  //   if (this.props.city && this.state.loadedCityURL === this.props.city) {
-  //     displayCurrent = <div>{this.state.currentCity}</div>;
-  //   }
-
   render() {
     if (this.props.city && this.state.loadedCityURL !== this.props.city) {
       this.displayName(this.props.city);
@@ -110,7 +99,7 @@ class Menu extends React.Component {
 
     return (
       <div className="menu shadow-lg">
-        <p>{displayCurrent}</p>
+        {/*<p>{displayCurrent}</p>*/}
         <p onClick={this.scrollToTop}> Quality of Life</p>
         <p>
           {" "}

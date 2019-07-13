@@ -36,7 +36,7 @@ const Climate = ({weatherType, avgHigh, avgLow}) => {
                             <img className="hotWeatherIcon" src={Warm} alt="high temp icon" />
                         </Col>
                         <Col >
-                            <img className="weatherColdIcon" src={Cold} alt="low temp icon" />
+                            <img className="coldWeatherIcon" src={Cold} alt="low temp icon" />
                         </Col>
                         <Col></Col>
                     </Row>

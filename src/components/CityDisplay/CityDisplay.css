@@ -14,7 +14,7 @@
   position: static;
 }
 
-img {
+.cityImage {
     height: 18rem;
     width: 100%;
 }

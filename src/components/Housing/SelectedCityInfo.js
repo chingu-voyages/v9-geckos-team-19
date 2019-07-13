@@ -80,7 +80,7 @@ class SelectedCityInfo extends React.Component {
                 <h2> {_.startCase(this.props.datatype2.toLowerCase())} </h2>
               </div>
 
-              <div class="card-text">
+              <div className="card-text">
                 <p> {housingdescription}</p>
                 <br />
                 <span> Housing </span>

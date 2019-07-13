@@ -1,6 +1,20 @@
+.range {
+    margin-left: 1rem;
+    font-weight: bold;
+}
+
+.scoresContainer {
+    margin-left: 2rem;
+}
+
 .cityScores {
     display: flex;
     align-items: baseline;
+}
+
+.category {
+    color: #17A2B8;
+    font-weight: bold;
 }
 
 .scoreData {
@@ -15,6 +29,7 @@
     background-color: rgb(228, 225, 225);
 }
 
-.scoreData > p {
+.shownScore {
     margin-left: 1rem;
+    font-weight: bold;
 }

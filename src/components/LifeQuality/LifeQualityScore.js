@@ -6,18 +6,20 @@ import Col from 'react-bootstrap/Col';
 const LifeQualityScore = ({name, score, color}) => {
     return (
         <Row className="cityScores">
-            <Col md={4}>
-                <p>
+            <Col sm={4}>
+                <p className="category">
                     {name}
                 </p>
             </Col>
-            <Col md={8}>
+            <Col sm={6}>
                 <div className="scoreData">
                     <div className="categoryContainer">
                         <div className="categoryScore" style={{ height: "1rem", width: `${score * 10}%`, backgroundColor: `${color}` }}></div>
                     </div>
-                    <p>{score > 0 ? score : "N/A"}</p>
                 </div>
+            </Col>
+            <Col sm={2}>
+                <p className="shownScore">{score > 0 ? score : "N/A"}</p>
             </Col>
         </Row>
     )

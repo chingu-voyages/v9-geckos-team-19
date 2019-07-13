@@ -4,7 +4,7 @@ import { Button, Form, InputGroup, FormControl } from "react-bootstrap";
 import { Link } from "react-router-dom";
 //import withRouter to access props history
 import { withRouter } from "react-router-dom";
-import logo from "../image/CityScope -purple.png";
+import logo from "../image/CityScope -blue.png";
 
 class LandingPage extends React.Component {
   state = { city: "" };

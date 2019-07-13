@@ -16,7 +16,7 @@ import teleport from "./api/teleport";
 import Population from "./components/Population/Population";
 import Display from "./components/Housing/SelectedCityInfo";
 import SelectedIndex from "./components/Housing/selectedCategory";
-import logo from "./image/CityScope -purple.png";
+import logo from "./image/CityScope -blue.png";
 
 class App extends React.Component {
   state = {
@@ -28,7 +28,6 @@ class App extends React.Component {
     cityName: "",
     location: {}
   };
-
 
   onCitySubmit = async city => {
     try {

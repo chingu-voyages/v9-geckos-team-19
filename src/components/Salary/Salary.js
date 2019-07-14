@@ -76,7 +76,7 @@ class Salary extends React.Component {
                         </Col>
                     </Row>
                     <Row className="selectProfessionForWage">
-                        <p><span className="salarySpan"> Select Your Profession for Average City Salary Pay </span></p>
+                        <p><span className="salarySpan"> Select Your Profession for Average City Salary Pay (USD) </span></p>
                     </Row>
                     <Row>
                         <FontAwesomeIcon className="suitcase-style" icon={faBriefcase} />
@@ -99,14 +99,14 @@ class Salary extends React.Component {
                         <Col>
                             <p>
                                 <span className="salarySpan">Median Salary:</span> 
-                                <span className="salaryResultsSpan">${avgPercentile} USD</span>
+                                <span className="salaryResultsSpan">${avgPercentile}</span>
                             </p>
                             <p>
                                 <span className="salarySpan">Lower 25th Percentile Earnings: </span> 
-                                <span className="salaryResultsSpan">${lowerTier} USD</span></p>
+                                <span className="salaryResultsSpan">${lowerTier}</span></p>
                             <p>
                                 <span className="salarySpan">Higher 75th Percentile Earnings: </span> 
-                                <span className="salaryResultsSpan">${higherTier} USD</span></p>
+                                <span className="salaryResultsSpan">${higherTier}</span></p>
                         </Col>
                     </Row>
                 </div>   

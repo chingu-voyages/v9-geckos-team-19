@@ -3,11 +3,11 @@ import { Events, animateScroll as scroll } from "react-scroll";
 import "./App.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
 import Menu from "./components/Menu/Menu";
 import SearchBar from "./components/SearchBar/SearchBar";
-import ErrorMessage from './components/ErrorMessage/ErrorMessage';
+import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import CityDisplayContainer from "./components/CityDisplay/CityDisplayContainer";
 import LifeQualityContainer from "./components/LifeQuality/LifeQualityContainer";
 import SalaryContainer from "./components/Salary/SalaryContainer";
@@ -125,40 +125,65 @@ class App extends React.Component {
           </Col>
         </Row>
       );
-    }
+      return (
+        <div className="App">
+          <div className="topBar">
+            {" "}
+            <a className="navbar-brand" href="/">
+              <img
+                src={logo}
+                alt="CityScope logo"
+                style={{ width: "5rem", height: "5rem" }}
+              />
+            </a>
+            <p>City Scope</p>
+          </div>
 
-    return (
-      <div className="App">
-        <div className="topBar">
-          {" "}
-          <a className="navbar-brand" href="/">
-            <img
-              src={logo}
-              alt="CityScope logo"
+          <SearchBar onCitySubmit={this.onCitySubmit} />
+          <CityDisplayContainer
+            images={this.state.images}
+            city={this.state.urbanscores}
+            onCitySubmit={
+              this.props.landingCity && !this.state.cityName
+                ? () => this.onCitySubmit(this.props.landingCity)
+                : this.onCitySubmit
+            }
+          />
+          <div onClick={this.scrollToTop} className="mobile-back-to-top">
+            <FontAwesomeIcon className="arrow-style" icon={faAngleDoubleUp} />
+          </div>
+          {cityContent}
+        </div>
+      );
+    } else {
+      return (
+        <div className="App">
+          <div className="topBar">
+            <a className="navbar-brand" href="/">
+              <img
+                src={logo}
+                alt="CityScope logo"
+                style={{ width: "5rem", height: "5rem" }}
+              />
+            </a>
+            <p>City Scope</p>
+          </div>
+          <SearchBar onCitySubmit={this.onCitySubmit} />
+          <div
+            className="d-flex justify-content-center align-items-center"
+            style={{ height: "80vh" }}
+          >
+            <div
+              class="spinner-border text-secondary"
               style={{ width: "5rem", height: "5rem" }}
-            />
-          </a>
-          <p>City Scope</p>
+              role="status"
+            >
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
         </div>
-
-        <SearchBar
-          onCitySubmit={this.onCitySubmit}
-        />
-        <CityDisplayContainer
-          images={this.state.images}
-          city={this.state.urbanscores}
-          onCitySubmit={
-            this.props.landingCity && !this.state.cityName
-              ? () => this.onCitySubmit(this.props.landingCity)
-              : this.onCitySubmit
-          }
-        />
-        <div onClick={this.scrollToTop} className="mobile-back-to-top">
-          <FontAwesomeIcon className="arrow-style" icon={faAngleDoubleUp} />
-        </div>
-        {cityContent}
-      </div>
-    );
+      );
+    }
   }
 }
 

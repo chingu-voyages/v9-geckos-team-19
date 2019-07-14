@@ -11,11 +11,11 @@ const VisualizeData = props => {
   );
   let visualizedData = selectedKey.map((key, index) => (
     <tr className="row mx-3 " key={key + 1}>
-      <td className="col-6 mr-auto ">
-        <span> {props.fa[index]} &emsp;</span>
-        {_.startCase(key)}
+      <td className="col-1 ml-auto " style={{ color: "var(--teal)" }}>
+        {props.fa[index]}
       </td>
-      <td className="info-value col-4 ml-auto text-right">
+      <td className="col-6 mr-auto ">{_.startCase(key)}</td>
+      <td className="info-value col-3 ml-auto text-right">
         <strong>
           {/score/i.test(key) ? cityData[key] : "$" + cityData[key]}
         </strong>

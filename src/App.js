@@ -35,6 +35,11 @@ class App extends React.Component {
     try {
       let urbanArea;
       city = city.toLowerCase().replace(/ /g, "%20");
+
+      if ((new RegExp("tampa")).test(city)) {
+        city = "tampa";
+      }
+
       let citySearch = await teleport.get("cities/?search=" + city);
 
       let cityResponseURL =

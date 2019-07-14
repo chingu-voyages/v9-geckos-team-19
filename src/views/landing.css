@@ -18,7 +18,6 @@ a {
   background-size: cover;
 }
 .landing {
-  margin-top: 15% !important;
   font-family: "Roboto", sans-serif;
 }
 
@@ -38,7 +37,10 @@ a {
   border-color: var(--teal) !important;
   color: var(--teal) !important;
 }
-
+.logo {
+  width: 7rem;
+  height: 7rem;
+}
 .landingbutton:hover {
   background-color: var(--teal) !important;
   color: #fff !important;
@@ -50,9 +52,12 @@ a {
   border-right: 0.15em solid orange; /* The typwriter cursor */
   white-space: nowrap;
   letter-spacing: 0.1rem;
-  animation: typing 2s steps(16, end), blink-caret 1s step-end infinite;
+  animation: typing 1.6s steps(16, end), blink-caret 1s step-end infinite;
 }
-
+.searchform {
+  padding-left: 20%;
+  padding-right: 20%;
+}
 @keyframes typing {
   from {
     width: 0;
@@ -71,21 +76,39 @@ a {
     border-color: orange;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 769px) {
   .landing-head {
-    font-size: 1.5rem !important;
+    font-size: 2rem !important;
+    width: 100%;
   }
   .searchform {
     font-size: 0.8rem !important;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .logo {
+    width: 4rem;
+    height: 4rem;
   }
 }
-@media (max-width: 1023px) {
+@media (min-width: 770px) &&(max-width: 1024px) {
   .landing-head {
-    width: auto;
     font-size: 2rem;
     overflow: visible;
     animation: none !important;
     white-space: normal;
     border: none;
+    width: 100%;
+  }
+  .searchform {
+    padding-left: 8%;
+    padding-right: 8%;
+  }
+}
+
+@media (min-width: 1025px) &&(max-width: 1440px) {
+  .searchform {
+    padding-left: 10%;
+    padding-right: 10%;
   }
 }

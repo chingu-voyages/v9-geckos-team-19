@@ -24,8 +24,8 @@ class SearchBar extends React.Component {
 
         return (
             <div>
-                <Row className="searchBar shadow">
-                    <Col md={3}>
+                <Row className="searchBar searchDesktop shadow">
+                    <Col md={4}>
                         <Form className="searchForm" onSubmit={this.onCitySubmit}>
                             <InputGroup size="sm" className="mb-3">
                                     <FormControl
@@ -41,6 +41,22 @@ class SearchBar extends React.Component {
                     </Col>
                     <Col md={4}></Col>
                     <Col md={4}> 
+                    </Col>
+                </Row>
+                <Row className="searchBar searchMobile shadow">
+                    <Col>
+                        <Form className="searchForm" onSubmit={this.onCitySubmit}>
+                            <InputGroup size="sm" className="mb-3">
+                                <FormControl
+                                    placeholder="Search for a city"
+                                    value={this.state.term}
+                                    onChange={this.onInputChange}
+                                />
+                                <InputGroup.Append>
+                                    <Button variant="info" onClick={this.onCitySubmit}>Go</Button>
+                                </InputGroup.Append>
+                            </InputGroup>
+                        </Form>
                     </Col>
                 </Row>
             </div>

@@ -5,27 +5,41 @@
 .searchBar {
     background-color: white;
     height: 2rem;
-    margin-bottom: -.5rem;
-    width: 110%;
+    margin-left: 0;
+    width: 100%;
     z-index: 5;
-    position: fixed;
-    top: 8rem;
+    height: 1.9rem;
+}
+
+.searchBar > .col-md-4:first-of-type{
+    padding-left: 0;
+}
+
+@media (min-width: 768px) {
+    .searchMobile {
+        display: none;
+    } 
+}
+
+@media (max-width: 767px) {
+    .searchDesktop {
+        display:none;
+    }
+    .searchMobile {
+        width: 100%;
+    }
+
+    .searchMobile > .col {
+        padding: 0;
+    }
+}
+
+.form-control {
+    border: 1px solid white;
 }
 
 .searcBar > .row {
     margin-left: 0;
     padding-left: 0;
     padding-right: 0; 
-}
-
-@media (max-width:425px) and (min-width: 390px) {
-    .btn-info {
-        margin-left: -3rem;
-    }
-}
-
-@media (max-width:375px) and (min-width: 374px) {
-    .btn-info {
-        margin-left: -2.9rem;
-    }
 }

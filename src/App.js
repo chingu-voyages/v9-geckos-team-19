@@ -132,18 +132,19 @@ class App extends React.Component {
       );
       return (
         <div className="App">
-          <div className="topBar">
-            {" "}
-            <a className="navbar-brand" href="/">
-              <img
-                src={logo}
-                alt="CityScope logo"
-                style={{ width: "5rem", height: "5rem" }}
-              />
-            </a>
-            <p>City Scope</p>
+          <div className="barContainer">
+            <div className="topBar">
+              {" "}
+              <a className="navbar-brand" href="/">
+                <img
+                  src={logo}
+                  alt="CityScope logo"
+                  style={{ width: "5rem", height: "5rem" }}
+                />
+              </a>
+              <p>City Scope</p>
+            </div>
           </div>
-
           <SearchBar onCitySubmit={this.onCitySubmit} />
           <CityDisplayContainer
             images={this.state.images}

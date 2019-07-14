@@ -88,9 +88,7 @@ class Climate extends React.Component {
     const content = (
         <div className="card-body">
             <div className="card-title">
-                <Row>
                     <h2>Climate</h2>
-                </Row>
                 <Row>
                     <Col>
                     </Col>

@@ -76,6 +76,7 @@
     } 
 }
 
+
 @media (min-width: 769px) {
     .hotWeatherIcon {
        height: 9rem;
@@ -89,6 +90,7 @@
     .tempText span {
         margin-left: 1.25rem;
     }
+
 }
 
 .tempText {
@@ -96,4 +98,10 @@
     font-weight: bold;
     font-size: 1.25rem;
     margin-left: 1rem;
+}
+
+.btn-climate {
+    background-color: #17A2B8;
+    color: white;
+    margin-bottom: 1.5rem;
 }

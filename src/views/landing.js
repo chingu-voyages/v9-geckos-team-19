@@ -37,7 +37,7 @@ class LandingPage extends React.Component {
         <div className="row">
           <div className="landing col-10 mx-auto pt-5 ">
             <div className=" col-md-9 mx-auto row align-items-center landing-content p-5">
-              <div className="col-7 mx-auto d-flex justify-content-center">
+              <div className="col-md-7 mx-auto d-flex justify-content-center">
                 <Link to="/">
                   <img
                     src={logo}
@@ -46,16 +46,16 @@ class LandingPage extends React.Component {
                   />
                 </Link>
               </div>
-              <div className="col-7 mx-auto  ">
+              <div className="col-md-8 mx-auto  ">
                 <div>
                   <p className=" landing-head text-center mx-auto">
                     Explore Your City
                   </p>
                 </div>
 
-                <div className="col-md-8 mx-auto">
+                <div className="col-md-8 mx-auto ">
                   <Form onSubmit={this.handleForm}>
-                    <InputGroup className="mb-3">
+                    <InputGroup className="mb-3 searchform">
                       <FormControl
                         onChange={this.handleInput}
                         name="cityName"

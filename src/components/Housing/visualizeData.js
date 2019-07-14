@@ -10,12 +10,12 @@ const VisualizeData = props => {
     props.selectedIndex.includes(_.startCase(key))
   );
   let visualizedData = selectedKey.map((key, index) => (
-    <tr className="row mx-3 " key={key + 1}>
-      <td className="col-1 ml-auto " style={{ color: "var(--teal)" }}>
+    <tr className="row mx-2 " key={key + 1}>
+      <td className="col-1 ml-auto" style={{ color: "var(--teal)" }}>
         {props.fa[index]}
       </td>
-      <td className="col-6 mr-auto ">{_.startCase(key)}</td>
-      <td className="info-value col-3 ml-auto text-right">
+      <td className="col-5 mr-auto ">{_.startCase(key)}</td>
+      <td className="info-value col-3 ml-auto mr-1 text-right">
         <strong>
           {/score/i.test(key) ? cityData[key] : "$" + cityData[key]}
         </strong>

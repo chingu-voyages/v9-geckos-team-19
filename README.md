@@ -1,9 +1,10 @@
 #City Scope
 
-##Overview
+## Overview
 This app was created to provide basic information about major cities to potential movers. The information about these major cities is pulled from the [Teleport City API](https://developers.teleport.org/api/)
 
-##Features
+## Features
+
 Information about 266 cities including:
 - General Description/City Highlights
 - How It Compares to Other Cities in the Teleport API database
@@ -14,7 +15,7 @@ Information about 266 cities including:
 - PISA scores of the city
 - Safety Information via Gun Statistics
 
-###Dev Dependencies
+### Dev Dependencies
 - Axios
 - Bootstrap
 - React-Bootstrap

@@ -34,13 +34,13 @@ class App extends React.Component {
   onCitySubmit = async city => {
     try {
       let urbanArea;
-      city = city.toLowerCase().replace(/ /g, "%20");
+      let cityTerm = city.toLowerCase().replace(/ /g, "%20");
 
-      if ((new RegExp("tampa")).test(city)) {
-        city = "tampa";
+      if((new RegExp("tampa")).test(cityTerm)) {
+        cityTerm = "tampa";
       }
 
-      let citySearch = await teleport.get("cities/?search=" + city);
+      let citySearch = await teleport.get("cities/?search=" + cityTerm);
 
       let cityResponseURL =
         citySearch.data["_embedded"]["city:search-results"][0]["_links"][

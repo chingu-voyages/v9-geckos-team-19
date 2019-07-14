@@ -83,7 +83,7 @@ class SelectedCityInfo extends React.Component {
               <div className="card-text">
                 <p> {housingdescription}</p>
                 <br />
-                <span> Housing </span>
+                <span> Housing (USD)</span>
                 <Table borderless>
                   <VisualizeData
                     cityData={this.state.result1}
@@ -93,7 +93,7 @@ class SelectedCityInfo extends React.Component {
                 </Table>
                 <br />
                 <br />
-                <span> Daily Life Expenses </span>
+                <span> Daily Life Expenses (USD) </span>
                 <Table borderless>
                   <VisualizeData
                     cityData={this.state.result2}

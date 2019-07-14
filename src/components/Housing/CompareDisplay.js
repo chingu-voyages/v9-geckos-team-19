@@ -3,7 +3,7 @@
 
 import React from "react";
 import "./Display.css";
-import { Card, CardDeck,  Container } from "react-bootstrap";
+import { Card, CardDeck, Container } from "react-bootstrap";
 import SelectedCityInfo from "./SelectedCityInfo";
 import CompareCityInfo from "./CompareCityInfo";
 import SelectedIndex from "./selectedCategory";
@@ -11,7 +11,7 @@ import _ from "lodash";
 
 const CompareDisplay = props => {
   const selectedIndex = SelectedIndex.categories.find(
-    i => i.datatype == props.datatype
+    i => i.datatype === props.datatype
   ).selectedIndex;
 
   if (props.cityName) {

@@ -1,4 +1,4 @@
-#City Scope
+# City Scope
 
 ## Overview
 This app was created to provide basic information about major cities to potential movers. The information about these major cities is pulled from the [Teleport City API](https://developers.teleport.org/api/)

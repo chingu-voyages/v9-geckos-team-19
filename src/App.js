@@ -34,13 +34,13 @@ class App extends React.Component {
   onCitySubmit = async city => {
     try {
       let urbanArea;
-      city = city.toLowerCase().replace(/ /g, "%20");
+      let cityTerm = city.toLowerCase().replace(/ /g, "%20");
 
-      if ((new RegExp("tampa")).test(city)) {
-        city = "tampa";
+      if((new RegExp("tampa")).test(cityTerm)) {
+        cityTerm = "tampa";
       }
 
-      let citySearch = await teleport.get("cities/?search=" + city);
+      let citySearch = await teleport.get("cities/?search=" + cityTerm);
 
       let cityResponseURL =
         citySearch.data["_embedded"]["city:search-results"][0]["_links"][
@@ -132,18 +132,19 @@ class App extends React.Component {
       );
       return (
         <div className="App">
-          <div className="topBar">
-            {" "}
-            <a className="navbar-brand" href="/">
-              <img
-                src={logo}
-                alt="CityScope logo"
-                style={{ width: "5rem", height: "5rem" }}
-              />
-            </a>
-            <p>City Scope</p>
+          <div className="barContainer">
+            <div className="topBar">
+              {" "}
+              <a className="navbar-brand" href="/">
+                <img
+                  src={logo}
+                  alt="CityScope logo"
+                  style={{ width: "5rem", height: "5rem" }}
+                />
+              </a>
+              <p>City Scope</p>
+            </div>
           </div>
-
           <SearchBar onCitySubmit={this.onCitySubmit} />
           <CityDisplayContainer
             images={this.state.images}

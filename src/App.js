@@ -71,7 +71,6 @@ class App extends React.Component {
             path="/"
             render={() => <Landing 
                               getCity={this.onCitySubmit}
-                              displayError={this.state.displayError}
                           />}
           />
           <Route

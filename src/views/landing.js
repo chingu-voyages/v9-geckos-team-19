@@ -19,6 +19,12 @@ class LandingPage extends React.Component {
     this.props.history.push("/citypage");
   };
 
+  _handleKeyDown = (e) => {
+  if (e.key === 'Enter') {
+    this.handleForm();
+  }
+}
+
   render() {
     return (
       <div>
@@ -44,6 +50,7 @@ class LandingPage extends React.Component {
                       <InputGroup className="mb-3">
                         <FormControl
                           onChange={this.handleInput}
+                          onKeyDown={this._handleKeyDown}
                           name="cityName"
                           placeholder="Type the Name of the City"
                           aria-label="CityName"

@@ -18,7 +18,6 @@ a {
   background-size: cover;
 }
 .landing {
-  margin-top: 15% !important;
   font-family: "Roboto", sans-serif;
 }
 
@@ -34,6 +33,15 @@ a {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.landing-content > .row > h1 {
+  color: white;
+  font-size: 3.5rem;
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+}
+
 .landingbutton {
   border-color: var(--teal) !important;
   color: var(--teal) !important;
@@ -43,6 +51,11 @@ a {
   background-color: var(--teal) !important;
   color: #fff !important;
   border: none !important;
+}
+
+.logo {
+  height: 10rem;
+  width: 10rem;
 }
 
 .landing-head {

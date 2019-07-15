@@ -50,7 +50,11 @@ a {
   border-right: 0.15em solid orange; /* The typwriter cursor */
   white-space: nowrap;
   letter-spacing: 0.1rem;
-  animation: typing 2s steps(16, end), blink-caret 1s step-end infinite;
+  animation: typing 1.4s steps(16, end), blink-caret 1s step-end infinite;
+}
+.searchform {
+  padding-left: 20%;
+  padding-right: 20%;
 }
 
 @keyframes typing {
@@ -58,7 +62,7 @@ a {
     width: 0;
   }
   to {
-    width: 70%;
+    width: 50%;
   }
 }
 

@@ -1,13 +1,13 @@
 import React from 'react';
 
-const ErrorMessage = ({displayError}) => {
+const ErrorMessage = ({searchError}) => {
 
-    if(displayError) {
+    if(searchError) {
         return (
             <div className="card">
                 <div className="card-body">
-                    <div className="card-title">
-                        <h1>There Has Been An Error Loading The Page</h1>
+                    <div className="card-text">
+                        <h1>Please Try Another Search Term</h1>
                     </div>
                 </div>
             </div>

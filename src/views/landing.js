@@ -2,7 +2,6 @@ import "./landing.css";
 import React from "react";
 import { Button, Form, InputGroup, FormControl } from "react-bootstrap";
 import { Link } from "react-router-dom";
-//import withRouter to access props history
 import { withRouter } from "react-router-dom";
 import logo from "../image/CityScope -blue.png";
 
@@ -17,13 +16,11 @@ class LandingPage extends React.Component {
 
   handleForm = () => {
     this.props.getCity(this.state.city);
-    //force the page to transition
     this.props.history.push("/citypage");
   };
 
   componentDidMount = () => {
     document.addEventListener("keypress", e => {
-      // Number 13 is the "Enter" key on the keyboard
       if (e.keyCode === 13) {
         e.preventDefault();
         this.handleForm();
@@ -33,18 +30,19 @@ class LandingPage extends React.Component {
 
   render() {
     return (
-      <div className="landing-container">
-        <div className="row">
-          <div className="landing col-10 mx-auto pt-5 ">
-            <div className=" col-md-9 mx-auto row align-items-center landing-content p-5">
-              <div className="col-7 mx-auto d-flex justify-content-center">
-                <Link to="/">
-                  <img
-                    src={logo}
-                    alt="logo"
-                    style={{ width: "7rem", height: "7rem" }}
-                  />
-                </Link>
+      <div className="landing-container d-flex align-items-center">
+        <div className="row mx-auto">
+          <div className="landing col-12 col-md-10 mx-auto row align-items-center landing-content pt-5 pb-5">
+            <div className="col-12 col-md-10 mx-auto d-flex justify-content-center p-3">
+              <Link to="/">
+                <img src={logo} alt="logo" className="logo" />
+              </Link>
+            </div>
+            <div className="col-12 col-md-10 mx-auto  ">
+              <div className="mx-auto">
+                <p className=" landing-head text-center mx-auto">
+                  Explore A City
+                </p>
               </div>
               <div className="col-7 mx-auto  ">
                 <div>

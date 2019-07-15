@@ -30,8 +30,7 @@ class CityInfo extends React.Component {
     loadedCity: ""
   };
 
-  setCityData = () => {
-    debugger; 
+  setCityData = () => { 
     this.setState({
       geoname_id: this.props.geoname_id,
       urbanScores: this.props.urbanScores,

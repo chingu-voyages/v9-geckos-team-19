@@ -14,7 +14,6 @@ class App extends React.Component {
   };
 
   onCitySubmit = async city => {
-    debugger;
     try {
       let urbanArea;
       let cityTerm = city.toLowerCase().replace(/ /g, "%20");

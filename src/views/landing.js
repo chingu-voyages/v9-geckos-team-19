@@ -19,15 +19,6 @@ class LandingPage extends React.Component {
     this.props.history.push("/citypage");
   };
 
-  componentDidMount = () => {
-    document.addEventListener("keypress", e => {
-      if (e.keyCode === 13) {
-        e.preventDefault();
-        this.handleForm();
-      }
-    });
-  };
-
   render() {
     return (
       <div className="landing-container d-flex align-items-center">

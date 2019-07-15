@@ -16,15 +16,18 @@ class LandingPage extends React.Component {
 
   handleForm = () => {
     this.props.getCity(this.state.city);
+    this.props.history.push("/citypage");
   };
 
   render() {
     return (
       <div>
-        {/* title to go here */}
-        <div className="landing-container d-flex align-items-center">
+        <div className="landing-container d-flex justify-content-center align-items-center">
           <div className="row mx-auto">
             <div className="landing col-12 col-md-10 mx-auto row align-items-center landing-content pt-5 pb-5">
+              <div className="row d-flex justify-content-center">
+                <h1> City Scope</h1>
+              </div>
               <div className="col-12 col-md-10 mx-auto d-flex justify-content-center p-3">
                 <Link to="/">
                   <img src={logo} alt="logo" className="logo" />

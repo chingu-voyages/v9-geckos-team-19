@@ -52,7 +52,7 @@ class CityInfo extends React.Component {
 
   render() {
     let cityContent = null;
-    const {geoname_id, cityName, urbanScores, images, displayError, loadedCity} = this.state;
+    const {geoname_id, cityName, urbanScores, images, loadedCity} = this.state;
 
     const datatypes = ["HOUSING", "COST-OF-LIVING"];
     const selectedIndex = datatype =>
@@ -118,7 +118,7 @@ class CityInfo extends React.Component {
         </div>
       );
     } 
-    if (displayError) {
+    if (this.props.displayError) {
       return (
         <div className="App">
           <div className="topBar">
@@ -132,7 +132,7 @@ class CityInfo extends React.Component {
             <p>City Scope</p>
           </div>
           <SearchBar onCitySubmit={this.props.onCitySubmit} />
-          <ErrorMessage searchError={displayError} />
+          <ErrorMessage searchError={this.props.displayError} />
         </div>
       );
     }

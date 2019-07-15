@@ -69,7 +69,10 @@ class App extends React.Component {
           <Route
             exact
             path="/"
-            render={() => <Landing getCity={this.onCitySubmit} />}
+            render={() => <Landing 
+                              getCity={this.onCitySubmit}
+                              displayError={this.state.displayError}
+                          />}
           />
           <Route
             exact

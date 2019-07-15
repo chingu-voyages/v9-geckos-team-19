@@ -66,11 +66,7 @@ a {
   border-right: 0.15em solid orange; /* The typwriter cursor */
   white-space: nowrap;
   letter-spacing: 0.1rem;
-<<<<<<< HEAD
-  animation: typing 1.6s steps(16, end), blink-caret 1s step-end infinite;
-=======
   animation: typing 1.4s steps(16, end), blink-caret 1s step-end infinite;
->>>>>>> d6c2665cf52312f06cd2f552d46d9d130d5c8754
 }
 .searchform {
   padding-left: 20%;
@@ -109,7 +105,7 @@ a {
     height: 4rem;
   }
 }
-@media (min-width: 770px) &&(max-width: 1024px) {
+@media (min-width: 770px) and (max-width: 1024px) {
   .landing-head {
     font-size: 2rem;
     overflow: visible;
@@ -124,7 +120,7 @@ a {
   }
 }
 
-@media (min-width: 1025px) &&(max-width: 1440px) {
+@media (min-width: 1025px) and (max-width: 1440px) {
   .searchform {
     padding-left: 10%;
     padding-right: 10%;

@@ -45,11 +45,6 @@ class LandingPage extends React.Component {
                 </p>
               </div>
               <div className="col-7 mx-auto  ">
-                <div>
-                  <p className=" landing-head text-center mx-auto">
-                    Explore Your City
-                  </p>
-                </div>
 
                 <div className="col-md-8 mx-auto">
                   <Form onSubmit={this.handleForm}>

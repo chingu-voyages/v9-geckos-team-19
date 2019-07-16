@@ -89,10 +89,11 @@ class Climate extends React.Component {
         <div className="card-body">
             <div className="card-title">
                     <h2>Climate</h2>
+                <div>
                 <Row>
                     <Col>
                     </Col>
-                    <Col md={2}>
+                    <Col md={2} className="d-flex justify-content-end">
                         <Dropdown>
                             <DropdownButton
                                 variant="climate"
@@ -157,6 +158,7 @@ class Climate extends React.Component {
                 </Row>
             </div>
         </div>
+    </div>
     )
 
         return (

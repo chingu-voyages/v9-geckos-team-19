@@ -85,8 +85,8 @@ class SelectedCityInfo extends React.Component {
                   {" "}
                   <strong> {housingdescription}</strong>
                 </div>
-                <div>
-                  <span> Housing (USD)</span>{" "}
+                <div className="housing">
+                  <h3> Housing (USD)</h3>{" "}
                 </div>
 
                 <Table borderless>
@@ -98,8 +98,8 @@ class SelectedCityInfo extends React.Component {
                 </Table>
                 <br />
                 <br />
-                <div>
-                  <span> Daily Life Expenses (USD) </span>
+                <div className="daily-expenses">
+                  <h3> Daily Life Expenses (USD) </h3>
                 </div>
 
                 <Table borderless>

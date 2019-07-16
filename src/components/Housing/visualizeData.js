@@ -11,7 +11,7 @@ const VisualizeData = props => {
   );
   let visualizedData = selectedKey.map((key, index) => (
     <tr className="row mx-2 " key={key + 1}>
-      <td className="col-1 ml-auto" style={{ color: "var(--teal)" }}>
+      <td style={{ color: "var(--teal)" }}>
         {props.fa[index]}
       </td>
       <td className="col-5 mr-auto ">{_.startCase(key)}</td>

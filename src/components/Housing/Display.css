@@ -30,16 +30,16 @@ body {
 .card-body {
   margin-left: 1rem;
 }
-.vs {
-  margin: auto;
-  text-align: center;
-  color: var(--teal);
-  font-size: 2rem;
+
+.housing > h3, .daily-expenses > h3 {
+    margin-bottom: 2rem;
+    color: #17A2B8;
 }
-/*title*/
-.compare-city-button {
-  margin-bottom: 6px;
+
+.housing > h3 {
+  margin-top: 2rem;
 }
+
 .info-value {
   color: var(--teal);
   font-size: 1.3rem;
@@ -50,12 +50,6 @@ body {
 table {
   margin-top: 1.2rem;
 }
-h2 {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 800;
-  text-transform: uppercase;
-  margin: 1rem 0 2rem 0;
-}
 
 h4 {
   font-family: "Roboto", sans-serif;
@@ -65,16 +59,6 @@ h4 {
 p {
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
-}
-
-/* for numerical stats */
-span {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-top: 1.25rem;
-  margin-left: 0.75rem;
-  color: var(--teal);
 }
 
 tr {

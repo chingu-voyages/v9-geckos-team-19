@@ -15,7 +15,7 @@
     "react-dom": "^16.8.6",
     "react-html-parser": "^2.0.2",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "3.0.1",
+    "react-scripts": "5.0.1",
     "react-scroll": "^1.7.12",
     "save": "^2.4.0",
     "victory": "^32.3.3"
